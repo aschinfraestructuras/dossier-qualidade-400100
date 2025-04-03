@@ -1,0 +1,72 @@
+[
+  {
+    "title": "Plano da Qualidade",
+    "url": "/content/capitulo-1/plano-qualidade.html",
+    "content": "O Plano de Qualidade (PQ) que foi executado pela ASCH INFRAESTRUCTURAS Y SERVICIOS, S.A. teve como objetivo desenvolver o que está indicado nas Especificações Técnicas da Contratação e no Projeto de Construção, mais o que está estabelecido no Sistema da Qualidade da ASCH INFRAESTRUCTURAS Y SERVICIOS SA, com o objetivo de definir todas as ações relacionadas à qualidade, a serem realizadas no decorrer da obra. Para isso serão utilizados procedimentos e instruções técnicas decorrentes do Sistema de Gestão da ASCH. No decurso da obra e sempre que necessário, serão efetuadas alterações à referida documentação inicial para uma ótima adaptação às necessidades da obra."
+  },
+  {
+    "title": "Plano de Inspeção e Ensaios",
+    "url": "/content/capitulo-1/inspecoes.html",
+    "content": "O Plano de Inspeção e Ensaios define os pontos de inspeção e ensaios a serem realizados durante a execução da obra. Inclui uma lista de ensaios de controlo, medição tipo de ensaio, norma, frequência, tamanho do lote, medição estimada e número de ensaios previstos para cada unidade de obra."
+  },
+  {
+    "title": "Certificados de Calibração",
+    "url": "/content/capitulo-1/certificados/",
+    "content": "Esta seção contém os certificados de calibração dos equipamentos utilizados na obra. Todos os equipamentos de medição e ensaio são calibrados de acordo com as normas aplicáveis e mantidos sob controlo para garantir a validade das medições realizadas durante a execução dos trabalhos."
+  },
+  {
+    "title": "Certificados de Materiais",
+    "url": "/content/capitulo-1/certificados-materiais.html",
+    "content": "Esta seção contém os certificados dos materiais utilizados na obra, incluindo materiais base, pré-fabricados, tubagens, impermeabilização, argamassas, cimentos e acessórios. Todos os materiais são certificados de acordo com as normas aplicáveis e mantidos sob controlo para garantir a qualidade dos trabalhos executados."
+  },
+  {
+    "title": "Estudos de Materiais",
+    "url": "/content/capitulo-1/estudos-materiais.html",
+    "content": "Esta seção contém os estudos realizados para validação dos materiais utilizados na obra. Inclui análises granulométricas, ensaios de compressão, ensaios de tração, ensaios de flexão, entre outros, para garantir que os materiais utilizados atendem às especificações técnicas do projeto."
+  },
+  {
+    "title": "Não Conformidades",
+    "url": "/content/capitulo-1/nao-conformidades.html",
+    "content": "Esta seção contém os relatórios de não conformidades detectadas durante a execução da obra e as ações tomadas para sua correção. Uma não conformidade é definida como o não cumprimento de um requisito de qualidade estabelecido no Sistema de Gestão, Plano de Qualidade, Projeto, Planos, Caderno de Encargos, Regulamentos, etc."
+  },
+  {
+    "title": "Plano de Pontos de Inspeção",
+    "url": "/content/capitulo-1/plano-pontos-inspecao.html",
+    "content": "Define os pontos específicos de inspeção durante a execução da obra. Um Programa de Pontos de Inspeção (PPI) é um documento que lista, sequencialmente, todas as principais operações e inspeções a que uma determinada unidade de trabalho deve ser submetida, para verificar sua concordância com os requisitos do projeto."
+  },
+  {
+    "title": "Punch List",
+    "url": "/content/capitulo-1/punch-list.html",
+    "content": "Esta seção contém a lista de pendências a serem resolvidas antes da entrega final da obra. Inclui itens de não conformidade, pequenos ajustes, acabamentos e outras intervenções necessárias para garantir a entrega da obra de acordo com as especificações do projeto."
+  },
+  {
+    "title": "Obra Civil",
+    "url": "/content/capitulo-2/obra-civil.html",
+    "content": "Esta seção contém a documentação relativa aos trabalhos de obra civil, incluindo topografia, estruturas e ensaios e provas. A obra civil inclui escavações, aterros, estruturas de betão, drenagens e pavimentos executados durante a empreitada."
+  },
+  {
+    "title": "Piping",
+    "url": "/content/capitulo-2/piping.html",
+    "content": "Esta seção contém a documentação relativa aos trabalhos de piping, incluindo soldadura, tratamento anticorrosivo e ensaios hidráulicos. Inclui os dossiers de fabricação para aço carbono e polietileno, bem como os relatórios de ensaios realizados."
+  },
+  {
+    "title": "Especificações Técnicas",
+    "url": "/content/capitulo-3/especificacoes.html",
+    "content": "Esta seção contém as especificações técnicas dos trabalhos executados durante a empreitada. Inclui as especificações dos materiais, equipamentos, métodos construtivos e critérios de aceitação aplicáveis aos trabalhos."
+  },
+  {
+    "title": "Planos Construtivos",
+    "url": "/content/capitulo-3/planos-construtivos.html",
+    "content": "Esta seção contém os planos construtivos utilizados durante a execução da empreitada. Inclui plantas, cortes, detalhes e outras representações gráficas necessárias para a execução dos trabalhos."
+  },
+  {
+    "title": "Planos Red Mark (Line)",
+    "url": "/content/capitulo-3/planos-redmark.html",
+    "content": "Esta seção contém os planos com anotações e marcações realizadas durante a execução da obra, indicando alterações, ajustes e outras informações relevantes para a atualização dos planos finais."
+  },
+  {
+    "title": "Planos As-Built",
+    "url": "/content/capitulo-3/planos-asbuilt.html",
+    "content": "Esta seção contém os planos as-built, que representam a obra tal como foi executada, incluindo todas as alterações realizadas durante a execução em relação aos planos originais do projeto."
+  }
+]
