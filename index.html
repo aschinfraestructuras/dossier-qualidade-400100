@@ -1,155 +1,48 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dossier Digital da Qualidade</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" />
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Inter', sans-serif;
-      display: flex;
-      height: 100vh;
-    }
-    nav {
-      width: 250px;
-      background-color: #0d1117;
-      color: white;
-      padding: 1rem;
-      overflow-y: auto;
-    }
-    nav h2 {
-      font-size: 1.2rem;
-      margin-bottom: 1rem;
-    }
-    nav ul {
-      list-style: none;
-      padding: 0;
-    }
-    nav li {
-      margin-bottom: 0.8rem;
-      cursor: pointer;
-    }
-    nav li:hover {
-      text-decoration: underline;
-    }
-    main {
-      flex: 1;
-      padding: 1rem;
-      overflow-y: auto;
-    }
-    canvas {
-      border: 1px solid #ccc;
-      width: 100%;
-      max-width: 100%;
-    }
-    .controls {
-      margin-top: 1rem;
-    }
-    .controls button {
-      margin-right: 10px;
-    }
-  </style>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.14.305/pdf.min.js"></script>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <nav>
-    <h2>✨ Capítulos</h2>
-    <ul>
-      <li onclick="loadPdf('teste.pdf')">Capítulo 1 – SGQ</li>
-      <li onclick="loadPdf('teste.pdf')">Capítulo 2 – Execução</li>
-      <li onclick="loadPdf('teste.pdf')">Capítulo 3 – Ensaios</li>
-    </ul>
-  </nav>
-  <main>
-    <h1>Dossier da Qualidade</h1>
-    <div id="pdf-container">
-      <canvas id="pdf-canvas"></canvas>
-      <div class="controls">
-        <button onclick="previousPage()">Anterior</button>
-        <button onclick="nextPage()">Seguinte</button>
-        <button onclick="zoomIn()">Zoom +</button>
-        <button onclick="zoomOut()">Zoom -</button>
-        <span>Página <span id="page-num">1</span> de <span id="page-count">?</span></span>
+  <div class="app">
+    <aside class="sidebar">
+      <h2>📂 Capítulos</h2>
+      <nav>
+        <ul>
+          <li><a href="#" onclick="loadPdf('capitulo-1-1.pdf')">1.1 – Plano da Qualidade (PQ)</a></li>
+          <li><a href="#" onclick="loadPdf('capitulo-1-2.pdf')">1.2 – Plano de Inspeção e Ensaios (PIE)</a></li>
+          <li><a href="#" onclick="loadPdf('capitulo-1-3.pdf')">1.3 – Certificados de Calibração</a></li>
+          <li><a href="#" onclick="loadPdf('capitulo-1-4.pdf')">1.4 – Certificados de Materiais</a></li>
+          <li><a href="#" onclick="loadPdf('capitulo-1-5.pdf')">1.5 – Estudos de Materiais</a></li>
+          <li><a href="#" onclick="loadPdf('capitulo-1-6.pdf')">1.6 – Não Conformidades</a></li>
+          <li><a href="#" onclick="loadPdf('capitulo-1-7.pdf')">1.7 – Plano de Pontos de Inspeção</a></li>
+          <li><a href="#" onclick="loadPdf('capitulo-1-8.pdf')">1.8 – Punch List</a></li>
+          <li><a href="#" onclick="loadPdf('capitulo-2.pdf')">2.0 – Execução da Obra</a></li>
+          <li><a href="#" onclick="loadPdf('capitulo-3.pdf')">3.0 – Documentos de Engenharia</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <main class="content">
+      <h1>Dossier da Qualidade</h1>
+      <div id="pdf-container" data-pdf="capitulo-1-1.pdf">
+        <canvas id="pdf-canvas"></canvas>
+        <div class="pdf-controls">
+          <button id="prev">◀ Anterior</button>
+          <span>Página <span id="page-num"></span> de <span id="page-count"></span></span>
+          <button id="next">Seguinte ▶</button>
+          <button id="zoom-in">Zoom +</button>
+          <button id="zoom-out">Zoom -</button>
+        </div>
       </div>
-    </div>
-  </main>
-  <script>
-    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.14.305/pdf.worker.min.js';
+    </main>
+  </div>
 
-    let pdfDoc = null,
-      pageNum = 1,
-      pageRendering = false,
-      pageNumPending = null,
-      scale = 1.2,
-      canvas = document.getElementById('pdf-canvas'),
-      ctx = canvas.getContext('2d');
-
-    function loadPdf(pdfPath) {
-      pdfjsLib.getDocument(pdfPath).promise.then(function(pdfDoc_) {
-        pdfDoc = pdfDoc_;
-        document.getElementById('page-count').textContent = pdfDoc.numPages;
-        pageNum = 1;
-        renderPage(pageNum);
-      });
-    }
-
-    function renderPage(num) {
-      pageRendering = true;
-      pdfDoc.getPage(num).then(function(page) {
-        const viewport = page.getViewport({ scale: scale });
-        canvas.height = viewport.height;
-        canvas.width = viewport.width;
-        const renderContext = {
-          canvasContext: ctx,
-          viewport: viewport,
-        };
-        const renderTask = page.render(renderContext);
-        renderTask.promise.then(function() {
-          pageRendering = false;
-          if (pageNumPending !== null) {
-            renderPage(pageNumPending);
-            pageNumPending = null;
-          }
-        });
-      });
-      document.getElementById('page-num').textContent = num;
-    }
-
-    function queueRenderPage(num) {
-      if (pageRendering) {
-        pageNumPending = num;
-      } else {
-        renderPage(num);
-      }
-    }
-
-    function previousPage() {
-      if (pageNum <= 1) return;
-      pageNum--;
-      queueRenderPage(pageNum);
-    }
-
-    function nextPage() {
-      if (pageNum >= pdfDoc.numPages) return;
-      pageNum++;
-      queueRenderPage(pageNum);
-    }
-
-    function zoomIn() {
-      scale += 0.25;
-      renderPage(pageNum);
-    }
-
-    function zoomOut() {
-      if (scale <= 0.5) return;
-      scale -= 0.25;
-      renderPage(pageNum);
-    }
-
-    // Carrega o PDF inicial
-    loadPdf('PQ');
-  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.14.305/pdf.min.js"></script>
+  <script src="viewer.js"></script>
 </body>
 </html>
+
