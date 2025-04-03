@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultados da Pesquisa - Dossier de Qualidade</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <img src="assets/images/logo.png" alt="Logo ASCH">
+            </div>
+            <div class="title">
+                <h1>DOSSIER DE QUALIDADE</h1>
+                <h2>Empreitada: 4001008 - "Nuevas Plantas de Poliolefinas, Plataformas Logísticas Y Offsites"</h2>
+            </div>
+        </div>
+        <div class="search-container">
+            <input type="text" id="search-input" placeholder="Pesquisar no dossier...">
+            <button id="search-button">Pesquisar</button>
+        </div>
+    </header>
+
+    <nav>
+        <ul class="main-menu">
+            <li><a href="index.html">Visão Geral</a></li>
+            <li><a href="content/capitulo-1/index.html">Sistema de Gestão da Qualidade</a></li>
+            <li><a href="content/capitulo-2/index.html">Execução do Projeto</a></li>
+            <li><a href="content/capitulo-3/index.html">Documentos de Engenharia</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <ul class="breadcrumb">
+            <li><a href="index.html">Início</a></li>
+            <li>Resultados da Pesquisa</li>
+        </ul>
+
+        <section>
+            <h2>Resultados da Pesquisa para "<span id="search-term">termo</span>"</h2>
+            
+            <div id="search-results">
+                <div class="loading">
+                    <p>Carregando resultados...</p>
+                    <div class="spinner"></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <p>&copy; 2025 ASCH INFRAESTRUCTURAS Y SERVICIOS S.A. - Todos os direitos reservados</p>
+            <p>Dossier de Qualidade - Versão Digital</p>
+        </div>
+    </footer>
+
+    <script src="assets/js/navigation.js"></script>
+    <script src="assets/js/search.js"></script>
+</body>
+</html>
