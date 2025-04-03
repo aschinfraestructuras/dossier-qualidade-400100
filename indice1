@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Gestão da Qualidade - Dossier de Qualidade</title>
+    <link rel="stylesheet" href="../../assets/css/style.css">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <img src="../../assets/images/logo.png" alt="Logo ASCH">
+            </div>
+            <div class="title">
+                <h1>DOSSIER DE QUALIDADE</h1>
+                <h2>Empreitada: 4001008 - "Nuevas Plantas de Poliolefinas, Plataformas Logísticas Y Offsites"</h2>
+            </div>
+        </div>
+        <div class="search-container">
+            <input type="text" id="search-input" placeholder="Pesquisar no dossier...">
+            <button id="search-button">Pesquisar</button>
+        </div>
+    </header>
+
+    <nav>
+        <ul class="main-menu">
+            <li><a href="../../index.html">Visão Geral</a></li>
+            <li><a href="index.html" class="active">Sistema de Gestão da Qualidade</a></li>
+            <li><a href="../capitulo-2/index.html">Execução do Projeto</a></li>
+            <li><a href="../capitulo-3/index.html">Documentos de Engenharia</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <ul class="breadcrumb">
+            <li><a href="../../index.html">Início</a></li>
+            <li>Sistema de Gestão da Qualidade</li>
+        </ul>
+
+        <section>
+            <h2>1.0 Sistema de Gestão da Qualidade</h2>
+            
+            <div class="chapter-content">
+                <p>Este capítulo contém toda a documentação referente ao Sistema de Gestão da Qualidade implementado na empreitada, incluindo o Plano da Qualidade, Plano de Inspeção e Ensaios, certificados e outros documentos relevantes.</p>
+                
+                <div class="documents-grid">
+                    <div class="document-card">
+                        <div class="document-icon">
+                            <img src="../../assets/images/pdf-icon.png" alt="PDF">
+                        </div>
+                        <div class="document-info">
+                            <h3><a href="plano-qualidade.html">1.1 Plano da Qualidade</a></h3>
+                            <p>Define as ações relacionadas à qualidade a serem realizadas no decorrer da obra.</p>
+                            <span class="document-meta">8-220 | Rev-01 | 04/07/2023</span>
+                        </div>
+                    </div>
+                    
+                    <div class="document-card">
+                        <div class="document-icon">
+                            <img src="../../assets/images/pdf-icon.png" alt="PDF">
+                        </div>
+                        <div class="document-info">
+                            <h3><a href="inspecoes.html">1.2 Plano de Inspeção e Ensaios</a></h3>
+                            <p>Define os pontos de inspeção e ensaios a serem realizados durante a execução da obra.</p>
+                            <span class="document-meta">220-243 | 04/07/2023</span>
+                        </div>
+                    </div>
+                    
+                    <div class="document-card">
+                        <div class="document-icon">
+                            <img src="../../assets/images/folder-icon.png" alt="Pasta">
+                        </div>
+                        <div class="document-info">
+                            <h3><a href="certificados/">1.3 Certificados de Calibração</a></h3>
+                            <p>Certificados de calibração dos equipamentos utilizados na obra.</p>
+                            <span class="document-meta">243-281 | Diversos</span>
+                        </div>
+                    </div>
+                    
+                    <div class="document-card">
+                        <div class="document-icon">
+                            <img src="../../assets/images/folder-icon.png" alt="Pasta">
+                        </div>
+                        <div class="document-info">
+                            <h3><a href="certificados-materiais.html">1.4 Certificados de Materiais</a></h3>
+                            <p>Certificados dos materiais utilizados na obra, incluindo materiais base, pré-fabricados, tubagens, etc.</p>
+                            <span class="document-meta">281-466 | Diversos</span>
+                        </div>
+                    </div>
+                    
+                    <div class="document-card">
+                        <div class="document-icon">
+                            <img src="../../assets/images/pdf-icon.png" alt="PDF">
+                        </div>
+                        <div class="document-info">
+                            <h3><a href="estudos-materiais.html">1.5 Estudos de Materiais</a></h3>
+                            <p>Estudos realizados para validação dos materiais utilizados na obra.</p>
+                            <span class="document-meta">466-737 | Diversos</span>
+                        </div>
+                    </div>
+                    
+                    <div class="document-card">
+                        <div class="document-icon">
+                            <img src="../../assets/images/pdf-icon.png" alt="PDF">
+                        </div>
+                        <div class="document-info">
+                            <h3><a href="nao-conformidades.html">1.6 Não Conformidades</a></h3>
+                            <p>Relatórios de não conformidades detectadas durante a execução da obra e ações tomadas.</p>
+                            <span class="document-meta">737-784 | Diversos</span>
+                        </div>
+                    </div>
+                    
+                    <div class="document-card">
+                        <div class="document-icon">
+                            <img src="../../assets/images/pdf-icon.png" alt="PDF">
+                        </div>
+                        <div class="document-info">
+                            <h3><a href="plano-pontos-inspecao.html">1.7 Plano de Pontos de Inspeção</a></h3>
+                            <p>Define os pontos específicos de inspeção durante a execução da obra.</p>
+                            <span class="document-meta">784-785 | 05/07/2023</span>
+                        </div>
+                    </div>
+                    
+                    <div class="document-card">
+                        <div class="document-icon">
+                            <img src="../../assets/images/pdf-icon.png" alt="PDF">
+                        </div>
+                        <div class="document-info">
+                            <h3><a href="punch-list.html">1.8 Punch List</a></h3>
+                            <p>Lista de pendências a serem resolvidas antes da entrega final da obra.</p>
+                            <span class="document-meta">785-786 | 10/01/2025</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <p>&copy; 2025 ASCH INFRAESTRUCTURAS Y SERVICIOS S.A. - Todos os direitos reservados</p>
+            <p>Dossier de Qualidade - Versão Digital</p>
+        </div>
+    </footer>
+
+    <script src="../../assets/js/navigation.js"></script>
+    <script src="../../assets/js/search.js"></script>
+</body>
+</html>
