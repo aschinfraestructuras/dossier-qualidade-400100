@@ -1,0 +1,30 @@
+# Estrutura do Repositório GitHub para o Databook Digital
+
+```
+├── index.html                    # Página principal do dossier
+├── assets/                       # Recursos estáticos
+│   ├── css/                      # Folhas de estilo
+│   │   └── style.css             # Estilo principal
+│   ├── js/                       # Scripts JavaScript
+│   │   ├── navigation.js         # Scripts de navegação
+│   │   ├── search.js             # Funcionalidade de pesquisa
+│   │   └── pdf-viewer.js         # Visualizador de PDF
+│   └── images/                   # Imagens e ícones
+├── docs/                         # Documentos em PDF originais
+│   ├── capitulo-1/               # PDFs do Capítulo 1
+│   ├── capitulo-2/               # PDFs do Capítulo 2
+│   └── capitulo-3/               # PDFs do Capítulo 3
+└── content/                      # Conteúdo HTML do dossier
+    ├── capitulo-1/               # Sistema de Gestão da Qualidade
+    │   ├── index.html            # Índice do Capítulo 1
+    │   ├── plano-qualidade.html  # Plano da Qualidade
+    │   ├── inspecoes.html        # Plano de Inspeção e Ensaios
+    │   └── certificados/         # Certificados
+    ├── capitulo-2/               # Execução do Projeto
+    │   ├── index.html            # Índice do Capítulo 2
+    │   ├── obra-civil.html       # Obra Civil
+    │   └── piping.html           # Piping
+    └── capitulo-3/               # Documentos de Engenharia
+        ├── index.html            # Índice do Capítulo 3
+        └── especificacoes.html   # Especificações Técnicas
+```
