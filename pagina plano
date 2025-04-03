@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plano da Qualidade - Dossier de Qualidade</title>
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.14.305/pdf.min.js"></script>
+    <script>
+        // Configurar o worker para o PDF.js
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.14.305/pdf.worker.min.js';
+    </script>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <img src="../../assets/images/logo.png" alt="Logo ASCH">
+            </div>
+            <div class="title">
+                <h1>DOSSIER DE QUALIDADE</h1>
+                <h2>Empreitada: 4001008 - "Nuevas Plantas de Poliolefinas, Plataformas Logísticas Y Offsites"</h2>
+            </div>
+        </div>
+        <div class="search-container">
+            <input type="text" id="search-input" placeholder="Pesquisar no dossier...">
+            <button id="search-button">Pesquisar</button>
+        </div>
+    </header>
+
+    <nav>
+        <ul class="main-menu">
+            <li><a href="../../index.html">Visão Geral</a></li>
+            <li><a href="../capitulo-1/index.html" class="active">Sistema de Gestão da Qualidade</a></li>
+            <li><a href="../capitulo-2/index.html">Execução do Projeto</a></li>
+            <li><a href="../capitulo-3/index.html">Documentos de Engenharia</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <ul class="breadcrumb">
+            <li><a href="../../index.html">Início</a></li>
+            <li><a href="index.html">Sistema de Gestão da Qualidade</a></li>
+            <li>Plano da Qualidade</li>
+        </ul>
+
+        <section>
+            <h2>1.1 Plano da Qualidade</h2>
+            
+            <div class="chapter-content">
+                <h3>Descrição</h3>
+                <p>O Plano da Qualidade (PQ) que foi executado pela ASCH INFRAESTRUCTURAS Y SERVICIOS, S.A. teve como objetivo desenvolver o que está indicado nas Especificações Técnicas da Contratação e no Projeto de Construção, mais o que está estabelecido no Sistema da Qualidade da ASCH INFRAESTRUCTURAS Y SERVICIOS SA, com o objetivo de definir todas as ações relacionadas à qualidade, a serem realizadas no decorrer da obra.</p>
+                
+                <h3>Documentos Relacionados</h3>
+                <ul>
+                    <li>PQ – 23/001 - Plano da Qualidade (Rev-01)</li>
+                    <li>Anexos do Plano da Qualidade</li>
+                </ul>
+                
+                <h3>Índice do Plano da Qualidade</h3>
+                <ol>
+                    <li>Introdução</li>
+                    <li>Definição do Sistema de Gestão da Qualidade</li>
+                    <li>Descrição e Organização do Trabalho</li>
+                    <li>Controlo de Documentos e Registros</li>
+                    <li>Comunicação e Coordenação com Entidades Externas</li>
+                    <li>Recursos Humanos</li>
+                    <li>Infraestrutura</li>
+                    <li>Análise e Revisão do Projeto</li>
+                    <li>Compras e Subcontratação</li>
+                    <li>Controle de Processo</li>
+                    <li>Identificação e Rastreabilidade</li>
+                    <li>Propriedade do Cliente</li>
+                    <li>Conservação do Produto</li>
+                    <li>Inspeção e Ensaios</li>
+                    <li>Controle de Equipamentos de Monitoramento e Medida</li>
+                    <li>Tratamento de Não Conformidades</li>
+                    <li>Ações Corretivas e Preventivas</li>
+                    <li>Auditorias</li>
+                    <li>Análise de Dados</li>
+                    <li>Anexos</li>
+                </ol>
+            </div>
+            
+            <h3>Documento Original</h3>
+            <p>Abaixo está o documento original do Plano da Qualidade em formato PDF:</p>
+            
+            <div class="pdf-container" id="pdf-container">
+                <canvas id="pdf-canvas"></canvas>
+            </div>
+            
+            <div class="pdf-controls">
+                <button id="prev">Página Anterior</button>
+                <span>Página: <span id="page-num"></span> / <span id="page-count"></span></span>
+                <button id="next">Próxima Página</button>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <p>&copy; 2025 ASCH INFRAESTRUCTURAS Y SERVICIOS S.A. - Todos os direitos reservados</p>
+            <p>Dossier de Qualidade - Versão Digital</p>
+        </div>
+    </footer>
+
+    <script src="../../assets/js/navigation.js"></script>
+    <script src="../../assets/js/search.js"></script>
+    <script>
+        // Script para visualizar o PDF
+        let pdfDoc = null,
+            pageNum = 1,
+            pageRendering = false,
+            pageNumPending = null,
+            scale = 1.5,
+            canvas = document.getElementById('pdf-canvas'),
+            ctx = canvas.getContext('2d');
+
+        // Carregar o PDF
+        pdfjsLib.getDocument('../../docs/capitulo-1/plano-qualidade.pdf').promise.then(function(pdfDoc_) {
+            pdfDoc = pdfDoc_;
+            document.getElementById('page-count').textContent = pdfDoc.numPages;
+            
+            // Renderizar primeira página
+            renderPage(pageNum);
+        });
+
+        function renderPage(num) {
+            pageRendering = true;
+            
+            // Buscar a página
+            pdfDoc.getPage(num).then(function(page) {
+                const viewport = page.getViewport({ scale });
+                canvas.height = viewport.height;
+                canvas.width = viewport.width;
+                
+                // Renderizar a página no canvas
+                const renderContext = {
+                    canvasContext: ctx,
+                    viewport: viewport
+                };
+                
+                const renderTask = page.render(renderContext);
+                
+                // Aguardar a renderização
+                renderTask.promise.then(function() {
+                    pageRendering = false;
+                    
+                    if (pageNumPending !== null) {
+                        // Nova renderização pendente
+                        renderPage(pageNumPending);
+                        pageNumPending = null;
+                    }
+                });
+            });
+            
+            // Atualizar número da página atual
+            document.getElementById('page-num').textContent = num;
+        }
+
+        function queueRenderPage(num) {
+            if (pageRendering) {
+                pageNumPending = num;
+            } else {
+                renderPage(num);
+            }
+        }
+
+        // Ir para página anterior
+        document.getElementById('prev').addEventListener('click', function() {
+            if (pageNum <= 1) {
+                return;
+            }
+            pageNum--;
+            queueRenderPage(pageNum);
+        });
+
+        // Ir para próxima página
+        document.getElementById('next').addEventListener('click', function() {
+            if (pageNum >= pdfDoc.numPages) {
+                return;
+            }
+            pageNum++;
+            queueRenderPage(pageNum);
+        });
+    </script>
+</body>
+</html>
