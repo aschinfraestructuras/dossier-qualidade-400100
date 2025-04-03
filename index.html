@@ -1,100 +1,41 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Databook Digital - Dossiê Técnico</title>
-    <link rel="stylesheet" href="assets/css/style.css">
-    <script src="assets/js/navigation.js" defer></script>
-    <script src="assets/js/search.js" defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Databook Digital – Dossier da Qualidade</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.14.305/pdf.min.js"></script>
+  <script src="viewer.js" defer></script>
 </head>
 <body>
-    <header>
-        <div class="logo">
-            <h1>Databook Digital</h1>
-        </div>
-        <nav>
-            <div class="search-container">
-                <input type="text" id="search-input" placeholder="Pesquisar no dossiê...">
-                <button id="search-button">Buscar</button>
-            </div>
-            <ul class="main-menu">
-                <li><a href="index.html">Início</a></li>
-                <li class="dropdown">
-                    <a href="#">Capítulos</a>
-                    <ul class="dropdown-content">
-                        <li><a href="content/capitulo-1/index.html">Capítulo 1: Sistema de Gestão da Qualidade</a></li>
-                        <li><a href="content/capitulo-2/index.html">Capítulo 2: Execução do Projeto</a></li>
-                        <li><a href="content/capitulo-3/index.html">Capítulo 3: Documentos de Engenharia</a></li>
-                    </ul>
-                </li>
-                <li><a href="#about-section">Sobre</a></li>
-                <li><a href="#contact-section">Contato</a></li>
-            </ul>
-        </nav>
-    </header>
+  <header>
+    <h1>📘 Databook Digital</h1>
+    <nav>
+      <a href="#">Início</a>
+      <a href="#">Capítulos</a>
+      <a href="#">Contato</a>
+    </nav>
+  </header>
 
-    <main>
-        <section id="home" class="hero">
-            <div class="hero-content">
-                <h2>Bem-vindo ao Databook Digital</h2>
-                <p>Um repositório completo de documentação técnica e gerencial</p>
-                <a href="#chapters-section" class="cta-button">Explorar Documentos</a>
-            </div>
-        </section>
+  <main>
+    <section>
+      <h2>Capítulo 1 – Exemplo PDF</h2>
+      <div id="pdf-container" data-pdf="java.pdf"></div>
+      <canvas id="pdf-canvas"></canvas>
 
-        <section id="chapters-section" class="chapters-overview">
-            <h2>Estrutura do Dossiê</h2>
-            <div class="chapter-grid">
-                <div class="chapter-card">
-                    <h3>Capítulo 1</h3>
-                    <p>Sistema de Gestão da Qualidade</p>
-                    <a href="content/capitulo-1/index.html" class="btn">Acessar</a>
-                </div>
-                <div class="chapter-card">
-                    <h3>Capítulo 2</h3>
-                    <p>Execução do Projeto</p>
-                    <a href="content/capitulo-2/index.html" class="btn">Acessar</a>
-                </div>
-                <div class="chapter-card">
-                    <h3>Capítulo 3</h3>
-                    <p>Documentos de Engenharia</p>
-                    <a href="content/capitulo-3/index.html" class="btn">Acessar</a>
-                </div>
-            </div>
-        </section>
+      <div class="controls">
+        <button id="prev">◀ Anterior</button>
+        <span>Página <span id="page-num">1</span> de <span id="page-count">?</span></span>
+        <button id="next">Seguinte ▶</button>
+        <button id="zoom-in">Zoom +</button>
+        <button id="zoom-out">Zoom -</button>
+      </div>
+    </section>
+  </main>
 
-        <section id="about-section" class="about">
-            <h2>Sobre o Databook Digital</h2>
-            <p>Uma solução moderna para organização, gerenciamento e acesso rápido a documentos técnicos. Nosso sistema permite navegação intuitiva, pesquisa eficiente e visualização de documentos em formato digital.</p>
-        </section>
-
-        <section id="contact-section" class="contact">
-            <h2>Contato</h2>
-            <p>Para mais informações ou suporte, entre em contato com a equipe responsável.</p>
-            <div class="contact-info">
-                <p>Email: suporte@databook.com</p>
-                <p>Telefone: +55 (XX) XXXX-XXXX</p>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <div class="footer-content">
-            <p>&copy; 2025 Databook Digital. Todos os direitos reservados.</p>
-            <nav class="footer-nav">
-                <a href="#">Política de Privacidade</a>
-                <a href="#">Termos de Uso</a>
-            </nav>
-        </div>
-    </footer>
-
-    <div id="search-results" class="search-results-modal">
-        <div class="search-results-content">
-            <span class="close-results">&times;</span>
-            <h2>Resultados da Pesquisa</h2>
-            <div id="results-container"></div>
-        </div>
-    </div>
+  <footer>
+    <p>© 2025 Databook Digital. Todos os direitos reservados.</p>
+  </footer>
 </body>
 </html>
