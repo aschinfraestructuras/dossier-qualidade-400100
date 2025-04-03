@@ -1,0 +1,258 @@
+/**
+ * Script para visualização de PDFs no dossier digital
+ * Utiliza a biblioteca PDF.js
+ */
+
+// Configurar o worker para o PDF.js
+pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.14.305/pdf.worker.min.js';
+
+// Variáveis de controle
+let pdfDoc = null,
+    pageNum = 1,
+    pageRendering = false,
+    pageNumPending = null,
+    scale = 1.5,
+    canvas = document.getElementById('pdf-canvas'),
+    ctx = canvas.getContext('2d');
+
+/**
+ * Carrega um documento PDF
+ * @param {string} pdfPath - Caminho para o PDF
+ */
+function loadPdf(pdfPath) {
+    // Resetar o estado atual se um PDF já estiver carregado
+    if (pdfDoc) {
+        pdfDoc = null;
+        pageNum = 1;
+    }
+    
+    // Mostrar indicador de carregamento
+    showLoading();
+    
+    // Carregar o PDF
+    pdfjsLib.getDocument(pdfPath).promise
+        .then(function(pdfDoc_) {
+            // PDF carregado com sucesso
+            pdfDoc = pdfDoc_;
+            
+            // Atualizar contagem total de páginas
+            document.getElementById('page-count').textContent = pdfDoc.numPages;
+            
+            // Esconder indicador de carregamento
+            hideLoading();
+            
+            // Renderizar a primeira página
+            renderPage(pageNum);
+        })
+        .catch(function(error) {
+            // Erro ao carregar o PDF
+            console.error('Erro ao carregar o PDF:', error);
+            
+            // Esconder indicador de carregamento
+            hideLoading();
+            
+            // Mostrar mensagem de erro
+            showError('Não foi possível carregar o documento PDF. Por favor, tente novamente mais tarde.');
+        });
+}
+
+/**
+ * Renderiza uma página do PDF
+ * @param {number} num - Número da página
+ */
+function renderPage(num) {
+    pageRendering = true;
+    
+    // Mostrar indicador de carregamento
+    const pageLoader = document.createElement('div');
+    pageLoader.className = 'page-loading';
+    pageLoader.textContent = 'Carregando página ' + num + '...';
+    canvas.parentNode.appendChild(pageLoader);
+    
+    // Buscar a página
+    pdfDoc.getPage(num).then(function(page) {
+        // Calcular dimensões com base na escala
+        const viewport = page.getViewport({ scale });
+        canvas.height = viewport.height;
+        canvas.width = viewport.width;
+        
+        // Renderizar a página no canvas
+        const renderContext = {
+            canvasContext: ctx,
+            viewport: viewport
+        };
+        
+        const renderTask = page.render(renderContext);
+        
+        // Aguardar a renderização
+        renderTask.promise.then(function() {
+            pageRendering = false;
+            
+            // Remover indicador de carregamento
+            if (pageLoader && pageLoader.parentNode) {
+                pageLoader.parentNode.removeChild(pageLoader);
+            }
+            
+            if (pageNumPending !== null) {
+                // Nova renderização pendente
+                renderPage(pageNumPending);
+                pageNumPending = null;
+            }
+        });
+    });
+    
+    // Atualizar número da página atual
+    document.getElementById('page-num').textContent = num;
+}
+
+/**
+ * Fila de renderização para evitar concorrência
+ * @param {number} num - Número da página
+ */
+function queueRenderPage(num) {
+    if (pageRendering) {
+        pageNumPending = num;
+    } else {
+        renderPage(num);
+    }
+}
+
+/**
+ * Navegar para a página anterior
+ */
+function previousPage() {
+    if (pageNum <= 1) {
+        return;
+    }
+    pageNum--;
+    queueRenderPage(pageNum);
+}
+
+/**
+ * Navegar para a próxima página
+ */
+function nextPage() {
+    if (pageNum >= pdfDoc.numPages) {
+        return;
+    }
+    pageNum++;
+    queueRenderPage(pageNum);
+}
+
+/**
+ * Aumentar zoom
+ */
+function zoomIn() {
+    scale += 0.25;
+    queueRenderPage(pageNum);
+}
+
+/**
+ * Diminuir zoom
+ */
+function zoomOut() {
+    if (scale <= 0.5) {
+        return;
+    }
+    scale -= 0.25;
+    queueRenderPage(pageNum);
+}
+
+/**
+ * Mostrar indicador de carregamento
+ */
+function showLoading() {
+    // Criar elemento de loading
+    const loadingDiv = document.createElement('div');
+    loadingDiv.id = 'pdf-loading';
+    loadingDiv.className = 'pdf-loading';
+    
+    const spinner = document.createElement('div');
+    spinner.className = 'spinner';
+    
+    const loadingText = document.createElement('p');
+    loadingText.textContent = 'Carregando documento...';
+    
+    loadingDiv.appendChild(spinner);
+    loadingDiv.appendChild(loadingText);
+    
+    // Adicionar ao container
+    const container = document.getElementById('pdf-container');
+    container.appendChild(loadingDiv);
+}
+
+/**
+ * Esconder indicador de carregamento
+ */
+function hideLoading() {
+    const loadingDiv = document.getElementById('pdf-loading');
+    if (loadingDiv && loadingDiv.parentNode) {
+        loadingDiv.parentNode.removeChild(loadingDiv);
+    }
+}
+
+/**
+ * Mostrar mensagem de erro
+ * @param {string} message - Mensagem de erro
+ */
+function showError(message) {
+    const errorDiv = document.createElement('div');
+    errorDiv.className = 'pdf-error';
+    errorDiv.textContent = message;
+    
+    const container = document.getElementById('pdf-container');
+    container.appendChild(errorDiv);
+}
+
+// Adicionar eventos aos botões de navegação
+document.addEventListener('DOMContentLoaded', function() {
+    // Botão de página anterior
+    const prevButton = document.getElementById('prev');
+    if (prevButton) {
+        prevButton.addEventListener('click', previousPage);
+    }
+    
+    // Botão de próxima página
+    const nextButton = document.getElementById('next');
+    if (nextButton) {
+        nextButton.addEventListener('click', nextPage);
+    }
+    
+    // Botão de zoom in
+    const zoomInButton = document.getElementById('zoom-in');
+    if (zoomInButton) {
+        zoomInButton.addEventListener('click', zoomIn);
+    }
+    
+    // Botão de zoom out
+    const zoomOutButton = document.getElementById('zoom-out');
+    if (zoomOutButton) {
+        zoomOutButton.addEventListener('click', zoomOut);
+    }
+    
+    // Verificar se há um atributo data-pdf no container do PDF
+    const pdfContainer = document.getElementById('pdf-container');
+    if (pdfContainer && pdfContainer.dataset.pdf) {
+        // Carregar o PDF especificado
+        loadPdf(pdfContainer.dataset.pdf);
+    }
+});
+
+// Suporte para navegação por teclado
+document.addEventListener('keydown', function(e) {
+    if (!pdfDoc) return;
+    
+    if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+        // Página anterior
+        previousPage();
+    } else if (e.key === 'ArrowRight' || e.key === 'PageDown') {
+        // Próxima página
+        nextPage();
+    } else if (e.key === '+' || e.key === '=') {
+        // Zoom in
+        zoomIn();
+    } else if (e.key === '-' || e.key === '_') {
+        // Zoom out
+        zoomOut();
+    }
+});
