@@ -4,215 +4,357 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Dossier Final da Qualidade – Projeto 4001008</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.14.305/pdf.min.js"></script>
-  <style>
-    :root {
-      --main-bg: #eef3f9;
-      --sidebar-bg: #f0f4fa;
-      --highlight: #0b3d91;
-      --hover: #092e6c;
-      --text: #1e293b;
-    }
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Inter', sans-serif;
-    }
-    body {
-      background: var(--main-bg);
-      color: var(--text);
-    }
-    body.dark-mode {
-      background-color: #0f172a;
-      color: #f1f5f9;
-    }
-    body.dark-mode #sidebar {
-      background-color: #1e293b;
-      color: #f8fafc;
-    }
-    body.dark-mode .accordion h3 {
-      background: #334155;
-    }
-    body.dark-mode .accordion ul li {
-      background: #475569;
-    }
-    .toggle-mode {
-      position: fixed;
-      top: 10px;
-      right: 10px;
-      z-index: 1000;
-      background: var(--highlight);
-      border: none;
-      color: white;
-      padding: 0.5rem 1rem;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: bold;
-    }
-    #app-content {
-      display: flex;
-    }
-    #sidebar {
-      background: var(--sidebar-bg);
-      color: var(--text);
-      width: 320px;
-      padding: 2rem 1.5rem;
-      box-shadow: 4px 0 8px rgba(0,0,0,0.05);
-      overflow-y: auto;
-      height: 100vh;
-    }
-    #sidebar h2 {
-      font-size: 1.5rem;
-      margin-bottom: 1.5rem;
-      font-weight: 700;
-    }
-    #sidebar input {
-      margin-bottom: 1rem;
-      width: 100%;
-      padding: 0.5rem;
-      border-radius: 8px;
-      border: 1px solid #cbd5e1;
-    }
-    .accordion h3 {
-      background: #d1e3fa;
-      padding: 0.75rem 1rem;
-      border-radius: 10px;
-      cursor: pointer;
-      font-size: 1rem;
-      margin-bottom: 0.5rem;
-      transition: background 0.3s;
-    }
-    .accordion ul {
-      list-style: none;
-      margin-left: 1rem;
-      margin-bottom: 1rem;
-      display: none;
-    }
-    .accordion.active ul {
-      display: block;
-    }
-    .accordion ul li {
-      margin-bottom: 0.5rem;
-      padding: 0.5rem 1rem;
-      border-radius: 8px;
-      background: #e2ecf7;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-    .accordion ul li:hover {
-      background: var(--highlight);
-      color: white;
-    }
-    .accordion ul li::before {
-      content: "📎 ";
-    }
-    main {
-      flex: 1;
-      padding: 2rem;
-    }
-    header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 1rem;
-    }
-    header img {
-      height: 60px;
-    }
-    .header-text h1 {
-      font-size: 2.4rem;
-      font-weight: 800;
-    }
-    .header-text p {
-      font-size: 1.1rem;
-      color: #475569;
-    }
-    .meta {
-      font-size: 0.95rem;
-      color: #475569;
-      margin-bottom: 1.5rem;
-    }
-    .meta strong {
-      color: #0f172a;
-    }
-    .meta .team {
-      margin-top: 0.5rem;
-    }
-    .meta .team p {
-      margin: 0.2rem 0;
-    }
-  </style>
+  <script>
+    // Configurar o worker para o PDF.js
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.14.305/pdf.worker.min.js';
+  </script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-  <button class="toggle-mode" onclick="toggleDarkMode()">🌓 Modo Noite</button>
+  <!-- Capa inicial -->
+  <div class="cover" id="cover">
+    <div class="cover-content">
+      <img src="assets/images/logo.png" alt="ASCH Logo" class="cover-logo">
+      <h1>Dossier Final da Qualidade</h1>
+      <p class="subtitle">Projeto 4001008 – Nuevas Plantas de Poliolefinas, Plataformas Logísticas y Offsites</p>
+      <button class="btn btn-primary btn-lg" onclick="enterDossier()">
+        <i class="fas fa-book-open"></i> Entrar no Dossier
+      </button>
+    </div>
+  </div>
+
+  <!-- Conteúdo principal do app -->
+  <div id="app-content" class="hidden">
+    <div id="top-bar">
+      <div class="mobile-menu-toggle" onclick="toggleSidebar()">
+        <i class="fas fa-bars"></i>
+      </div>
+      <div class="search-container">
+        <input type="text" id="global-search" placeholder="Pesquisar no dossier..." />
+        <button id="search-button"><i class="fas fa-search"></i></button>
+      </div>
+      <div class="top-logo">
+        <img src="assets/images/logo.png" alt="ASCH Logo" />
+      </div>
+    </div>
+
+    <div id="app">
+      <!-- Barra lateral com navegação -->
+      <aside id="sidebar">
+        <div class="sidebar-header">
+          <h2><i class="fas fa-book"></i> Dossier da Qualidade</h2>
+          <span class="mobile-close" onclick="toggleSidebar()"><i class="fas fa-times"></i></span>
+        </div>
+        
+        <div class="search-box">
+          <input 
+            type="text" 
+            id="chapter-search" 
+            placeholder="Filtrar capítulos..." 
+            oninput="filterChapters()"
+          >
+          <i class="fas fa-search search-icon"></i>
+        </div>
+
+        <!-- Acordeões para capítulos -->
+        <div class="accordion" data-section="sgq">
+          <div class="accordion-header" onclick="toggleAccordion(this.parentElement)">
+            <i class="fas fa-tasks"></i>
+            <span>1.0 – Sistema de Gestão da Qualidade</span>
+            <i class="fas fa-chevron-down toggle-icon"></i>
+          </div>
+          <ul class="accordion-content">
+            <li onclick="loadPdf('docs/capitulo-1/plano-qualidade.pdf')">
+              <i class="fas fa-clipboard-list"></i> 1.1 – Plano da Qualidade (PQ)
+            </li>
+            <li onclick="loadPdf('docs/capitulo-1/plano-inspecao-ensaios.pdf')">
+              <i class="fas fa-vial"></i> 1.2 – Plano de Inspeção e Ensaios (PIE)
+            </li>
+            <li onclick="loadPdf('docs/capitulo-1/certificados-calibracao.pdf')">
+              <i class="fas fa-ruler"></i> 1.3 – Certificados de Calibração
+            </li>
+            <li onclick="loadPdf('docs/capitulo-1/certificados-materiais.pdf')">
+              <i class="fas fa-file-contract"></i> 1.4 – Certificados de Materiais
+            </li>
+            <li onclick="loadPdf('docs/capitulo-1/estudos-materiais.pdf')">
+              <i class="fas fa-chart-bar"></i> 1.5 – Estudos de Materiais
+            </li>
+            <li onclick="loadPdf('docs/capitulo-1/nao-conformidades.pdf')">
+              <i class="fas fa-exclamation-triangle"></i> 1.6 – Não Conformidades
+            </li>
+            <li onclick="loadPdf('docs/capitulo-1/pontos-inspecao.pdf')">
+              <i class="fas fa-check-square"></i> 1.7 – Plano de Pontos de Inspeção
+            </li>
+            <li onclick="loadPdf('docs/capitulo-1/punch-list.pdf')">
+              <i class="fas fa-clipboard-check"></i> 1.8 – Punch List
+            </li>
+          </ul>
+        </div>
+
+        <div class="accordion" data-section="execucao">
+          <div class="accordion-header" onclick="toggleAccordion(this.parentElement)">
+            <i class="fas fa-hard-hat"></i>
+            <span>2.0 – Execução do Projeto</span>
+            <i class="fas fa-chevron-down toggle-icon"></i>
+          </div>
+          <ul class="accordion-content">
+            <li onclick="loadPdf('docs/capitulo-2/obra-civil.pdf')">
+              <i class="fas fa-building"></i> 2.1 – Obra Civil
+            </li>
+            <li onclick="loadPdf('docs/capitulo-2/piping.pdf')">
+              <i class="fas fa-project-diagram"></i> 2.2 – Piping
+            </li>
+          </ul>
+        </div>
+
+        <div class="accordion" data-section="documentos">
+          <div class="accordion-header" onclick="toggleAccordion(this.parentElement)">
+            <i class="fas fa-drafting-compass"></i>
+            <span>3.0 – Documentos de Engenharia</span>
+            <i class="fas fa-chevron-down toggle-icon"></i>
+          </div>
+          <ul class="accordion-content">
+            <li onclick="loadPdf('docs/capitulo-3/especificacoes-tecnicas.pdf')">
+              <i class="fas fa-file-alt"></i> 3.1 – Especificações Técnicas
+            </li>
+            <li onclick="loadPdf('docs/capitulo-3/planos-construtivos.pdf')">
+              <i class="fas fa-blueprint"></i> 3.2 – Planos Construtivos
+            </li>
+            <li onclick="loadPdf('docs/capitulo-3/planos-redmark.pdf')">
+              <i class="fas fa-edit"></i> 3.3 – Planos Red Mark (Line)
+            </li>
+            <li onclick="loadPdf('docs/capitulo-3/planos-asbuilt.pdf')">
+              <i class="fas fa-draw-polygon"></i> 3.4 – Planos As-Built
+            </li>
+          </ul>
+        </div>
+      </aside>
+
+      <!-- Conteúdo principal -->
+      <main id="content">
+        <div class="breadcrumbs">
+          <ul>
+            <li><a href="index.html">Início</a></li>
+            <li id="current-section">Visão Geral</li>
+          </ul>
+        </div>
+
+        <div class="content-container" id="welcome-content">
+          <header>
+            <div class="header-text">
+              <h1>Dossier Final da Qualidade</h1>
+              <p>Projeto 4001008 – Nuevas Plantas de Poliolefinas, Plataformas Logísticas y Offsites</p>
+            </div>
+          </header>
+
+          <div class="project-info">
+            <div class="info-card">
+              <h3><i class="fas fa-building"></i> Cliente</h3>
+              <p>REPSOL POLÍMEROS</p>
+            </div>
+            <div class="info-card">
+              <h3><i class="fas fa-hard-hat"></i> Empreiteiro</h3>
+              <p>ASCH INFRAESTRUCTURAS Y SERVICIOS S.A.</p>
+            </div>
+            <div class="info-card">
+              <h3><i class="fas fa-calendar-alt"></i> Data de Início</h3>
+              <p>Junho 2023</p>
+            </div>
+            <div class="info-card">
+              <h3><i class="fas fa-flag-checkered"></i> Data de Conclusão</h3>
+              <p>Janeiro 2025</p>
+            </div>
+            <div class="info-card">
+              <h3><i class="fas fa-file-alt"></i> Documento Nº</h3>
+              <p>R007</p>
+            </div>
+            <div class="info-card">
+              <h3><i class="fas fa-code-branch"></i> Versão</h3>
+              <p>Rev.002</p>
+            </div>
+          </div>
+
+          <div class="introduction">
+            <h2><i class="fas fa-info-circle"></i> Introdução</h2>
+            <p>Este dossier de qualidade apresenta toda a documentação relativa ao sistema de gestão da qualidade implementado na empreitada 4001008 - "Nuevas Plantas de Poliolefinas, Plataformas Logísticas Y Offsites".</p>
+            <p>O dossier está estruturado de forma a facilitar a consulta e verificação de todos os registos e documentos que atestam a conformidade da obra com os requisitos contratuais, normativos e legais aplicáveis.</p>
+          </div>
+
+          <div class="team-section">
+            <h2><i class="fas fa-users"></i> Equipa Responsável</h2>
+            <div class="team-cards">
+              <div class="team-card">
+                <h4>ELABORADO</h4>
+                <p class="role">QUALIDADE</p>
+                <p class="name">José Antunes</p>
+              </div>
+              <div class="team-card">
+                <h4>VERIFICADO</h4>
+                <p class="role">DIRECTOR TÉCNICO</p>
+                <p class="name">Mário Cristiano</p>
+              </div>
+              <div class="team-card">
+                <h4>APROVADO</h4>
+                <p class="role">DIRECTOR DE OBRA</p>
+                <p class="name">Luis Salvado</p>
+              </div>
+              <div class="team-card">
+                <h4>DELEGADO</h4>
+                <p class="role">REPSOL</p>
+                <p class="name">Gustavo Martínez</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="actions">
+            <a href="#" class="btn btn-primary" onclick="openFirstPdf()">
+              <i class="fas fa-file-pdf"></i> Ver Plano da Qualidade
+            </a>
+            <a href="dossier-completo.pdf" download class="btn btn-secondary">
+              <i class="fas fa-download"></i> Download Dossier Completo
+            </a>
+          </div>
+        </div>
+
+        <!-- Container para visualização de PDF -->
+        <div class="pdf-viewer-container hidden" id="pdf-viewer-container">
+          <div class="document-header">
+            <h2 id="pdf-title">Documento</h2>
+            <div class="document-meta">
+              <span id="pdf-meta-date">Data: --/--/----</span>
+              <span id="pdf-meta-revision">Revisão: --</span>
+            </div>
+          </div>
+
+          <div id="pdf-container">
+            <div id="pdf-loading" class="hidden">
+              <div class="spinner"></div>
+              <p>Carregando documento...</p>
+            </div>
+            <canvas id="pdf-canvas"></canvas>
+          </div>
+
+          <div class="pdf-controls">
+            <div class="pdf-navigation">
+              <button id="prev" class="btn-control"><i class="fas fa-chevron-left"></i> Anterior</button>
+              <span class="page-info">Página <span id="page-num">0</span> de <span id="page-count">0</span></span>
+              <button id="next" class="btn-control">Próxima <i class="fas fa-chevron-right"></i></button>
+            </div>
+            <div class="pdf-zoom">
+              <button id="zoom-out" class="btn-control"><i class="fas fa-search-minus"></i></button>
+              <span id="zoom-level">100%</span>
+              <button id="zoom-in" class="btn-control"><i class="fas fa-search-plus"></i></button>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <div id="search-results-modal" class="modal hidden">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Resultados da Pesquisa: <span id="search-term"></span></h3>
+        <span class="close-modal" onclick="closeSearchModal()"><i class="fas fa-times"></i></span>
+      </div>
+      <div id="search-results-container">
+        <div class="loading-results">
+          <div class="spinner"></div>
+          <p>Pesquisando...</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer id="footer" class="hidden">
+    <div class="footer-content">
+      <div class="footer-logo">
+        <img src="assets/images/logo.png" alt="ASCH Logo" />
+      </div>
+      <div class="footer-info">
+        <p>&copy; 2025 ASCH INFRAESTRUCTURAS Y SERVICIOS S.A. - Todos os direitos reservados</p>
+        <p>Dossier de Qualidade - Rev.002</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="assets/js/navigation.js"></script>
+  <script src="assets/js/pdf-viewer.js"></script>
+  <script src="assets/js/search.js"></script>
   <script>
-    function toggleDarkMode() {
-      document.body.classList.toggle('dark-mode');
+    // Funções principais da interface
+    function enterDossier() {
+      document.getElementById('cover').classList.add('hidden');
+      document.getElementById('app-content').classList.remove('hidden');
+      document.getElementById('footer').classList.remove('hidden');
+      window.scrollTo(0, 0);
     }
-    function toggleAccordion(el) {
-      el.classList.toggle('active');
+
+    function toggleSidebar() {
+      document.getElementById('sidebar').classList.toggle('active');
+      document.querySelector('.mobile-menu-toggle').classList.toggle('active');
     }
+
+    function toggleAccordion(accordion) {
+      accordion.classList.toggle('active');
+    }
+
     function filterChapters() {
-      const query = document.getElementById('search').value.toLowerCase();
+      const query = document.getElementById('chapter-search').value.toLowerCase();
       document.querySelectorAll('#sidebar .accordion').forEach(acc => {
         const match = acc.innerText.toLowerCase().includes(query);
         acc.style.display = match ? 'block' : 'none';
       });
     }
+
+    function showWelcomeContent() {
+      document.getElementById('welcome-content').classList.remove('hidden');
+      document.getElementById('pdf-viewer-container').classList.add('hidden');
+      document.getElementById('current-section').textContent = 'Visão Geral';
+    }
+
+    function showPdfViewer(title) {
+      document.getElementById('welcome-content').classList.add('hidden');
+      document.getElementById('pdf-viewer-container').classList.remove('hidden');
+      document.getElementById('pdf-title').textContent = title;
+      document.getElementById('current-section').textContent = title;
+    }
+
+    function openFirstPdf() {
+      loadPdf('docs/capitulo-1/plano-qualidade.pdf');
+    }
+
+    function closeSearchModal() {
+      document.getElementById('search-results-modal').classList.add('hidden');
+    }
+
+    // Inicialização
+    document.addEventListener('DOMContentLoaded', function() {
+      // Expandir o primeiro acordeão por padrão
+      document.querySelector('.accordion').classList.add('active');
+      
+      // Adicionar evento de pesquisa global
+      document.getElementById('search-button').addEventListener('click', function() {
+        const searchTerm = document.getElementById('global-search').value.trim();
+        if (searchTerm.length > 2) {
+          document.getElementById('search-term').textContent = searchTerm;
+          document.getElementById('search-results-modal').classList.remove('hidden');
+          // Aqui seria chamada a função de pesquisa
+          performSearch(searchTerm);
+        }
+      });
+
+      // Permitir pesquisa ao pressionar Enter
+      document.getElementById('global-search').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+          document.getElementById('search-button').click();
+        }
+      });
+    });
   </script>
-  <div class="cover" id="cover">
-    <h1>Dossier Final da Qualidade</h1>
-    <p>Projeto 4001008 – Nuevas Plantas de Poliolefinas, Plataformas Logísticas y Offsites</p>
-    <button onclick="document.getElementById('cover').style.display='none'; document.getElementById('app-content').style.display='flex'; window.scrollTo(0,0);" style="margin-top: 2rem; padding: 0.8rem 1.6rem; background: var(--highlight); color: white; border: none; border-radius: 10px; font-weight: bold; cursor: pointer; font-size: 1rem;">Entrar no Dossier</button>
-  </div>
-  <div id="app-content" style="display: none;">
-    <div id="sidebar">
-      <h2>📘 Capítulos</h2>
-      <input type="text" id="search" placeholder="🔎 Procurar capítulo..." oninput="filterChapters()">
-      <div class="accordion" onclick="toggleAccordion(this)">
-        <h3>📂 1.0 – Sistema de Gestão da Qualidade</h3>
-        <ul>
-          <li>📋 1.1 – Plano da Qualidade (PQ)</li>
-          <li>🧪 1.2 – Plano de Inspeção e Ensaios (PIE)</li>
-          <li>📄 1.3 – Certificados</li>
-        </ul>
-      </div>
-      <div class="accordion" onclick="toggleAccordion(this)">
-        <h3>🏗️ 2.0 – Execução da Obra</h3>
-        <ul>
-          <li>🏗️ 2.1 – Fundação</li>
-          <li>🏠 2.2 – Arquitetura</li>
-          <li>🔌 2.3 – Instalações Técnicas</li>
-        </ul>
-      </div>
-      <div class="accordion" onclick="toggleAccordion(this)">
-        <h3>📐 3.0 – Documentação de Engenharia</h3>
-        <ul>
-          <li>📄 3.1 – Projetos Executados</li>
-        </ul>
-      </div>
-    </div>
-    <main>
-      <header>
-        <div class="header-text">
-          <h1>Dossier Final da Qualidade</h1>
-          <p>Projeto 4001008 – Nuevas Plantas de Poliolefinas, Plataformas Logísticas y Offsites</p>
-        </div>
-        <img src="https://www.asch.pt/wp-content/uploads/2022/03/ASCH-Infraestruturas-logo.png" alt="ASCH Logo">
-      </header>
-      <div class="meta">
-        <p><strong>Data de Entrega:</strong> 08/04/2025</p>
-        <p><strong>Versão:</strong> Rev.002</p>
-        <div class="team">
-          <p><strong>Qualidade:</strong> José Antunes</p>
-          <p><strong>Diretor Técnico:</strong> Mário Cristiano</p>
-          <p><strong>Diretor de Obra:</strong> Luis Salvado</p>
-          <p><strong>Delegado:</strong> Gustavo Martínez</p>
-        </div>
-      </div>
-    </main>
-  </div>
 </body>
 </html>
