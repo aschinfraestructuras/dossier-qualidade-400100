@@ -1130,7 +1130,7 @@
             </div>
             <div class="dashboard-card">
               <div class="card-label"><i class="fas fa-flag-checkered"></i> Data de Conclusão</div>
-              <div class="card-value">Janeiro 2025</div>
+              <div class="card-value">31/03/2025</div>
             </div>
             <div class="dashboard-card">
               <div class="card-label"><i class="fas fa-file-alt"></i> Documento Nº</div>
@@ -1138,7 +1138,7 @@
             </div>
             <div class="dashboard-card">
               <div class="card-label"><i class="fas fa-code-branch"></i> Versão</div>
-              <div class="card-value">Rev.002</div>
+              <div class="card-value">Rev.000</div>
             </div>
           </div>
 
@@ -1234,7 +1234,7 @@
         <img src="https://www.asch.pt/wp-content/uploads/2022/03/ASCH-Infraestruturas-logo.png" alt="ASCH Logo" class="footer-logo">
         <div class="footer-text">
           <p>&copy; 2025 ASCH INFRAESTRUCTURAS Y SERVICIOS S.A. - Todos os direitos reservados</p>
-          <p>Dossier de Qualidade - Rev.002</p>
+          <p>Dossier de Qualidade - Rev.000</p>
         </div>
       </div>
     </footer>
@@ -1354,7 +1354,7 @@
           const today = new Date();
           const formattedDate = today.toLocaleDateString('pt-PT');
           document.getElementById('pdf-meta-date').textContent = 'Data: ' + formattedDate;
-          document.getElementById('pdf-meta-revision').textContent = 'Revisão: Rev.002';
+          document.getElementById('pdf-meta-revision').textContent = 'Revisão: Rev.000';
         })
         .catch(function(error) {
           console.error('Erro ao carregar o PDF:', error);
@@ -1483,7 +1483,7 @@
           <div class="result-item" onclick="loadPdf('PQ.pdf', '1.1 – Plano da Qualidade (PQ)')">
             <div class="result-title">1.1 – Plano da Qualidade</div>
             <div class="result-snippet">...sistema de gestão da <span class="highlight">${term}</span> implementado na empreitada 4001008...</div>
-            <div class="result-meta">Capítulo 1 • Rev.002 • 04/07/2023</div>
+            <div class="result-meta">Capítulo 1 • Rev.000 • 04/07/2023</div>
           </div>
           <div class="result-item" onclick="loadPdf('df-capitulo 1.1.pdf', '1.3 – Certificados de Calibração')">
             <div class="result-title">1.3 – Certificados de Calibração</div>
@@ -1493,7 +1493,7 @@
           <div class="result-item" onclick="loadPdf('PQ.pdf', '2.1 – Obra Civil')">
             <div class="result-title">2.1 – Obra Civil</div>
             <div class="result-snippet">...requisitos de <span class="highlight">${term}</span> aplicáveis às estruturas de concreto...</div>
-            <div class="result-meta">Capítulo 2 • Rev.002 • 22/11/2023</div>
+            <div class="result-meta">Capítulo 2 • Rev.000 • 22/11/2023</div>
           </div>
         `;
       }, 1500);
