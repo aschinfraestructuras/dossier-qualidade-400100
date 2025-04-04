@@ -14,7 +14,7 @@
       font-family: 'Inter', sans-serif;
     }
     body {
-      background: #f1f5f9;
+      background: #f8fafc;
       color: #1e293b;
     }
     #app {
@@ -63,34 +63,49 @@
       flex: 1;
     }
     #sidebar {
-      background: #e2e8f0;
-      color: #1e293b;
-      width: 300px;
+      background: #ffffff;
+      color: #0f172a;
+      width: 320px;
       padding: 2rem 1.5rem;
       box-shadow: 4px 0 8px rgba(0,0,0,0.05);
+      overflow-y: auto;
     }
     #sidebar h2 {
       font-size: 1.5rem;
       margin-bottom: 1.5rem;
       font-weight: 700;
-      color: #0f172a;
     }
-    #sidebar ul {
-      list-style: none;
+    #sidebar .accordion {
+      margin-bottom: 1rem;
     }
-    #sidebar li {
-      padding: 0.9rem 1rem;
-      margin-bottom: 0.5rem;
-      border-radius: 12px;
+    .accordion h3 {
+      background: #e2e8f0;
+      padding: 0.75rem 1rem;
+      border-radius: 10px;
       cursor: pointer;
-      background: #ffffff;
-      color: #0f172a;
-      border: 1px solid #cbd5e1;
-      transition: all 0.3s ease;
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
     }
-    #sidebar li:hover {
+    .accordion ul {
+      list-style: none;
+      margin-left: 1rem;
+      margin-bottom: 1rem;
+      display: none;
+    }
+    .accordion.active ul {
+      display: block;
+    }
+    .accordion ul li {
+      margin-bottom: 0.5rem;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      background: #f1f5f9;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    .accordion ul li:hover {
       background: #3b82f6;
-      color: #ffffff;
+      color: white;
     }
     main#content {
       flex: 1;
@@ -109,7 +124,6 @@
     .header-text h1 {
       font-size: 2rem;
       font-weight: 700;
-      color: #0f172a;
     }
     .header-text p {
       font-size: 1rem;
@@ -186,23 +200,36 @@
     <div id="app">
       <aside id="sidebar">
         <h2>📘 Capítulos</h2>
-        <ul>
-          <li onclick="loadPdf('PQ.pdf')">📋 1.1 – Plano da Qualidade (PQ)</li>
-          <li onclick="loadPdf('PIE.pdf')">🧪 1.2 – Plano de Inspeção e Ensaios (PIE)</li>
-          <li onclick="loadPdf('PIE-calibracao.pdf')">📐 1.2.1 – Ensaios de Calibração</li>
-          <li onclick="loadPdf('PIE-materiais.pdf')">🧱 1.2.2 – Ensaios de Materiais</li>
-          <li onclick="loadPdf('certificados-calibracao.pdf')">📄 1.3 – Certificados de Calibração</li>
-          <li onclick="loadPdf('certificados-materiais.pdf')">📄 1.4 – Certificados de Materiais</li>
-          <li onclick="loadPdf('estudos-materiais.pdf')">📊 1.5 – Estudos de Materiais</li>
-          <li onclick="loadPdf('nao-conformidades.pdf')">⚠️ 1.6 – Não Conformidades</li>
-          <li onclick="loadPdf('ppis.pdf')">✅ 1.7 – Plano de Pontos de Inspeção</li>
-          <li onclick="loadPdf('punch-list.pdf')">📝 1.8 – Punch List</li>
-          <li onclick="loadPdf('execucao-obra.pdf')">🏗️ 2.0 – Execução da Obra</li>
-          <li onclick="loadPdf('execucao-funda.pdf')">🏗️ 2.1 – Fundação e Estrutura</li>
-          <li onclick="loadPdf('execucao-arquitetura.pdf')">🏠 2.2 – Arquitetura e Acabamentos</li>
-          <li onclick="loadPdf('execucao-redes.pdf')">🔌 2.3 – Redes Técnicas</li>
-          <li onclick="loadPdf('engenharia.pdf')">📐 3.0 – Documentos de Engenharia</li>
-        </ul>
+        <input type="text" id="search" placeholder="🔎 Procurar capítulo..." oninput="filterChapters()" style="margin-bottom: 1rem; width: 100%; padding: 0.5rem; border-radius: 8px; border: 1px solid #cbd5e1;">
+        <div class="accordion" onclick="toggleAccordion(this)">
+          <h3>📂 1.0 – Sistema de Gestão da Qualidade</h3>
+          <ul>
+            <li onclick="loadPdf('PQ.pdf')">📋 1.1 – Plano da Qualidade (PQ)</li>
+            <li onclick="loadPdf('PIE.pdf')">🧪 1.2 – Plano de Inspeção e Ensaios (PIE)</li>
+            <li onclick="loadPdf('PIE-calibracao.pdf')">📐 1.2.1 – Ensaios de Calibração</li>
+            <li onclick="loadPdf('PIE-materiais.pdf')">🧱 1.2.2 – Ensaios de Materiais</li>
+            <li onclick="loadPdf('certificados-calibracao.pdf')">📄 1.3 – Certificados de Calibração</li>
+            <li onclick="loadPdf('certificados-materiais.pdf')">📄 1.4 – Certificados de Materiais</li>
+            <li onclick="loadPdf('estudos-materiais.pdf')">📊 1.5 – Estudos de Materiais</li>
+            <li onclick="loadPdf('nao-conformidades.pdf')">⚠️ 1.6 – Não Conformidades</li>
+            <li onclick="loadPdf('ppis.pdf')">✅ 1.7 – Plano de Pontos de Inspeção</li>
+            <li onclick="loadPdf('punch-list.pdf')">📝 1.8 – Punch List</li>
+          </ul>
+        </div>
+        <div class="accordion" onclick="toggleAccordion(this)">
+          <h3>🏗️ 2.0 – Execução da Obra</h3>
+          <ul>
+            <li onclick="loadPdf('execucao-funda.pdf')">🏗️ 2.1 – Fundação e Estrutura</li>
+            <li onclick="loadPdf('execucao-arquitetura.pdf')">🏠 2.2 – Arquitetura e Acabamentos</li>
+            <li onclick="loadPdf('execucao-redes.pdf')">🔌 2.3 – Redes Técnicas</li>
+          </ul>
+        </div>
+        <div class="accordion" onclick="toggleAccordion(this)">
+          <h3>📐 3.0 – Documentos de Engenharia</h3>
+          <ul>
+            <li onclick="loadPdf('engenharia.pdf')">📄 3.1 – Projetos Executados</li>
+          </ul>
+        </div>
       </aside>
       <main id="content">
         <header>
@@ -239,5 +266,17 @@
     </div>
   </div>
   <script src="viewer.js"></script>
+  <script>
+    function toggleAccordion(el) {
+      el.classList.toggle('active');
+    }
+    function filterChapters() {
+      const query = document.getElementById('search').value.toLowerCase();
+      document.querySelectorAll('#sidebar .accordion').forEach(acc => {
+        const match = acc.innerText.toLowerCase().includes(query);
+        acc.style.display = match ? 'block' : 'none';
+      });
+    }
+  </script>
 </body>
 </html>
