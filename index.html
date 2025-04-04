@@ -346,7 +346,7 @@
 
     /* ===== Sidebar Navigation ===== */
     .sidebar {
-      width: 320px;
+      width: 280px;
       background: var(--white);
       border-right: 1px solid var(--gray-light);
       height: calc(100vh - 80px);
@@ -1284,7 +1284,7 @@
       .sidebar {
         position: fixed;
         top: 80px;
-        left: -320px;
+        left: -280px;
         z-index: 90;
         box-shadow: 5px 0 15px rgba(0, 0, 0, 0.1);
       }
@@ -1396,6 +1396,8 @@
         </form>
         <button class="btn-control" id="btn-feedback" onclick="showFeedbackForm()">
           <i class="fas fa-comment-alt"></i> Feedback
+            <button class="btn-control" id="btn-return-splash" onclick="returnToSplash()">
+    <i class="fas fa-home"></i> Início
         </button>
       </div>
     </header>
@@ -1453,16 +1455,6 @@
                 <span>1.6 – Não Conformidades</span>
                 <span class="doc-status pending">Pendente</span>
               </div>
-              <div class="nav-item" onclick="loadPdf('PQ.pdf', '1.7 – Plano de Pontos de Inspeção')">
-                <i class="fas fa-check-square"></i>
-                <span>1.7 – Plano de Pontos de Inspeção</span>
-                <span class="doc-status">Aprovado</span>
-              </div>
-              <div class="nav-item" onclick="loadPdf('PQ.pdf', '1.8 – Punch List')">
-                <i class="fas fa-clipboard-check"></i>
-                <span>1.8 – Punch List</span>
-                <span class="doc-status">Aprovado</span>
-              </div>
             </div>
           </div>
 
@@ -1484,16 +1476,6 @@
                 <i class="fas fa-project-diagram"></i>
                 <span>2.2 – Piping</span>
                 <span class="doc-status review">Em revisão</span>
-              </div>
-              <div class="nav-item" onclick="loadPdf('java.pdf', '2.3 – Elétrica')">
-                <i class="fas fa-bolt"></i>
-                <span>2.3 – Elétrica</span>
-                <span class="doc-status pending">Pendente</span>
-              </div>
-              <div class="nav-item" onclick="loadPdf('java.pdf', '2.4 – Instrumentação')">
-                <i class="fas fa-tachometer-alt"></i>
-                <span>2.4 – Instrumentação</span>
-                <span class="doc-status pending">Pendente</span>
               </div>
             </div>
           </div>
@@ -1517,11 +1499,11 @@
                 <span>3.2 – Planos Construtivos</span>
                 <span class="doc-status">Aprovado</span>
               </div>
-              <div class="nav-item" onclick="loadPdf('PQ.pdf', '3.3 – Planos Red Mark (Line)')">
-                <i class="fas fa-edit"></i>
-                <span>3.3 – Planos Red Mark (Line)</span>
-                <span class="doc-status review">Em revisão</span>
-              </div>
+             <div class="nav-item" onclick="loadPdf('PQ.pdf', '3.3 – Planos Red Line')">
+            <i class="fas fa-edit"></i>
+           <span>3.3 – Planos Red Line</span>
+           <span class="doc-status review">Em revisão</span>
+           </div>
               <div class="nav-item" onclick="loadPdf('df-capitulo 1.1.pdf', '3.4 – Planos As-Built')">
                 <i class="fas fa-draw-polygon"></i>
                 <span>3.4 – Planos As-Built</span>
@@ -1559,37 +1541,13 @@
                 <span>4.4 – Auditorias de Qualidade</span>
                 <span class="doc-status review">Em revisão</span>
               </div>
-            </div>
-          </div>
-          
-          <div class="nav-category" data-section="procedimentos">
-            <div class="category-header" onclick="toggleCategory(this.parentElement)">
-              <div class="header-title">
-                <i class="fas fa-file-alt"></i>
-                <span>5.0 – Procedimentos e Instruções</span>
-              </div>
-              <i class="fas fa-chevron-down chevron-icon"></i>
-            </div>
-            <div class="category-menu">
-              <div class="nav-item" onclick="loadPdf('PQ.pdf', '5.1 – Procedimentos Operacionais')">
-                <i class="fas fa-cogs"></i>
-                <span>5.1 – Procedimentos Operacionais</span>
-                <span class="doc-status">Aprovado</span>
-              </div>
-              <div class="nav-item" onclick="loadPdf('teste.pdf', '5.2 – Instruções de Trabalho')">
-                <i class="fas fa-clipboard"></i>
-                <span>5.2 – Instruções de Trabalho</span>
-                <span class="doc-status">Aprovado</span>
-              </div>
-              <div class="nav-item" onclick="loadPdf('teste.pdf', '5.3 – Manuais de Operação')">
-                <i class="fas fa-book"></i>
-                <span>5.3 – Manuais de Operação</span>
-                <span class="doc-status review">Em revisão</span>
-              </div>
-            </div>
-          </div>
+            <div class="nav-item" onclick="loadPdf('PQ.pdf', '4.5 – Punch List')">
+            <i class="fas fa-clipboard-check"></i>
+            <span>4.5 – Punch List</span>
+            <span class="doc-status">Aprovado</span>
         </div>
-      </aside>
+       </div>
+      </div>
 
       <!-- Main Content Area -->
       <main class="main-content">
@@ -1627,13 +1585,17 @@
               <div class="card-value">31/03/2025</div>
             </div>
             <div class="dashboard-card">
-              <div class="card-label"><i class="fas fa-file-alt"></i> Documento Nº</div>
+              <div class="card-label"><i class="fas fa-file-alt"></i>Código Interno de Empresa</div>
               <div class="card-value">R007</div>
             </div>
             <div class="dashboard-card">
               <div class="card-label"><i class="fas fa-code-branch"></i> Versão</div>
               <div class="card-value">Rev.000</div>
             </div>
+            <div class="dashboard-card">
+           <div class="card-label"><i class="fas fa-project-diagram"></i> Código do Projecto (Repsol)</div>
+          <div class="card-value">4001008</div>
+          </div>
           </div>
           
           <div class="section-container">
@@ -1822,7 +1784,7 @@
         <ul>
           <li>Taxa de conformidade global: <strong>96.9%</strong></li>
           <li>Ensaios previstos para conclusão até 31/05/2025: <strong>45</strong></li>
-          <li>Último lote de ensaios realizados em: <strong>03/04/2025</strong></li>
+          <li>Todos os ensaios foram concluídos até <strong>31/03/2025</strong></li>
         </ul>
       </div>
       <div class="info-card">
@@ -2566,6 +2528,11 @@
         zoomOut();
       }
     });
+    function returnToSplash() {
+  document.getElementById('app-container').classList.remove('visible');
+  document.getElementById('splash-screen').style.display = 'flex';
+  document.getElementById('splash-screen').classList.remove('fade-out');
+}
   </script>
 </body>
 </html>
