@@ -4,7 +4,45 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Dossier Final da Qualidade – Projeto Alba</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https:    // Configuração de navegação para subcapítulos
+    function setupNavigation() {
+      // Adicionar classes para subcapítulos
+      const subchapters = document.querySelectorAll('.nav-category .category-menu');
+      
+      subchapters.forEach(menu => {
+        const items = menu.querySelectorAll('.nav-item:not(.subchapter)');
+        items.forEach(item => {
+          // Adicionar atributos data para facilitar a seleção
+          const title = item.querySelector('span').textContent;
+          const id = title.split('–')[0].trim();
+          item.setAttribute('data-chapter', id);
+          
+          // Marcar como ativo quando clicado
+          item.addEventListener('click', function() {
+            document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+            this.classList.add('active');
+          });
+        });
+      });
+    }
+
+    // Navegação do PDF por teclado
+    document.addEventListener('keydown', function(e) {
+      if (!pdfDoc) return;
+      
+      if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+        prevPage();
+      } else if (e.key === 'ArrowRight' || e.key === 'PageDown') {
+        nextPage();
+      } else if (e.key === '+' || e.key === '=') {
+        zoomIn();
+      } else if (e.key === '-' || e.key === '_') {
+        zoomOut();
+      }
+    });
+  </script>
+</body>
+</html>fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
   <script>
@@ -246,6 +284,86 @@
     }
 
     .menu-toggle {
+        display: block;
+        margin-right: 1rem;
+      }
+
+      .search-form {
+        width: auto;
+        flex: 1;
+        margin-right: 1rem;
+      }
+
+      .sidebar {
+        position: fixed;
+        top: 70px;
+        left: -320px;
+        z-index: 90;
+        box-shadow: 5px 0 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .sidebar.active {
+        left: 0;
+      }
+
+      .main-content {
+        padding: 1.5rem;
+      }
+
+      .page-title {
+        font-size: 1.8rem;
+      }
+
+      .dashboard-cards {
+        grid-template-columns: 1fr;
+      }
+
+      .team-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-content {
+        flex-direction: column;
+        gap: 1rem;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .splash-title {
+        font-size: 1.8rem;
+      }
+
+      .splash-logo {
+        max-height: 80px;
+      }
+
+      .navbar-title {
+        display: none;
+      }
+
+      .section-container {
+        padding: 1.5rem;
+      }
+
+      .pdf-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .pdf-meta {
+        margin-top: 0.5rem;
+        gap: 1rem;
+      }
+
+      .pdf-controls {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .pdf-container {
+        height: 60vh;
+      }
+    }toggle {
       display: none;
       background: none;
       border: none;
@@ -396,6 +514,26 @@
       color: var(--primary);
       width: 18px;
       text-align: center;
+    }
+
+    /* Estilos para subcapítulos */
+    .subchapter {
+      padding-left: 4.5rem !important;
+      font-size: 0.9rem;
+    }
+
+    .subchapter i {
+      font-size: 0.9rem;
+    }
+
+    .subchapter::before {
+      content: "";
+      position: absolute;
+      left: 3.2rem;
+      top: 0;
+      height: 100%;
+      width: 1px;
+      background-color: var(--gray-light);
     }
 
     /* ===== Main Content ===== */
@@ -712,6 +850,169 @@
       text-align: center;
     }
 
+    /* Tabelas Melhoradas */
+    .document-table {
+      width: 100%;
+      border-collapse: collapse;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+      margin-bottom: 2rem;
+    }
+
+    .document-table thead {
+      background-color: var(--primary);
+      color: white;
+      position: sticky;
+      top: 0;
+    }
+
+    .document-table th {
+      padding: 12px 15px;
+      text-align: left;
+      font-weight: 500;
+    }
+
+    .document-table tbody tr {
+      border-bottom: 1px solid #dddddd;
+    }
+
+    .document-table tbody tr:nth-of-type(even) {
+      background-color: #f9f9f9;
+    }
+
+    .document-table tbody tr:last-of-type {
+      border-bottom: 2px solid var(--primary);
+    }
+
+    .document-table td {
+      padding: 12px 15px;
+    }
+
+    .document-table .action-buttons {
+      display: flex;
+      gap: 8px;
+      margin-top: 0;
+    }
+
+    .document-table .document-icon {
+      color: var(--primary);
+      transition: transform 0.2s ease;
+    }
+
+    .document-table tr:hover .document-icon {
+      transform: scale(1.2);
+    }
+
+    .document-status {
+      display: inline-block;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+
+    .status-approved {
+      background-color: #e6f7e6;
+      color: #28a745;
+    }
+
+    .status-pending {
+      background-color: #fff3cd;
+      color: #ffc107;
+    }
+
+    /* Pré-visualização de documentos */
+    .document-preview {
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      padding: 12px;
+      max-width: 300px;
+      z-index: 1000;
+    }
+
+    .preview-header {
+      margin-bottom: 10px;
+    }
+
+    .preview-header h3 {
+      margin: 0;
+      font-size: 1rem;
+      color: var(--primary);
+    }
+
+    .document-type {
+      font-size: 0.8rem;
+      color: var(--gray);
+    }
+
+    .preview-thumbnail {
+      height: 150px;
+      background-color: #f1f1f1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 10px;
+    }
+
+    .preview-thumbnail img {
+      max-width: 100%;
+      max-height: 100%;
+    }
+
+    .preview-info {
+      font-size: 0.8rem;
+      color: var(--gray);
+    }
+
+    /* Selo de validação de documento */
+    .validation-seal {
+      display: flex;
+      align-items: center;
+      padding: 10px;
+      margin-top: 10px;
+      border-radius: 6px;
+    }
+
+    .validation-seal.valid {
+      background-color: rgba(40, 167, 69, 0.1);
+      border: 1px solid rgba(40, 167, 69, 0.3);
+    }
+
+    .validation-seal.invalid {
+      background-color: rgba(220, 53, 69, 0.1);
+      border: 1px solid rgba(220, 53, 69, 0.3);
+    }
+
+    .seal-icon {
+      font-size: 1.5rem;
+      margin-right: 10px;
+    }
+
+    .validation-seal.valid .seal-icon {
+      color: #28a745;
+    }
+
+    .validation-seal.invalid .seal-icon {
+      color: #dc3545;
+    }
+
+    .seal-info {
+      flex: 1;
+    }
+
+    .seal-status {
+      font-weight: 500;
+      margin: 0;
+    }
+
+    .seal-timestamp {
+      font-size: 0.8rem;
+      color: var(--gray);
+      margin: 0;
+    }
+
     /* ===== Search Modal ===== */
     .search-modal {
       position: fixed;
@@ -881,680 +1182,4 @@
         font-size: 1.1rem;
       }
 
-      .menu-toggle {
-        display: block;
-        margin-right: 1rem;
-      }
-
-      .search-form {
-        width: auto;
-        flex: 1;
-        margin-right: 1rem;
-      }
-
-      .sidebar {
-        position: fixed;
-        top: 70px;
-        left: -320px;
-        z-index: 90;
-        box-shadow: 5px 0 15px rgba(0, 0, 0, 0.1);
-      }
-
-      .sidebar.active {
-        left: 0;
-      }
-
-      .main-content {
-        padding: 1.5rem;
-      }
-
-      .page-title {
-        font-size: 1.8rem;
-      }
-
-      .dashboard-cards {
-        grid-template-columns: 1fr;
-      }
-
-      .team-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .footer-content {
-        flex-direction: column;
-        gap: 1rem;
-      }
-    }
-
-    @media (max-width: 576px) {
-      .splash-title {
-        font-size: 1.8rem;
-      }
-
-      .splash-logo {
-        max-height: 80px;
-      }
-
-      .navbar-title {
-        display: none;
-      }
-
-      .section-container {
-        padding: 1.5rem;
-      }
-
-      .pdf-header {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .pdf-meta {
-        margin-top: 0.5rem;
-        gap: 1rem;
-      }
-
-      .pdf-controls {
-        flex-direction: column;
-        gap: 1rem;
-      }
-
-      .pdf-container {
-        height: 60vh;
-      }
-    }
-  </style>
-</head>
-<body>
-  <!-- Splash Screen / Capa Inicial -->
-  <div class="splash-screen" id="splash-screen">
-    <div class="splash-content">
-      <img src="assets/images/logoasch.png" class="brand-logo" style="max-height: 60px; height: auto; width: auto; margin-top: 8px;">
-      <h1 class="splash-title">Dossier Final da Qualidade</h1>
-      <p class="splash-subtitle">Projeto Alba – Nuevas Plantas de Poliolefinas, Plataformas Logísticas y Offsites</p>
-      <button class="btn btn-primary btn-lg" onclick="enterDossier()">
-        <i class="fas fa-book-open"></i> Entrar no Dossier
-      </button>
-    </div>
-  </div>
-
-  <!-- Conteúdo Principal da Aplicação -->
-  <div class="app-container" id="app-container">
-    <!-- Top Navigation Bar -->
-    <header class="top-navbar">
-      <button class="menu-toggle" onclick="toggleSidebar()">
-        <i class="fas fa-bars"></i>
-      </button>
-      <div class="navbar-brand">
-        <img src="assets/images/logoasch.png" class="brand-logo" style="max-height: 60px; height: auto; width: auto; margin-top: 8px;">
-        <div class="navbar-title">Dossier da Qualidade</div>
-      </div>
-      <div class="navbar-tools">
-        <form class="search-form">
-          <i class="fas fa-search search-icon"></i>
-          <input type="text" class="search-input" placeholder="Pesquisar no dossier..." id="global-search">
-        </form>
-      </div>
-    </header>
-
-    <div class="main-container">
-      <!-- Sidebar Navigation -->
-      <aside class="sidebar" id="sidebar">
-        <div class="sidebar-header">
-          <h2 class="sidebar-title">
-            <i class="fas fa-folder"></i> Índice do Dossier
-          </h2>
-          <div class="search-chapters">
-            <i class="fas fa-search chapter-search-icon"></i>
-            <input type="text" class="chapter-search" placeholder="Filtrar capítulos..." id="chapter-search" oninput="filterChapters()">
-          </div>
-        </div>
-
-        <div class="navigation">
-          <div class="nav-category" data-section="sgq">
-            <div class="category-header" onclick="toggleCategory(this.parentElement)">
-              <div class="header-title">
-                <i class="fas fa-tasks"></i>
-                <span>1.0 – Sistema de Gestão da Qualidade</span>
-              </div>
-              <i class="fas fa-chevron-down chevron-icon"></i>
-            </div>
-            <div class="category-menu">
-              <div class="nav-item" onclick="loadPdf('PQ.pdf', '1.1 – Plano da Qualidade (PQ)')">
-                <i class="fas fa-clipboard-list"></i>
-                <span>1.1 – Plano da Qualidade (PQ)</span>
-              </div>
-              <div class="nav-item" onclick="loadPdf('teste.pdf', '1.2 – Plano de Inspeção e Ensaios (PIE)')">
-                <i class="fas fa-vial"></i>
-                <span>1.2 – Plano de Inspeção e Ensaios (PIE)</span>
-              </div>
-              <div class="nav-item" onclick="loadPdf('df-capitulo 1.1.pdf', '1.3 – Certificados de Calibração')">
-                <i class="fas fa-ruler"></i>
-                <span>1.3 – Certificados de Calibração</span>
-              </div>
-              <div class="nav-item" onclick="loadPdf('PQ.pdf', '1.4 – Certificados de Materiais')">
-                <i class="fas fa-file-contract"></i>
-                <span>1.4 – Certificados de Materiais</span>
-              </div>
-              <div class="nav-item" onclick="loadPdf('PQ.pdf', '1.5 – Estudos de Materiais')">
-                <i class="fas fa-chart-bar"></i>
-                <span>1.5 – Estudos de Materiais</span>
-              </div>
-              <div class="nav-item" onclick="loadPdf('PQ.pdf', '1.6 – Não Conformidades')">
-                <i class="fas fa-exclamation-triangle"></i>
-                <span>1.6 – Não Conformidades</span>
-              </div>
-              <div class="nav-item" onclick="loadPdf('PQ.pdf', '1.7 – Plano de Pontos de Inspeção')">
-                <i class="fas fa-check-square"></i>
-                <span>1.7 – Plano de Pontos de Inspeção</span>
-              </div>
-              <div class="nav-item" onclick="loadPdf('PQ.pdf', '1.8 – Punch List')">
-                <i class="fas fa-clipboard-check"></i>
-                <span>1.8 – Punch List</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="nav-category" data-section="execucao">
-            <div class="category-header" onclick="toggleCategory(this.parentElement)">
-              <div class="header-title">
-                <i class="fas fa-hard-hat"></i>
-                <span>2.0 – Execução do Projeto</span>
-              </div>
-              <i class="fas fa-chevron-down chevron-icon"></i>
-            </div>
-            <div class="category-menu">
-              <div class="nav-item" onclick="loadPdf('PQ.pdf', '2.1 – Obra Civil')">
-                <i class="fas fa-building"></i>
-                <span>2.1 – Obra Civil</span>
-              </div>
-              <div class="nav-item" onclick="loadPdf('java.pdf', '2.2 – Piping')">
-                <i class="fas fa-project-diagram"></i>
-                <span>2.2 – Piping</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="nav-category" data-section="documentos">
-            <div class="category-header" onclick="toggleCategory(this.parentElement)">
-              <div class="header-title">
-                <i class="fas fa-drafting-compass"></i>
-                <span>3.0 – Documentos de Engenharia</span>
-              </div>
-              <i class="fas fa-chevron-down chevron-icon"></i>
-            </div>
-            <div class="category-menu">
-              <div class="nav-item" onclick="loadPdf('PQ.pdf', '3.1 – Especificações Técnicas')">
-                <i class="fas fa-file-alt"></i>
-                <span>3.1 – Especificações Técnicas</span>
-              </div>
-              <div class="nav-item" onclick="loadPdf('teste.pdf', '3.2 – Planos Construtivos')">
-                <i class="fas fa-blueprint"></i>
-                <span>3.2 – Planos Construtivos</span>
-              </div>
-              <div class="nav-item" onclick="loadPdf('PQ.pdf', '3.3 – Planos Red Mark (Line)')">
-                <i class="fas fa-edit"></i>
-                <span>3.3 – Planos Red Mark (Line)</span>
-              </div>
-              <div class="nav-item" onclick="loadPdf('df-capitulo 1.1.pdf', '3.4 – Planos As-Built')">
-                <i class="fas fa-draw-polygon"></i>
-                <span>3.4 – Planos As-Built</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </aside>
-
-      <!-- Main Content Area -->
-      <main class="main-content">
-        <div class="breadcrumb">
-          <div class="breadcrumb-item"><a href="#" onclick="showWelcomeContent()">Início</a></div>
-          <div class="breadcrumb-item" id="current-section">Visão Geral</div>
-        </div>
-
-        <!-- Welcome Content / Dashboard -->
-        <div class="welcome-content" id="welcome-content">
-          <header class="page-header">
-            <h1 class="page-title">Dossier Final da Qualidade</h1>
-            <p class="page-subtitle">Projeto Alba – Nuevas Plantas de Poliolefinas, Plataformas Logísticas y Offsites</p>
-          </header>
-
-          <div class="dashboard-cards">
-            <div class="dashboard-card">
-              <div class="card-label"><i class="fas fa-building"></i> Cliente</div>
-              <div class="card-value">REPSOL POLÍMEROS</div>
-            </div>
-            <div class="dashboard-card">
-              <div class="card-label"><i class="fas fa-hard-hat"></i> Empreiteiro</div>
-              <div class="card-value">ASCH INFRAESTRUCTURAS Y SERVICIOS S.A.</div>
-            </div>
-            <div class="dashboard-card">
-              <div class="card-label"><i class="fas fa-calendar-alt"></i> Data de Início</div>
-              <div class="card-value">Junho 2023</div>
-            </div>
-            <div class="dashboard-card">
-              <div class="card-label"><i class="fas fa-flag-checkered"></i> Data de Conclusão</div>
-              <div class="card-value">31/03/2025</div>
-            </div>
-            <div class="dashboard-card">
-              <div class="card-label"><i class="fas fa-file-alt"></i> Documento Nº</div>
-              <div class="card-value">R007</div>
-            </div>
-            <div class="dashboard-card">
-              <div class="card-label"><i class="fas fa-code-branch"></i> Versão</div>
-              <div class="card-value">Rev.000</div>
-            </div>
-          </div>
-
-          <div class="section-container">
-            <h2 class="section-title"><i class="fas fa-info-circle"></i> Introdução</h2>
-            <div class="introduction-text">
-              <p>Este dossier de qualidade apresenta toda a documentação relativa ao sistema de gestão da qualidade implementado na empreitada 4001008 - "Nuevas Plantas de Poliolefinas, Plataformas Logísticas Y Offsites".</p>
-              <p>O dossier está estruturado de forma a facilitar a consulta e verificação de todos os registos e documentos que atestam a conformidade da obra com os requisitos contratuais, normativos e legais aplicáveis.</p>
-            </div>
-          </div>
-
-          <div class="section-container">
-            <h2 class="section-title"><i class="fas fa-users"></i> Equipa Responsável</h2>
-            <div class="team-grid">
-              <div class="team-member">
-                <div class="member-position">ELABORADO</div>
-                <div class="member-role">QUALIDADE</div>
-                <div class="member-name">José Antunes</div>
-              </div>
-              <div class="team-member">
-                <div class="member-position">VERIFICADO</div>
-                <div class="member-role">DIRECTOR TÉCNICO</div>
-                <div class="member-name">Mário Cristiano</div>
-              </div>
-              <div class="team-member">
-                <div class="member-position">APROVADO</div>
-                <div class="member-role">DIRECTOR DE OBRA</div>
-                <div class="member-name">Luis Salvado</div>
-              </div>
-              <div class="team-member">
-                <div class="member-position">DELEGADO</div>
-                <div class="member-role">REPSOL</div>
-                <div class="member-name">Gustavo Martínez</div>
-              </div>
-            </div>
-
-            <div class="action-buttons">
-              <button class="btn btn-primary" onclick="openFirstPdf()">
-                <i class="fas fa-file-pdf"></i> Ver Plano da Qualidade
-              </button>
-              <a href="PQ.pdf" download class="btn btn-outlined">
-                <i class="fas fa-download"></i> Download Dossier Completo
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <!-- PDF Viewer -->
-        <div class="pdf-viewer" id="pdf-viewer">
-          <div class="pdf-header">
-            <div class="pdf-title" id="pdf-title">Documento</div>
-            <div class="pdf-meta">
-              <span id="pdf-meta-date">Data: --/--/----</span>
-              <span id="pdf-meta-revision">Revisão: --</span>
-            </div>
-          </div>
-
-          <div class="pdf-container">
-            <div class="loading-indicator hidden" id="pdf-loading">
-              <div class="spinner"></div>
-              <p class="loading-text">Carregando documento...</p>
-            </div>
-            <canvas id="pdf-canvas"></canvas>
-          </div>
-
-          <div class="pdf-controls">
-            <div class="pdf-navigation">
-              <button class="btn-control" id="prev">
-                <i class="fas fa-chevron-left"></i> Anterior
-              </button>
-              <span class="page-info">Página <span id="page-num">0</span> de <span id="page-count">0</span></span>
-              <button class="btn-control" id="next">
-                Próxima <i class="fas fa-chevron-right"></i>
-              </button>
-            </div>
-            <div class="pdf-zoom">
-              <button class="btn-control" id="zoom-out">
-                <i class="fas fa-search-minus"></i>
-              </button>
-              <span class="zoom-level" id="zoom-level">100%</span>
-              <button class="btn-control" id="zoom-in">
-                <i class="fas fa-search-plus"></i>
-              </button>
-            </div>
-          </div>
-        </div>
-      </main>
-    </div>
-
-    <!-- Footer -->
-    <footer class="footer">
-      <div class="footer-content">
-        <img src="assets/images/logoasch.png" class="brand-logo" style="max-height: 60px; height: auto; width: auto; margin-top: 8px;"
-        <div class="footer-text">
-          <p>&copy; 2025 ASCH INFRAESTRUCTURAS Y SERVICIOS S.A. - Todos os direitos reservados</p>
-          <p>Dossier de Qualidade - Rev.000</p>
-        </div>
-      </div>
-    </footer>
-  </div>
-
-  <!-- Search Results Modal -->
-  <div class="search-modal" id="search-modal">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h3 class="modal-title">Resultados da Pesquisa: <span id="search-term"></span></h3>
-        <button class="close-modal" onclick="closeSearchModal()">
-          <i class="fas fa-times"></i>
-        </button>
-      </div>
-      <div class="search-results" id="search-results">
-        <!-- Search results will be populated here -->
-      </div>
-    </div>
-  </div>
-
-  <!-- JavaScript -->
-  <script>
-    // Variáveis para o visualizador de PDF
-    let pdfDoc = null;
-    let pageNum = 1;
-    let pageRendering = false;
-    let pageNumPending = null;
-    let scale = 1.5;
-    let zoomLevel = 100;
-    let canvas = document.getElementById('pdf-canvas');
-    let ctx = canvas.getContext('2d');
-
-    // Função para entrar no dossier
-    function enterDossier() {
-      const splashScreen = document.getElementById('splash-screen');
-      const appContainer = document.getElementById('app-container');
-      
-      // Animar a transição
-      splashScreen.classList.add('fade-out');
-      
-      // Mostrar o conteúdo principal após a animação
-      setTimeout(() => {
-        splashScreen.style.display = 'none';
-        appContainer.classList.add('visible');
-      }, 500);
-    }
-
-    // Função para alternar o menu lateral em dispositivos móveis
-    function toggleSidebar() {
-      document.getElementById('sidebar').classList.toggle('active');
-    }
-
-    // Função para alternar as categorias do menu
-    function toggleCategory(category) {
-      category.classList.toggle('active');
-    }
-
-    // Função para filtrar os capítulos na busca
-    function filterChapters() {
-      const query = document.getElementById('chapter-search').value.toLowerCase();
-      document.querySelectorAll('.nav-category').forEach(category => {
-        const categoryText = category.innerText.toLowerCase();
-        const match = categoryText.includes(query);
-        category.style.display = match ? 'block' : 'none';
-      });
-    }
-
-    // Função para mostrar o conteúdo de boas-vindas
-    function showWelcomeContent() {
-      document.getElementById('welcome-content').style.display = 'block';
-      document.getElementById('pdf-viewer').classList.remove('active');
-      document.getElementById('current-section').textContent = 'Visão Geral';
-    }
-
-    // Função para carregar um PDF
-    function loadPdf(pdfPath, title) {
-      // Mostrar o visualizador de PDF
-      document.getElementById('welcome-content').style.display = 'none';
-      document.getElementById('pdf-viewer').classList.add('active');
-      document.getElementById('pdf-title').textContent = title || 'Documento';
-      document.getElementById('current-section').textContent = title || 'Documento';
-      
-      // Esconder a barra lateral em dispositivos móveis
-      if (window.innerWidth < 768) {
-        document.getElementById('sidebar').classList.remove('active');
-      }
-      
-      // Resetar estado
-      if (pdfDoc) {
-        pdfDoc = null;
-        pageNum = 1;
-        scale = 1.5;
-        zoomLevel = 100;
-        document.getElementById('zoom-level').textContent = '100%';
-      }
-      
-      // Mostrar indicador de carregamento
-      document.getElementById('pdf-loading').classList.remove('hidden');
-      
-      // Carregar o PDF
-      pdfjsLib.getDocument(pdfPath).promise
-        .then(function(pdfDoc_) {
-          // PDF carregado
-          pdfDoc = pdfDoc_;
-          
-          // Atualizar contagem de páginas
-          document.getElementById('page-count').textContent = pdfDoc.numPages;
-          document.getElementById('page-num').textContent = pageNum;
-          
-          // Esconder indicador de carregamento
-          document.getElementById('pdf-loading').classList.add('hidden');
-          
-          // Renderizar primeira página
-          renderPage(pageNum);
-          
-          // Atualizar metadados do documento
-          const today = new Date();
-          const formattedDate = today.toLocaleDateString('pt-PT');
-          document.getElementById('pdf-meta-date').textContent = 'Data: ' + formattedDate;
-          document.getElementById('pdf-meta-revision').textContent = 'Revisão: Rev.000';
-        })
-        .catch(function(error) {
-          console.error('Erro ao carregar o PDF:', error);
-          document.getElementById('pdf-loading').classList.add('hidden');
-          
-          // Mostrar mensagem de erro
-          const errorDiv = document.createElement('div');
-          errorDiv.style.padding = '2rem';
-          errorDiv.style.textAlign = 'center';
-          errorDiv.style.color = '#dc3545';
-          errorDiv.innerHTML = '<i class="fas fa-exclamation-triangle" style="font-size: 2rem; margin-bottom: 1rem;"></i><p>Não foi possível carregar o documento PDF. Por favor, tente novamente mais tarde.</p>';
-          document.querySelector('.pdf-container').appendChild(errorDiv);
-          
-          // Atualizar elementos de navegação
-          document.getElementById('page-count').textContent = '0';
-          document.getElementById('page-num').textContent = '0';
-        });
-    }
-
-    // Função para renderizar uma página do PDF
-    function renderPage(num) {
-      pageRendering = true;
-      
-      // Buscar a página
-      pdfDoc.getPage(num).then(function(page) {
-        // Ajustar canvas para dimensões da página
-        const viewport = page.getViewport({ scale });
-        canvas.height = viewport.height;
-        canvas.width = viewport.width;
-        
-        // Renderizar a página no canvas
-        const renderContext = {
-          canvasContext: ctx,
-          viewport: viewport
-        };
-        
-        const renderTask = page.render(renderContext);
-        
-        // Aguardar a renderização
-        renderTask.promise.then(function() {
-          pageRendering = false;
-          
-          if (pageNumPending !== null) {
-            // Nova renderização pendente
-            renderPage(pageNumPending);
-            pageNumPending = null;
-          }
-        });
-      });
-      
-      // Atualizar número da página atual
-      document.getElementById('page-num').textContent = num;
-    }
-
-    // Função para enfileirar renderização para evitar concorrência
-    function queueRenderPage(num) {
-      if (pageRendering) {
-        pageNumPending = num;
-      } else {
-        renderPage(num);
-      }
-    }
-
-    // Função para ir para página anterior
-    function prevPage() {
-      if (pageNum <= 1 || !pdfDoc) {
-        return;
-      }
-      pageNum--;
-      queueRenderPage(pageNum);
-    }
-
-    // Função para ir para próxima página
-    function nextPage() {
-      if (!pdfDoc || pageNum >= pdfDoc.numPages) {
-        return;
-      }
-      pageNum++;
-      queueRenderPage(pageNum);
-    }
-
-    // Função para aumentar zoom
-    function zoomIn() {
-      if (zoomLevel >= 200) return;
-      
-      zoomLevel += 25;
-      scale += 0.25;
-      document.getElementById('zoom-level').textContent = zoomLevel + '%';
-      queueRenderPage(pageNum);
-    }
-
-    // Função para diminuir zoom
-    function zoomOut() {
-      if (zoomLevel <= 50) return;
-      
-      zoomLevel -= 25;
-      scale -= 0.25;
-      document.getElementById('zoom-level').textContent = zoomLevel + '%';
-      queueRenderPage(pageNum);
-    }
-
-    // Função para abrir o primeiro PDF
-    function openFirstPdf() {
-      loadPdf('PQ.pdf', '1.1 – Plano da Qualidade (PQ)');
-    }
-
-    // Função para fechar o modal de pesquisa
-    function closeSearchModal() {
-      document.getElementById('search-modal').classList.remove('active');
-    }
-
-    // Função para realizar pesquisa
-    function performSearch(term) {
-      // Esta é uma simulação de resultados de pesquisa
-      // Em um ambiente de produção, você implementaria uma busca real nos PDFs
-      
-      document.getElementById('search-term').textContent = term;
-      document.getElementById('search-modal').classList.add('active');
-      
-      const searchResults = document.getElementById('search-results');
-      searchResults.innerHTML = '<div class="loading-indicator" style="padding: 2rem;"><div class="spinner"></div><p>Pesquisando documentos...</p></div>';
-      
-      // Simular tempo de carregamento
-      setTimeout(() => {
-        searchResults.innerHTML = `
-          <div class="result-item" onclick="loadPdf('PQ.pdf', '1.1 – Plano da Qualidade (PQ)')">
-            <div class="result-title">1.1 – Plano da Qualidade</div>
-            <div class="result-snippet">...sistema de gestão da <span class="highlight">${term}</span> implementado na empreitada 4001008...</div>
-            <div class="result-meta">Capítulo 1 • Rev.000 • 04/07/2023</div>
-          </div>
-          <div class="result-item" onclick="loadPdf('df-capitulo 1.1.pdf', '1.3 – Certificados de Calibração')">
-            <div class="result-title">1.3 – Certificados de Calibração</div>
-            <div class="result-snippet">...instrumentos calibrados conforme o plano de <span class="highlight">${term}</span> do projeto...</div>
-            <div class="result-meta">Capítulo 1 • Rev.001 • 15/09/2023</div>
-          </div>
-          <div class="result-item" onclick="loadPdf('PQ.pdf', '2.1 – Obra Civil')">
-            <div class="result-title">2.1 – Obra Civil</div>
-            <div class="result-snippet">...requisitos de <span class="highlight">${term}</span> aplicáveis às estruturas de concreto...</div>
-            <div class="result-meta">Capítulo 2 • Rev.000 • 22/11/2023</div>
-          </div>
-        `;
-      }, 1500);
-    }
-
-    // Inicialização quando o DOM estiver carregado
-    document.addEventListener('DOMContentLoaded', function() {
-      // Ativar a primeira categoria por padrão
-      document.querySelector('.nav-category').classList.add('active');
-      
-      // Adicionar eventos aos botões de navegação do PDF
-      document.getElementById('prev').addEventListener('click', prevPage);
-      document.getElementById('next').addEventListener('click', nextPage);
-      document.getElementById('zoom-in').addEventListener('click', zoomIn);
-      document.getElementById('zoom-out').addEventListener('click', zoomOut);
-      
-      // Adicionar evento de pesquisa
-      document.querySelector('.search-form').addEventListener('submit', function(e) {
-        e.preventDefault();
-        const searchTerm = document.getElementById('global-search').value.trim();
-        if (searchTerm.length > 2) {
-          performSearch(searchTerm);
-        }
-      });
-      
-      // Permitir pesquisa ao pressionar Enter
-      document.getElementById('global-search').addEventListener('keypress', function(e) {
-        if (e.key === 'Enter') {
-          e.preventDefault();
-          const searchTerm = this.value.trim();
-          if (searchTerm.length > 2) {
-            performSearch(searchTerm);
-          }
-        }
-      });
-      
-      // Adaptar o visualizador em dispositivos móveis
-      if (window.innerWidth < 768) {
-        scale = 1.0;
-        zoomLevel = 67;
-        document.getElementById('zoom-level').textContent = '67%';
-      }
-    });
-
-    // Navegação do PDF por teclado
-    document.addEventListener('keydown', function(e) {
-      if (!pdfDoc) return;
-      
-      if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
-        prevPage();
-      } else if (e.key === 'ArrowRight' || e.key === 'PageDown') {
-        nextPage();
-      } else if (e.key === '+' || e.key === '=') {
-        zoomIn();
-      } else if (e.key === '-' || e.key === '_') {
-        zoomOut();
-      }
-    });
-  </script>
-</body>
-</html>
+      .menu-
