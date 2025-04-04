@@ -3,15 +3,24 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Dossier Final da Qualidade do Projeto Alba - ASCH INFRAESTRUCTURAS Y SERVICIOS S.A. para REPSOL POLÍMEROS" />
+  <meta name="author" content="ASCH INFRAESTRUCTURAS Y SERVICIOS S.A." />
+  <meta name="keywords" content="dossier qualidade, projeto alba, repsol, asch, gestão da qualidade, construção, infraestruturas" />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="theme-color" content="#0056B3" />
   <title>Dossier Final da Qualidade – Projeto Alba</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
   <script>
     pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
   </script>
   <style>
     :root {
+      /* Cores principais */
       --primary: #0056B3;
       --primary-dark: #004494;
       --primary-light: #2D7DD2;
@@ -28,10 +37,16 @@
       --white: #ffffff;
       --text: #333333;
       --section-bg: #f9fafb;
+      
+      /* Sombras e efeitos */
       --card-shadow: 0 5px 15px rgba(0, 0, 0, 0.07);
+      --card-shadow-hover: 0 15px 30px rgba(0, 0, 0, 0.1);
       --transition: all 0.3s ease;
+      
+      /* Tipografia */
       --font-sans-serif: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
       --border-radius: 12px;
+      --border-radius-sm: 6px;
     }
 
     * {
@@ -65,6 +80,7 @@
 
     ::-webkit-scrollbar-track {
       background: #f1f1f1;
+      border-radius: 10px;
     }
 
     ::-webkit-scrollbar-thumb {
@@ -87,10 +103,10 @@
       z-index: 9999;
       display: flex;
       justify-content: center;
-      align-items: flex-start; 
+      align-items: center;
       transition: opacity 0.5s ease, transform 0.5s ease;
-      padding-top: 1; 
-   }
+      padding-top: 0;
+    }
 
     .splash-content {
       text-align: center;
@@ -99,6 +115,18 @@
       padding: 2rem;
       transform: translateY(0);
       transition: transform 0.5s ease;
+      animation: fadeInUp 0.8s ease-out;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     .splash-screen.fade-out {
@@ -112,7 +140,7 @@
 
     .splash-logo {
       max-height: 100px;
-      margin-bottom: 1rem;
+      margin-bottom: 1.5rem;
       filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
     }
 
@@ -155,6 +183,7 @@
     .btn-primary {
       background: var(--white);
       color: var(--primary);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     }
 
     .btn-primary:hover {
@@ -184,8 +213,8 @@
       height: 80px;
       border-bottom: 1px solid var(--gray-light);
       display: flex;
-      align-items: flex-start;
-      padding: 0 1rem 2rem;
+      align-items: center;
+      padding: 0 2rem;
       position: sticky;
       top: 0;
       z-index: 100;
@@ -200,8 +229,6 @@
 
     .brand-logo {
       max-height: 60px;
-      margin-top: 8px;
-      
     }
 
     .navbar-title {
@@ -209,6 +236,7 @@
       font-weight: 600;
       font-size: 1.3rem;
       color: var(--primary);
+      white-space: nowrap;
     }
 
     .navbar-tools {
@@ -229,12 +257,14 @@
       border: 1px solid var(--gray-light);
       font-size: 0.9rem;
       transition: var(--transition);
+      background-color: var(--light);
     }
 
     .search-input:focus {
       outline: none;
       border-color: var(--primary-light);
       box-shadow: 0 0 0 3px rgba(45, 125, 210, 0.1);
+      background-color: var(--white);
     }
 
     .search-icon {
@@ -264,11 +294,11 @@
       width: 320px;
       background: var(--white);
       border-right: 1px solid var(--gray-light);
-      height: calc(100vh - 70px);
+      height: calc(100vh - 80px);
       overflow-y: auto;
       transition: transform 0.3s ease;
       position: sticky;
-      top: 70px;
+      top: 80px;
     }
 
     .sidebar-header {
@@ -297,12 +327,14 @@
       border: 1px solid var(--gray-light);
       font-size: 0.9rem;
       transition: var(--transition);
+      background-color: var(--light);
     }
 
     .chapter-search:focus {
       outline: none;
       border-color: var(--primary-light);
       box-shadow: 0 0 0 3px rgba(45, 125, 210, 0.1);
+      background-color: var(--white);
     }
 
     .chapter-search-icon {
@@ -365,6 +397,12 @@
     .category-menu {
       display: none;
       margin-left: 1.2rem;
+      animation: fadeIn 0.3s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
 
     .nav-category.active .category-menu {
@@ -398,12 +436,33 @@
       text-align: center;
     }
 
+    /* Badge de status do documento */
+    .doc-status {
+      position: absolute;
+      right: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 0.7rem;
+      padding: 0.2rem 0.5rem;
+      border-radius: 20px;
+      background: var(--success);
+      color: white;
+    }
+
+    .doc-status.pending {
+      background: var(--warning);
+    }
+
+    .doc-status.review {
+      background: var(--secondary);
+    }
+
     /* ===== Main Content ===== */
     .main-content {
       flex: 1;
       padding: 2rem;
       background: var(--light);
-      min-height: calc(100vh - 70px);
+      min-height: calc(100vh - 80px);
     }
 
     .breadcrumb {
@@ -412,6 +471,10 @@
       flex-wrap: wrap;
       margin-bottom: 2rem;
       font-size: 0.95rem;
+      background: var(--white);
+      padding: 0.75rem 1.25rem;
+      border-radius: var(--border-radius);
+      box-shadow: var(--card-shadow);
     }
 
     .breadcrumb-item {
@@ -437,6 +500,9 @@
 
     .page-header {
       margin-bottom: 2.5rem;
+      position: relative;
+      padding-bottom: 1.5rem;
+      border-bottom: 2px solid var(--gray-light);
     }
 
     .page-title {
@@ -451,9 +517,30 @@
       font-size: 1.1rem;
     }
 
+    /* Status do projeto */
+    .project-status {
+      position: absolute;
+      top: 0;
+      right: 0;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--success);
+      color: var(--white);
+      padding: 0.5rem 1rem;
+      border-radius: var(--border-radius);
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    .project-status.in-progress {
+      background: var(--primary);
+    }
+
+    /* Cards do dashboard */
     .dashboard-cards {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
       gap: 1.5rem;
       margin-bottom: 2.5rem;
     }
@@ -466,11 +553,23 @@
       transition: var(--transition);
       display: flex;
       flex-direction: column;
+      position: relative;
+      overflow: hidden;
     }
 
     .dashboard-card:hover {
       transform: translateY(-5px);
-      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+      box-shadow: var(--card-shadow-hover);
+    }
+
+    .dashboard-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: var(--primary);
     }
 
     .card-label {
@@ -492,12 +591,18 @@
       font-weight: 600;
     }
 
+    /* Seções de conteúdo */
     .section-container {
       background: var(--white);
       border-radius: var(--border-radius);
       box-shadow: var(--card-shadow);
       padding: 2rem;
       margin-bottom: 2.5rem;
+      transition: var(--transition);
+    }
+
+    .section-container:hover {
+      box-shadow: var(--card-shadow-hover);
     }
 
     .section-title {
@@ -508,6 +613,8 @@
       display: flex;
       align-items: center;
       gap: 0.7rem;
+      border-bottom: 2px solid var(--gray-light);
+      padding-bottom: 0.75rem;
     }
 
     .section-title i {
@@ -527,6 +634,48 @@
       margin-bottom: 0;
     }
 
+    /* Progress dashboard */
+    .progress-section {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .progress-card {
+      background: var(--section-bg);
+      border-radius: var(--border-radius);
+      padding: 1.5rem;
+      text-align: center;
+    }
+
+    .progress-title {
+      font-weight: 500;
+      margin-bottom: 1rem;
+      color: var(--primary);
+    }
+
+    .progress-bar-container {
+      width: 100%;
+      height: 10px;
+      background: var(--gray-light);
+      border-radius: 5px;
+      overflow: hidden;
+      margin-bottom: 0.75rem;
+    }
+
+    .progress-bar {
+      height: 100%;
+      background: var(--primary);
+      border-radius: 5px;
+    }
+
+    .progress-value {
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+
+    /* Grid de equipa */
     .team-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
@@ -563,6 +712,12 @@
       font-weight: 500;
     }
 
+    .member-contact {
+      margin-top: 1rem;
+      font-size: 0.85rem;
+      color: var(--gray);
+    }
+
     .action-buttons {
       display: flex;
       gap: 1rem;
@@ -581,6 +736,17 @@
       color: var(--white);
     }
 
+    .btn-success {
+      background: var(--success);
+      color: var(--white);
+    }
+
+    .btn-success:hover {
+      background: #218838;
+      transform: translateY(-3px);
+      box-shadow: 0 7px 14px rgba(0, 0, 0, 0.1);
+    }
+
     /* ===== PDF Viewer ===== */
     .pdf-viewer {
       background: var(--white);
@@ -592,6 +758,7 @@
 
     .pdf-viewer.active {
       display: block;
+      animation: fadeInUp 0.5s ease-out;
     }
 
     .pdf-header {
@@ -600,6 +767,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+      background: var(--section-bg);
     }
 
     .pdf-title {
@@ -667,13 +835,20 @@
       font-weight: 500;
     }
 
+    .pdf-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
     .pdf-controls {
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 1rem 1.5rem;
       border-top: 1px solid var(--gray-light);
-      background: var(--white);
+      background: var(--section-bg);
     }
 
     .pdf-navigation, .pdf-zoom {
@@ -684,6 +859,14 @@
 
     .page-info {
       font-size: 0.9rem;
+      font-weight: 500;
+      padding: 0.6rem 1rem;
+      background: var(--white);
+      border-radius: var(--border-radius);
+      display: flex;
+      align-items: center;
+      min-width: 100px;
+      justify-content: center;
     }
 
     .btn-control {
@@ -710,6 +893,8 @@
       font-size: 0.9rem;
       min-width: 60px;
       text-align: center;
+      padding: 0.6rem 0;
+      font-weight: 500;
     }
 
     /* ===== Search Modal ===== */
@@ -759,6 +944,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+      background: var(--section-bg);
     }
 
     .modal-title {
@@ -791,6 +977,7 @@
       border-bottom: 1px solid var(--gray-light);
       cursor: pointer;
       transition: var(--transition);
+      border-radius: var(--border-radius-sm);
     }
 
     .result-item:hover {
@@ -824,6 +1011,19 @@
       border-radius: 2px;
     }
 
+    /* Animação de skeleton loading */
+    .skeleton {
+      background: linear-gradient(90deg, var(--gray-light) 25%, #ededed 50%, var(--gray-light) 75%);
+      background-size: 200% 100%;
+      animation: skeleton-loading 1.5s infinite ease-in-out;
+      border-radius: var(--border-radius-sm);
+    }
+
+    @keyframes skeleton-loading {
+      0% { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+
     /* ===== Footer ===== */
     .footer {
       background: var(--white);
@@ -841,11 +1041,145 @@
     }
 
     .footer-logo {
-      height: 25px;
+      height: 30px;
     }
 
     .footer-text {
       font-size: 0.9rem;
+      color: var(--gray);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .footer-link {
+      color: var(--gray);
+      font-size: 0.9rem;
+      transition: var(--transition);
+    }
+
+    .footer-link:hover {
+      color: var(--primary);
+    }
+
+    /* Overlay para feedback */
+    .feedback-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(5px);
+      z-index: 1000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: var(--transition);
+    }
+
+    .feedback-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .feedback-form {
+      background: var(--white);
+      border-radius: var(--border-radius);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+      width: 90%;
+      max-width: 500px;
+      padding: 2rem;
+      transform: translateY(30px);
+      transition: transform 0.3s ease;
+    }
+
+    .feedback-overlay.active .feedback-form {
+      transform: translateY(0);
+    }
+
+    .feedback-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      color: var(--primary);
+    }
+
+    .feedback-input {
+      width: 100%;
+      padding: 0.7rem 1rem;
+      border-radius: var(--border-radius-sm);
+      border: 1px solid var(--gray-light);
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+      resize: none;
+    }
+
+    .feedback-input:focus {
+      outline: none;
+      border-color: var(--primary-light);
+      box-shadow: 0 0 0 3px rgba(45, 125, 210, 0.1);
+    }
+
+    .feedback-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    /* Toast notifications */
+    .toast-container {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 1010;
+    }
+
+    .toast {
+      background: var(--white);
+      border-radius: var(--border-radius);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      padding: 1rem;
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-width: 250px;
+      max-width: 350px;
+      transform: translateX(100%);
+      transition: transform 0.3s ease;
+    }
+
+    .toast.active {
+      transform: translateX(0);
+    }
+
+    .toast-success {
+      border-left: 4px solid var(--success);
+    }
+
+    .toast-warning {
+      border-left: 4px solid var(--warning);
+    }
+
+    .toast-error {
+      border-left: 4px solid var(--danger);
+    }
+
+    .toast-message {
+      margin-right: 0.5rem;
+    }
+
+    .close-toast {
+      background: none;
+      border: none;
+      font-size: 1rem;
+      cursor: pointer;
       color: var(--gray);
     }
 
@@ -868,7 +1202,7 @@
       }
 
       .dashboard-cards {
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
       }
     }
 
@@ -894,7 +1228,7 @@
 
       .sidebar {
         position: fixed;
-        top: 70px;
+        top: 80px;
         left: -320px;
         z-index: 90;
         box-shadow: 5px 0 15px rgba(0, 0, 0, 0.1);
@@ -923,6 +1257,12 @@
       .footer-content {
         flex-direction: column;
         gap: 1rem;
+      }
+
+      .project-status {
+        position: relative;
+        margin-top: 1rem;
+        display: inline-flex;
       }
     }
 
@@ -968,13 +1308,19 @@
   <!-- Splash Screen / Capa Inicial -->
   <div class="splash-screen" id="splash-screen">
     <div class="splash-content">
-      <img src="assets/images/logoasch.png" class="brand-logo" style="max-height: 60px; height: auto; width: auto; margin-top: 8px;">
+      <img src="assets/images/logoasch.png" alt="Logo ASCH" class="splash-logo">
       <h1 class="splash-title">Dossier Final da Qualidade</h1>
       <p class="splash-subtitle">Projeto Alba – Nuevas Plantas de Poliolefinas, Plataformas Logísticas y Offsites</p>
       <button class="btn btn-primary btn-lg" onclick="enterDossier()">
         <i class="fas fa-book-open"></i> Entrar no Dossier
       </button>
+      <div id="splash-date" style="color: white; margin-top: 2rem; font-size: 0.9rem;"></div>
     </div>
+  </div>
+
+  <!-- Toast notifications -->
+  <div class="toast-container" id="toast-container">
+    <!-- Toasts will be added here dynamically -->
   </div>
 
   <!-- Conteúdo Principal da Aplicação -->
@@ -985,14 +1331,17 @@
         <i class="fas fa-bars"></i>
       </button>
       <div class="navbar-brand">
-        <img src="assets/images/logoasch.png" class="brand-logo" style="max-height: 60px; height: auto; width: auto; margin-top: 8px;">
+        <img src="assets/images/logoasch.png" alt="Logo ASCH" class="brand-logo">
         <div class="navbar-title">Dossier da Qualidade</div>
       </div>
       <div class="navbar-tools">
-        <form class="search-form">
+        <form class="search-form" onsubmit="return performSearch()">
           <i class="fas fa-search search-icon"></i>
           <input type="text" class="search-input" placeholder="Pesquisar no dossier..." id="global-search">
         </form>
+        <button class="btn-control" id="btn-feedback" onclick="showFeedbackForm()">
+          <i class="fas fa-comment-alt"></i> Feedback
+        </button>
       </div>
     </header>
 
@@ -1022,34 +1371,42 @@
               <div class="nav-item" onclick="loadPdf('PQ.pdf', '1.1 – Plano da Qualidade (PQ)')">
                 <i class="fas fa-clipboard-list"></i>
                 <span>1.1 – Plano da Qualidade (PQ)</span>
+                <span class="doc-status">Aprovado</span>
               </div>
               <div class="nav-item" onclick="loadPdf('teste.pdf', '1.2 – Plano de Inspeção e Ensaios (PIE)')">
                 <i class="fas fa-vial"></i>
                 <span>1.2 – Plano de Inspeção e Ensaios (PIE)</span>
+                <span class="doc-status">Aprovado</span>
               </div>
               <div class="nav-item" onclick="loadPdf('df-capitulo 1.1.pdf', '1.3 – Certificados de Calibração')">
                 <i class="fas fa-ruler"></i>
                 <span>1.3 – Certificados de Calibração</span>
+                <span class="doc-status">Aprovado</span>
               </div>
               <div class="nav-item" onclick="loadPdf('PQ.pdf', '1.4 – Certificados de Materiais')">
                 <i class="fas fa-file-contract"></i>
                 <span>1.4 – Certificados de Materiais</span>
+                <span class="doc-status review">Em revisão</span>
               </div>
               <div class="nav-item" onclick="loadPdf('PQ.pdf', '1.5 – Estudos de Materiais')">
                 <i class="fas fa-chart-bar"></i>
                 <span>1.5 – Estudos de Materiais</span>
+                <span class="doc-status">Aprovado</span>
               </div>
               <div class="nav-item" onclick="loadPdf('PQ.pdf', '1.6 – Não Conformidades')">
                 <i class="fas fa-exclamation-triangle"></i>
                 <span>1.6 – Não Conformidades</span>
+                <span class="doc-status pending">Pendente</span>
               </div>
               <div class="nav-item" onclick="loadPdf('PQ.pdf', '1.7 – Plano de Pontos de Inspeção')">
                 <i class="fas fa-check-square"></i>
                 <span>1.7 – Plano de Pontos de Inspeção</span>
+                <span class="doc-status">Aprovado</span>
               </div>
               <div class="nav-item" onclick="loadPdf('PQ.pdf', '1.8 – Punch List')">
                 <i class="fas fa-clipboard-check"></i>
                 <span>1.8 – Punch List</span>
+                <span class="doc-status">Aprovado</span>
               </div>
             </div>
           </div>
@@ -1066,10 +1423,22 @@
               <div class="nav-item" onclick="loadPdf('PQ.pdf', '2.1 – Obra Civil')">
                 <i class="fas fa-building"></i>
                 <span>2.1 – Obra Civil</span>
+                <span class="doc-status">Aprovado</span>
               </div>
               <div class="nav-item" onclick="loadPdf('java.pdf', '2.2 – Piping')">
                 <i class="fas fa-project-diagram"></i>
                 <span>2.2 – Piping</span>
+                <span class="doc-status review">Em revisão</span>
+              </div>
+              <div class="nav-item" onclick="loadPdf('java.pdf', '2.3 – Elétrica')">
+                <i class="fas fa-bolt"></i>
+                <span>2.3 – Elétrica</span>
+                <span class="doc-status pending">Pendente</span>
+              </div>
+              <div class="nav-item" onclick="loadPdf('java.pdf', '2.4 – Instrumentação')">
+                <i class="fas fa-tachometer-alt"></i>
+                <span>2.4 – Instrumentação</span>
+                <span class="doc-status pending">Pendente</span>
               </div>
             </div>
           </div>
@@ -1086,18 +1455,81 @@
               <div class="nav-item" onclick="loadPdf('PQ.pdf', '3.1 – Especificações Técnicas')">
                 <i class="fas fa-file-alt"></i>
                 <span>3.1 – Especificações Técnicas</span>
+                <span class="doc-status">Aprovado</span>
               </div>
               <div class="nav-item" onclick="loadPdf('teste.pdf', '3.2 – Planos Construtivos')">
                 <i class="fas fa-blueprint"></i>
                 <span>3.2 – Planos Construtivos</span>
+                <span class="doc-status">Aprovado</span>
               </div>
               <div class="nav-item" onclick="loadPdf('PQ.pdf', '3.3 – Planos Red Mark (Line)')">
                 <i class="fas fa-edit"></i>
                 <span>3.3 – Planos Red Mark (Line)</span>
+                <span class="doc-status review">Em revisão</span>
               </div>
               <div class="nav-item" onclick="loadPdf('df-capitulo 1.1.pdf', '3.4 – Planos As-Built')">
                 <i class="fas fa-draw-polygon"></i>
                 <span>3.4 – Planos As-Built</span>
+                <span class="doc-status pending">Pendente</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="nav-category" data-section="relatorios">
+            <div class="category-header" onclick="toggleCategory(this.parentElement)">
+              <div class="header-title">
+                <i class="fas fa-chart-line"></i>
+                <span>4.0 – Relatórios e Análises</span>
+              </div>
+              <i class="fas fa-chevron-down chevron-icon"></i>
+            </div>
+            <div class="category-menu">
+              <div class="nav-item" onclick="loadPdf('PQ.pdf', '4.1 – Relatórios de Progresso')">
+                <i class="fas fa-clipboard-list"></i>
+                <span>4.1 – Relatórios de Progresso</span>
+                <span class="doc-status">Aprovado</span>
+              </div>
+              <div class="nav-item" onclick="loadPdf('teste.pdf', '4.2 – Análise de Riscos')">
+                <i class="fas fa-exclamation-circle"></i>
+                <span>4.2 – Análise de Riscos</span>
+                <span class="doc-status">Aprovado</span>
+              </div>
+              <div class="nav-item" onclick="loadPdf('teste.pdf', '4.3 – Métricas da Qualidade')">
+                <i class="fas fa-chart-pie"></i>
+                <span>4.3 – Métricas da Qualidade</span>
+                <span class="doc-status">Aprovado</span>
+              </div>
+              <div class="nav-item" onclick="loadPdf('teste.pdf', '4.4 – Auditorias de Qualidade')">
+                <i class="fas fa-search"></i>
+                <span>4.4 – Auditorias de Qualidade</span>
+                <span class="doc-status review">Em revisão</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="nav-category" data-section="procedimentos">
+            <div class="category-header" onclick="toggleCategory(this.parentElement)">
+              <div class="header-title">
+                <i class="fas fa-file-alt"></i>
+                <span>5.0 – Procedimentos e Instruções</span>
+              </div>
+              <i class="fas fa-chevron-down chevron-icon"></i>
+            </div>
+            <div class="category-menu">
+              <div class="nav-item" onclick="loadPdf('PQ.pdf', '5.1 – Procedimentos Operacionais')">
+                <i class="fas fa-cogs"></i>
+                <span>5.1 – Procedimentos Operacionais</span>
+                <span class="doc-status">Aprovado</span>
+              </div>
+              <div class="nav-item" onclick="loadPdf('teste.pdf', '5.2 – Instruções de Trabalho')">
+                <i class="fas fa-clipboard"></i>
+                <span>5.2 – Instruções de Trabalho</span>
+                <span class="doc-status">Aprovado</span>
+              </div>
+              <div class="nav-item" onclick="loadPdf('teste.pdf', '5.3 – Manuais de Operação')">
+                <i class="fas fa-book"></i>
+                <span>5.3 – Manuais de Operação</span>
+                <span class="doc-status review">Em revisão</span>
               </div>
             </div>
           </div>
@@ -1116,6 +1548,10 @@
           <header class="page-header">
             <h1 class="page-title">Dossier Final da Qualidade</h1>
             <p class="page-subtitle">Projeto Alba – Nuevas Plantas de Poliolefinas, Plataformas Logísticas y Offsites</p>
+            <div class="project-status in-progress">
+              <i class="fas fa-spinner fa-spin"></i>
+              <span>Projeto em execução (85% concluído)</span>
+            </div>
           </header>
 
           <div class="dashboard-cards">
@@ -1146,10 +1582,78 @@
           </div>
 
           <div class="section-container">
+            <h2 class="section-title"><i class="fas fa-chart-line"></i> Progresso do Projeto</h2>
+            <div class="progress-section">
+              <div class="progress-card">
+                <h3 class="progress-title">Obra Civil</h3>
+                <div class="progress-bar-container">
+                  <div class="progress-bar" style="width: 95%;"></div>
+                </div>
+                <div class="progress-value">95%</div>
+              </div>
+              <div class="progress-card">
+                <h3 class="progress-title">Piping</h3>
+                <div class="progress-bar-container">
+                  <div class="progress-bar" style="width: 78%;"></div>
+                </div>
+                <div class="progress-value">78%</div>
+              </div>
+              <div class="progress-card">
+                <h3 class="progress-title">Elétrica</h3>
+                <div class="progress-bar-container">
+                  <div class="progress-bar" style="width: 65%;"></div>
+                </div>
+                <div class="progress-value">65%</div>
+              </div>
+              <div class="progress-card">
+                <h3 class="progress-title">Instrumentação</h3>
+                <div class="progress-bar-container">
+                  <div class="progress-bar" style="width: 55%;"></div>
+                </div>
+                <div class="progress-value">55%</div>
+              </div>
+            </div>
+            <div class="progress-chart-container" style="height: 300px; margin-top: 1.5rem;">
+              <canvas id="progress-chart"></canvas>
+            </div>
+          </div>
+
+          <div class="section-container">
             <h2 class="section-title"><i class="fas fa-info-circle"></i> Introdução</h2>
             <div class="introduction-text">
               <p>Este dossier de qualidade apresenta toda a documentação relativa ao sistema de gestão da qualidade implementado na empreitada 4001008 - "Nuevas Plantas de Poliolefinas, Plataformas Logísticas Y Offsites".</p>
               <p>O dossier está estruturado de forma a facilitar a consulta e verificação de todos os registos e documentos que atestam a conformidade da obra com os requisitos contratuais, normativos e legais aplicáveis.</p>
+              <p>Este documento digital representa a versão mais atual e completa do dossier, permitindo acesso rápido e eficiente a toda a documentação do projeto e facilitando a colaboração entre todas as partes interessadas.</p>
+            </div>
+          </div>
+
+          <div class="section-container">
+            <h2 class="section-title"><i class="fas fa-file-alt"></i> Estatísticas do Dossier</h2>
+            <div class="dashboard-cards">
+              <div class="dashboard-card">
+                <div class="card-label"><i class="fas fa-file-pdf"></i> Total de Documentos</div>
+                <div class="card-value">178</div>
+              </div>
+              <div class="dashboard-card">
+                <div class="card-label"><i class="fas fa-check-circle"></i> Aprovados</div>
+                <div class="card-value">145</div>
+              </div>
+              <div class="dashboard-card">
+                <div class="card-label"><i class="fas fa-sync"></i> Em Revisão</div>
+                <div class="card-value">22</div>
+              </div>
+              <div class="dashboard-card">
+                <div class="card-label"><i class="fas fa-clock"></i> Pendentes</div>
+                <div class="card-value">11</div>
+              </div>
+              <div class="dashboard-card">
+                <div class="card-label"><i class="fas fa-exclamation-triangle"></i> Não Conformidades</div>
+                <div class="card-value">8</div>
+              </div>
+              <div class="dashboard-card">
+                <div class="card-label"><i class="fas fa-clipboard-check"></i> Ações Corretivas</div>
+                <div class="card-value">12</div>
+              </div>
             </div>
           </div>
 
@@ -1160,21 +1664,25 @@
                 <div class="member-position">ELABORADO</div>
                 <div class="member-role">QUALIDADE</div>
                 <div class="member-name">José Antunes</div>
+                <div class="member-contact">j.antunes@asch.pt</div>
               </div>
               <div class="team-member">
                 <div class="member-position">VERIFICADO</div>
                 <div class="member-role">DIRECTOR TÉCNICO</div>
                 <div class="member-name">Mário Cristiano</div>
+                <div class="member-contact">m.cristiano@asch.pt</div>
               </div>
               <div class="team-member">
                 <div class="member-position">APROVADO</div>
                 <div class="member-role">DIRECTOR DE OBRA</div>
                 <div class="member-name">Luis Salvado</div>
+                <div class="member-contact">l.salvado@asch.pt</div>
               </div>
               <div class="team-member">
                 <div class="member-position">DELEGADO</div>
                 <div class="member-role">REPSOL</div>
                 <div class="member-name">Gustavo Martínez</div>
+                <div class="member-contact">g.martinez@repsol.com</div>
               </div>
             </div>
 
@@ -1182,9 +1690,12 @@
               <button class="btn btn-primary" onclick="openFirstPdf()">
                 <i class="fas fa-file-pdf"></i> Ver Plano da Qualidade
               </button>
-              <a href="PQ.pdf" download class="btn btn-outlined">
+              <a href="#" onclick="showToast('Iniciando download do dossier completo...', 'success')" class="btn btn-outlined">
                 <i class="fas fa-download"></i> Download Dossier Completo
               </a>
+              <button class="btn btn-success" onclick="showRevisionsModal()">
+                <i class="fas fa-history"></i> Histórico de Revisões
+              </button>
             </div>
           </div>
         </div>
@@ -1198,11 +1709,27 @@
               <span id="pdf-meta-revision">Revisão: --</span>
             </div>
           </div>
+          
+          <div class="pdf-actions">
+            <button class="btn-control" onclick="showTo
+              <button class="btn-control" onclick="showToast('Comentário adicionado com sucesso!', 'success')">
+              <i class="fas fa-comment"></i> Adicionar Comentário
+            </button>
+            <button class="btn-control" onclick="showToast('Documento marcado para revisão', 'success')">
+              <i class="fas fa-pencil-alt"></i> Editar
+            </button>
+            <button class="btn-control" onclick="showToast('Documento partilhado via email', 'success')">
+              <i class="fas fa-share-alt"></i> Partilhar
+            </button>
+            <button class="btn-control" onclick="showToast('Download iniciado', 'success')">
+              <i class="fas fa-download"></i> Download
+            </button>
+          </div>
 
           <div class="pdf-container">
             <div class="loading-indicator hidden" id="pdf-loading">
               <div class="spinner"></div>
-              <p class="loading-text">Carregando documento...</p>
+              <p class="loading-text">A carregar documento...</p>
             </div>
             <canvas id="pdf-canvas"></canvas>
           </div>
@@ -1212,7 +1739,7 @@
               <button class="btn-control" id="prev">
                 <i class="fas fa-chevron-left"></i> Anterior
               </button>
-              <span class="page-info">Página <span id="page-num">0</span> de <span id="page-count">0</span></span>
+              <div class="page-info">Página <span id="page-num">0</span> de <span id="page-count">0</span></div>
               <button class="btn-control" id="next">
                 Próxima <i class="fas fa-chevron-right"></i>
               </button>
@@ -1221,7 +1748,7 @@
               <button class="btn-control" id="zoom-out">
                 <i class="fas fa-search-minus"></i>
               </button>
-              <span class="zoom-level" id="zoom-level">100%</span>
+              <div class="zoom-level" id="zoom-level">100%</div>
               <button class="btn-control" id="zoom-in">
                 <i class="fas fa-search-plus"></i>
               </button>
@@ -1234,10 +1761,15 @@
     <!-- Footer -->
     <footer class="footer">
       <div class="footer-content">
-        <img src="assets/images/logoasch.png" class="brand-logo" style="max-height: 60px; height: auto; width: auto; margin-top: 8px;"
+        <img src="assets/images/logoasch.png" alt="Logo ASCH" class="footer-logo">
         <div class="footer-text">
           <p>&copy; 2025 ASCH INFRAESTRUCTURAS Y SERVICIOS S.A. - Todos os direitos reservados</p>
           <p>Dossier de Qualidade - Rev.000</p>
+        </div>
+        <div class="footer-links">
+          <a href="#" class="footer-link" onclick="showToast('Redirecionando para política de privacidade', 'success')">Política de Privacidade</a>
+          <a href="#" class="footer-link" onclick="showToast('Redirecionando para termos de uso', 'success')">Termos de Uso</a>
+          <a href="#" class="footer-link" onclick="showFeedbackForm()">Feedback</a>
         </div>
       </div>
     </footer>
@@ -1257,6 +1789,49 @@
       </div>
     </div>
   </div>
+  
+  <!-- Feedback Form Modal -->
+  <div class="feedback-overlay" id="feedback-overlay">
+    <div class="feedback-form">
+      <h3 class="feedback-title">Enviar Feedback</h3>
+      <p>Ajude-nos a melhorar o dossier de qualidade partilhando a sua opinião.</p>
+      <input type="text" class="feedback-input" placeholder="Assunto" />
+      <textarea class="feedback-input" rows="5" placeholder="Descreva o seu feedback, sugestão ou problema encontrado..."></textarea>
+      <div class="feedback-actions">
+        <button class="btn btn-outlined" onclick="closeFeedbackForm()">Cancelar</button>
+        <button class="btn btn-primary" onclick="submitFeedback()">Enviar</button>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Revisões Modal -->
+  <div class="search-modal" id="revisions-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">Histórico de Revisões do Dossier</h3>
+        <button class="close-modal" onclick="closeRevisionsModal()">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="search-results">
+        <div class="result-item">
+          <div class="result-title">Revisão 000 - Versão Inicial</div>
+          <div class="result-snippet">Emissão inicial do dossier de qualidade conforme aprovação cliente.</div>
+          <div class="result-meta">04/04/2025 • José Antunes</div>
+        </div>
+        <div class="result-item">
+          <div class="result-title">Revisão A - Versão para Revisão Interna</div>
+          <div class="result-snippet">Versão preliminar para revisão interna antes da aprovação cliente.</div>
+          <div class="result-meta">20/03/2025 • José Antunes</div>
+        </div>
+        <div class="result-item">
+          <div class="result-title">Preparação de Template</div>
+          <div class="result-snippet">Estruturação inicial do dossier e definição de template.</div>
+          <div class="result-meta">15/02/2025 • Equipa da Qualidade</div>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- JavaScript -->
   <script>
@@ -1270,6 +1845,16 @@
     let canvas = document.getElementById('pdf-canvas');
     let ctx = canvas.getContext('2d');
 
+    // Inicializar o gráfico de progresso
+    let progressChart = null;
+
+    // Função para inicializar data no splash screen
+    function initializeSplashDate() {
+      const now = new Date();
+      const options = { year: 'numeric', month: 'long', day: 'numeric' };
+      document.getElementById('splash-date').textContent = 'Última atualização: ' + now.toLocaleDateString('pt-PT', options);
+    }
+
     // Função para entrar no dossier
     function enterDossier() {
       const splashScreen = document.getElementById('splash-screen');
@@ -1282,6 +1867,9 @@
       setTimeout(() => {
         splashScreen.style.display = 'none';
         appContainer.classList.add('visible');
+        
+        // Inicializar o gráfico de progresso após o dossier ser exibido
+        initializeProgressChart();
       }, 500);
     }
 
@@ -1358,6 +1946,9 @@
           const formattedDate = today.toLocaleDateString('pt-PT');
           document.getElementById('pdf-meta-date').textContent = 'Data: ' + formattedDate;
           document.getElementById('pdf-meta-revision').textContent = 'Revisão: Rev.000';
+          
+          // Mostrar toast de documento carregado
+          showToast(`Documento "${title}" carregado com sucesso!`, 'success');
         })
         .catch(function(error) {
           console.error('Erro ao carregar o PDF:', error);
@@ -1374,6 +1965,9 @@
           // Atualizar elementos de navegação
           document.getElementById('page-count').textContent = '0';
           document.getElementById('page-num').textContent = '0';
+          
+          // Mostrar toast de erro
+          showToast('Erro ao carregar o documento. Tente novamente.', 'error');
         });
     }
 
@@ -1469,12 +2063,76 @@
       document.getElementById('search-modal').classList.remove('active');
     }
 
-    // Função para realizar pesquisa
-    function performSearch(term) {
-      // Esta é uma simulação de resultados de pesquisa
-      // Em um ambiente de produção, você implementaria uma busca real nos PDFs
+    // Função para mostrar o modal de revisões
+    function showRevisionsModal() {
+      document.getElementById('revisions-modal').classList.add('active');
+    }
+
+    // Função para fechar o modal de revisões
+    function closeRevisionsModal() {
+      document.getElementById('revisions-modal').classList.remove('active');
+    }
+
+    // Função para mostrar o formulário de feedback
+    function showFeedbackForm() {
+      document.getElementById('feedback-overlay').classList.add('active');
+    }
+
+    // Função para fechar o formulário de feedback
+    function closeFeedbackForm() {
+      document.getElementById('feedback-overlay').classList.remove('active');
+    }
+
+    // Função para enviar feedback
+    function submitFeedback() {
+      // Simular envio de feedback
+      showToast('Feedback enviado com sucesso! Obrigado pela sua contribuição.', 'success');
+      closeFeedbackForm();
+    }
+
+    // Função para mostrar toast de notificação
+    function showToast(message, type = 'success') {
+      const toastContainer = document.getElementById('toast-container');
       
-      document.getElementById('search-term').textContent = term;
+      // Criar toast
+      const toast = document.createElement('div');
+      toast.className = `toast toast-${type}`;
+      
+      // Adicionar conteúdo
+      toast.innerHTML = `
+        <div class="toast-message">${message}</div>
+        <button class="close-toast" onclick="this.parentElement.remove()">
+          <i class="fas fa-times"></i>
+        </button>
+      `;
+      
+      // Adicionar ao container
+      toastContainer.appendChild(toast);
+      
+      // Animar entrada
+      setTimeout(() => {
+        toast.classList.add('active');
+      }, 10);
+      
+      // Auto remover após 5 segundos
+      setTimeout(() => {
+        toast.classList.remove('active');
+        setTimeout(() => {
+          toast.remove();
+        }, 300);
+      }, 5000);
+    }
+
+    // Função para realizar pesquisa
+    function performSearch() {
+      const searchTerm = document.getElementById('global-search').value.trim();
+      
+      if (searchTerm.length < 3) {
+        showToast('Por favor, informe pelo menos 3 caracteres para pesquisar.', 'warning');
+        return false;
+      }
+      
+      document.getElementById('search-term').textContent = searchTerm;
       document.getElementById('search-modal').classList.add('active');
       
       const searchResults = document.getElementById('search-results');
@@ -1485,25 +2143,112 @@
         searchResults.innerHTML = `
           <div class="result-item" onclick="loadPdf('PQ.pdf', '1.1 – Plano da Qualidade (PQ)')">
             <div class="result-title">1.1 – Plano da Qualidade</div>
-            <div class="result-snippet">...sistema de gestão da <span class="highlight">${term}</span> implementado na empreitada 4001008...</div>
-            <div class="result-meta">Capítulo 1 • Rev.000 • 04/07/2023</div>
+            <div class="result-snippet">...sistema de gestão da <span class="highlight">${searchTerm}</span> implementado na empreitada 4001008...</div>
+            <div class="result-meta">Capítulo 1 • Rev.000 • 04/07/2023 • 15 ocorrências</div>
           </div>
           <div class="result-item" onclick="loadPdf('df-capitulo 1.1.pdf', '1.3 – Certificados de Calibração')">
             <div class="result-title">1.3 – Certificados de Calibração</div>
-            <div class="result-snippet">...instrumentos calibrados conforme o plano de <span class="highlight">${term}</span> do projeto...</div>
-            <div class="result-meta">Capítulo 1 • Rev.001 • 15/09/2023</div>
+            <div class="result-snippet">...instrumentos calibrados conforme o plano de <span class="highlight">${searchTerm}</span> do projeto...</div>
+            <div class="result-meta">Capítulo 1 • Rev.001 • 15/09/2023 • 8 ocorrências</div>
           </div>
           <div class="result-item" onclick="loadPdf('PQ.pdf', '2.1 – Obra Civil')">
             <div class="result-title">2.1 – Obra Civil</div>
-            <div class="result-snippet">...requisitos de <span class="highlight">${term}</span> aplicáveis às estruturas de concreto...</div>
-            <div class="result-meta">Capítulo 2 • Rev.000 • 22/11/2023</div>
+            <div class="result-snippet">...requisitos de <span class="highlight">${searchTerm}</span> aplicáveis às estruturas de concreto...</div>
+            <div class="result-meta">Capítulo 2 • Rev.000 • 22/11/2023 • 5 ocorrências</div>
+          </div>
+          <div class="result-item" onclick="loadPdf('PQ.pdf', '4.3 – Métricas da Qualidade')">
+            <div class="result-title">4.3 – Métricas da Qualidade</div>
+            <div class="result-snippet">...indicadores de desempenho da <span class="highlight">${searchTerm}</span> demonstram tendência positiva...</div>
+            <div class="result-meta">Capítulo 4 • Rev.000 • 18/01/2025 • 12 ocorrências</div>
           </div>
         `;
       }, 1500);
+      
+      return false; // Prevenir submit do form
+    }
+    
+    // Função para inicializar o gráfico de progresso
+    function initializeProgressChart() {
+      // Se já existe um gráfico, destruir antes de criar novo
+      if (progressChart) {
+        progressChart.destroy();
+      }
+      
+      // Dados para o gráfico
+      const data = {
+        labels: ['Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez', 'Jan', 'Fev', 'Mar', 'Abr'],
+        datasets: [
+          {
+            label: 'Progresso Planeado (%)',
+            data: [10, 20, 30, 40, 50, 60, 65, 70, 75, 80, 85],
+            borderColor: 'rgba(0, 86, 179, 0.7)',
+            backgroundColor: 'rgba(0, 86, 179, 0.1)',
+            borderWidth: 2,
+            tension: 0.3,
+            fill: true
+          },
+          {
+            label: 'Progresso Real (%)',
+            data: [8, 17, 28, 42, 53, 62, 68, 72, 80, 85, 85],
+            borderColor: 'rgba(40, 167, 69, 0.7)',
+            backgroundColor: 'rgba(40, 167, 69, 0.1)',
+            borderWidth: 2,
+            tension: 0.3,
+            fill: true
+          }
+        ]
+      };
+      
+      // Configuração do gráfico
+      const config = {
+        type: 'line',
+        data: data,
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'top',
+            },
+            tooltip: {
+              mode: 'index',
+              intersect: false,
+              callbacks: {
+                label: function(context) {
+                  return context.dataset.label + ': ' + context.parsed.y + '%';
+                }
+              }
+            }
+          },
+          scales: {
+            y: {
+              beginAtZero: true,
+              max: 100,
+              title: {
+                display: true,
+                text: 'Percentagem de Conclusão (%)'
+              }
+            },
+            x: {
+              title: {
+                display: true,
+                text: 'Mês (2023-2025)'
+              }
+            }
+          }
+        }
+      };
+      
+      // Criar o gráfico
+      const ctx = document.getElementById('progress-chart').getContext('2d');
+      progressChart = new Chart(ctx, config);
     }
 
     // Inicialização quando o DOM estiver carregado
     document.addEventListener('DOMContentLoaded', function() {
+      // Definir data de última atualização
+      initializeSplashDate();
+      
       // Ativar a primeira categoria por padrão
       document.querySelector('.nav-category').classList.add('active');
       
@@ -1513,23 +2258,11 @@
       document.getElementById('zoom-in').addEventListener('click', zoomIn);
       document.getElementById('zoom-out').addEventListener('click', zoomOut);
       
-      // Adicionar evento de pesquisa
-      document.querySelector('.search-form').addEventListener('submit', function(e) {
-        e.preventDefault();
-        const searchTerm = document.getElementById('global-search').value.trim();
-        if (searchTerm.length > 2) {
-          performSearch(searchTerm);
-        }
-      });
-      
       // Permitir pesquisa ao pressionar Enter
       document.getElementById('global-search').addEventListener('keypress', function(e) {
         if (e.key === 'Enter') {
+          performSearch();
           e.preventDefault();
-          const searchTerm = this.value.trim();
-          if (searchTerm.length > 2) {
-            performSearch(searchTerm);
-          }
         }
       });
       
