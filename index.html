@@ -6,7 +6,15 @@
   <title>Dossier Final da Qualidade – Projeto 4001008</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.14.305/pdf.min.js"></script>
+  <link rel="stylesheet" href="style.css">
   <style>
+    :root {
+      --main-bg: #e0f2fe;
+      --sidebar-bg: #ffffff;
+      --highlight: #0284c7;
+      --hover: #0369a1;
+      --text: #0f172a;
+    }
     * {
       margin: 0;
       padding: 0;
@@ -14,57 +22,39 @@
       font-family: 'Inter', sans-serif;
     }
     body {
-      background: #f8fafc;
-      color: #1e293b;
+      background: var(--main-bg);
+      color: var(--text);
     }
-    #app {
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
+    body.dark-mode {
+      background-color: #0f172a;
+      color: #f1f5f9;
     }
-    .cover {
-      background: url('https://images.unsplash.com/photo-1581093588401-61cbf2d7ab8b') center/cover no-repeat;
-      height: 100vh;
-      color: white;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 2rem;
+    body.dark-mode #sidebar {
+      background-color: #1e293b;
+      color: #f8fafc;
     }
-    .cover h1 {
-      font-size: 3rem;
-      font-weight: 800;
-      margin-bottom: 1rem;
-      text-shadow: 2px 2px 5px rgba(0,0,0,0.4);
+    body.dark-mode .accordion h3 {
+      background: #334155;
     }
-    .cover p {
-      font-size: 1.2rem;
-      margin-bottom: 2rem;
-      text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+    body.dark-mode .accordion ul li {
+      background: #475569;
     }
-    .cover button {
-      background-color: #0ea5e9;
-      color: white;
+    .toggle-mode {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      z-index: 1000;
+      background: var(--highlight);
       border: none;
-      padding: 0.8rem 1.6rem;
-      font-size: 1rem;
-      border-radius: 10px;
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
       cursor: pointer;
       font-weight: bold;
-      transition: background 0.3s ease;
-    }
-    .cover button:hover {
-      background-color: #0284c7;
-    }
-    #app-content {
-      display: flex;
-      flex: 1;
     }
     #sidebar {
-      background: #ffffff;
-      color: #0f172a;
+      background: var(--sidebar-bg);
+      color: var(--text);
       width: 320px;
       padding: 2rem 1.5rem;
       box-shadow: 4px 0 8px rgba(0,0,0,0.05);
@@ -75,16 +65,21 @@
       margin-bottom: 1.5rem;
       font-weight: 700;
     }
-    #sidebar .accordion {
+    #sidebar input {
       margin-bottom: 1rem;
+      width: 100%;
+      padding: 0.5rem;
+      border-radius: 8px;
+      border: 1px solid #cbd5e1;
     }
     .accordion h3 {
-      background: #e2e8f0;
+      background: #bae6fd;
       padding: 0.75rem 1rem;
       border-radius: 10px;
       cursor: pointer;
       font-size: 1rem;
       margin-bottom: 0.5rem;
+      transition: background 0.3s;
     }
     .accordion ul {
       list-style: none;
@@ -99,18 +94,13 @@
       margin-bottom: 0.5rem;
       padding: 0.5rem 1rem;
       border-radius: 8px;
-      background: #f1f5f9;
+      background: #e0f2fe;
       cursor: pointer;
-      transition: background 0.3s ease;
+      transition: background 0.3s;
     }
     .accordion ul li:hover {
-      background: #3b82f6;
+      background: var(--highlight);
       color: white;
-    }
-    main#content {
-      flex: 1;
-      padding: 2.5rem 3rem;
-      background: #f8fafc;
     }
     header {
       display: flex;
@@ -129,108 +119,34 @@
       font-size: 1rem;
       color: #475569;
     }
-    .meta {
-      margin-bottom: 2rem;
-      font-size: 0.95rem;
-      color: #475569;
+    footer {
+      margin-top: 3rem;
+      text-align: center;
+      color: #64748b;
     }
-    .meta strong {
-      color: #0f172a;
-    }
-    .meta .team {
-      margin-top: 1rem;
-    }
-    .meta .team p {
-      margin: 0.2rem 0;
-    }
-    .download-button {
-      margin-bottom: 2rem;
-    }
-    .download-button a {
-      display: inline-block;
-      background-color: #0ea5e9;
-      color: #fff;
-      padding: 0.6rem 1.2rem;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: 600;
-      transition: background 0.3s;
-    }
-    .download-button a:hover {
-      background-color: #0284c7;
-    }
-    #pdf-container {
-      background: #ffffff;
-      padding: 1.5rem;
-      border-radius: 16px;
-      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
-    }
-    .pdf-controls {
-      margin-top: 1.5rem;
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
-    .pdf-controls button {
-      background: #3b82f6;
-      border: none;
-      color: white;
-      padding: 0.6rem 1rem;
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 0.9rem;
-      transition: background 0.3s;
-    }
-    .pdf-controls button:hover {
-      background: #2563eb;
-    }
-    .pdf-controls span {
-      font-size: 0.95rem;
+    footer a {
+      color: var(--highlight);
+      text-decoration: underline;
       font-weight: 500;
     }
   </style>
 </head>
 <body>
+  <button class="toggle-mode" onclick="toggleDarkMode()">🌙 Modo Escuro</button>
   <div class="cover" id="cover">
     <h1>Dossier Final da Qualidade</h1>
     <p>Projeto 4001008 – Nuevas Plantas de Poliolefinas, Plataformas Logísticas y Offsites</p>
     <button onclick="document.getElementById('cover').style.display='none';document.getElementById('app-content').style.display='flex'; window.scrollTo(0,0);">Entrar no Dossier</button>
   </div>
+
   <div id="app-content" style="display: none">
     <div id="app">
       <aside id="sidebar">
-        <h2>📘 Capítulos</h2>
-        <input type="text" id="search" placeholder="🔎 Procurar capítulo..." oninput="filterChapters()" style="margin-bottom: 1rem; width: 100%; padding: 0.5rem; border-radius: 8px; border: 1px solid #cbd5e1;">
-        <div class="accordion" onclick="toggleAccordion(this)">
-          <h3>📂 1.0 – Sistema de Gestão da Qualidade</h3>
-          <ul>
-            <li onclick="loadPdf('PQ.pdf')">📋 1.1 – Plano da Qualidade (PQ)</li>
-            <li onclick="loadPdf('PIE.pdf')">🧪 1.2 – Plano de Inspeção e Ensaios (PIE)</li>
-            <li onclick="loadPdf('PIE-calibracao.pdf')">📐 1.2.1 – Ensaios de Calibração</li>
-            <li onclick="loadPdf('PIE-materiais.pdf')">🧱 1.2.2 – Ensaios de Materiais</li>
-            <li onclick="loadPdf('certificados-calibracao.pdf')">📄 1.3 – Certificados de Calibração</li>
-            <li onclick="loadPdf('certificados-materiais.pdf')">📄 1.4 – Certificados de Materiais</li>
-            <li onclick="loadPdf('estudos-materiais.pdf')">📊 1.5 – Estudos de Materiais</li>
-            <li onclick="loadPdf('nao-conformidades.pdf')">⚠️ 1.6 – Não Conformidades</li>
-            <li onclick="loadPdf('ppis.pdf')">✅ 1.7 – Plano de Pontos de Inspeção</li>
-            <li onclick="loadPdf('punch-list.pdf')">📝 1.8 – Punch List</li>
-          </ul>
-        </div>
-        <div class="accordion" onclick="toggleAccordion(this)">
-          <h3>🏗️ 2.0 – Execução da Obra</h3>
-          <ul>
-            <li onclick="loadPdf('execucao-funda.pdf')">🏗️ 2.1 – Fundação e Estrutura</li>
-            <li onclick="loadPdf('execucao-arquitetura.pdf')">🏠 2.2 – Arquitetura e Acabamentos</li>
-            <li onclick="loadPdf('execucao-redes.pdf')">🔌 2.3 – Redes Técnicas</li>
-          </ul>
-        </div>
-        <div class="accordion" onclick="toggleAccordion(this)">
-          <h3>📐 3.0 – Documentos de Engenharia</h3>
-          <ul>
-            <li onclick="loadPdf('engenharia.pdf')">📄 3.1 – Projetos Executados</li>
-          </ul>
-        </div>
+        <h2>📘 Índice</h2>
+        <input type="text" id="search" placeholder="🔎 Procurar capítulo..." oninput="filterChapters()" />
+        <!-- Ícones, agrupamentos e PDFs reais serão inseridos aqui -->
       </aside>
+
       <main id="content">
         <header>
           <div class="header-text">
@@ -262,6 +178,10 @@
             <button id="zoom-out">Zoom -</button>
           </div>
         </div>
+        <footer>
+          <p>&copy; 2025 ASCH Infraestruturas – Todos os direitos reservados</p>
+          <a href="#cover">🔝 Voltar ao Início</a>
+        </footer>
       </main>
     </div>
   </div>
@@ -276,6 +196,9 @@
         const match = acc.innerText.toLowerCase().includes(query);
         acc.style.display = match ? 'block' : 'none';
       });
+    }
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark-mode');
     }
   </script>
 </body>
