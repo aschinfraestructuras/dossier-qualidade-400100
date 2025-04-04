@@ -19,7 +19,48 @@
     }
     #app {
       display: flex;
+      flex-direction: column;
       min-height: 100vh;
+    }
+    .cover {
+      background: url('https://images.unsplash.com/photo-1581093588401-61cbf2d7ab8b') center/cover no-repeat;
+      height: 100vh;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 2rem;
+    }
+    .cover h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      text-shadow: 2px 2px 5px rgba(0,0,0,0.4);
+    }
+    .cover p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+    }
+    .cover button {
+      background-color: #0ea5e9;
+      color: white;
+      border: none;
+      padding: 0.8rem 1.6rem;
+      font-size: 1rem;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.3s ease;
+    }
+    .cover button:hover {
+      background-color: #0284c7;
+    }
+    #app-content {
+      display: flex;
+      flex: 1;
     }
     #sidebar {
       background: #e2e8f0;
@@ -136,59 +177,66 @@
   </style>
 </head>
 <body>
-  <div id="app">
-    <aside id="sidebar">
-      <h2>📘 Capítulos</h2>
-      <ul>
-        <li onclick="loadPdf('PQ.pdf')">📋 1.1 – Plano da Qualidade (PQ)</li>
-        <li onclick="loadPdf('PIE.pdf')">🧪 1.2 – Plano de Inspeção e Ensaios (PIE)</li>
-        <li onclick="loadPdf('PIE-calibracao.pdf')">📐 1.2.1 – Ensaios de Calibração</li>
-        <li onclick="loadPdf('PIE-materiais.pdf')">🧱 1.2.2 – Ensaios de Materiais</li>
-        <li onclick="loadPdf('certificados-calibracao.pdf')">📄 1.3 – Certificados de Calibração</li>
-        <li onclick="loadPdf('certificados-materiais.pdf')">📄 1.4 – Certificados de Materiais</li>
-        <li onclick="loadPdf('estudos-materiais.pdf')">📊 1.5 – Estudos de Materiais</li>
-        <li onclick="loadPdf('nao-conformidades.pdf')">⚠️ 1.6 – Não Conformidades</li>
-        <li onclick="loadPdf('ppis.pdf')">✅ 1.7 – Plano de Pontos de Inspeção</li>
-        <li onclick="loadPdf('punch-list.pdf')">📝 1.8 – Punch List</li>
-        <li onclick="loadPdf('execucao-obra.pdf')">🏗️ 2.0 – Execução da Obra</li>
-        <li onclick="loadPdf('execucao-funda.pdf')">🏗️ 2.1 – Fundação e Estrutura</li>
-        <li onclick="loadPdf('execucao-arquitetura.pdf')">🏠 2.2 – Arquitetura e Acabamentos</li>
-        <li onclick="loadPdf('execucao-redes.pdf')">🔌 2.3 – Redes Técnicas</li>
-        <li onclick="loadPdf('engenharia.pdf')">📐 3.0 – Documentos de Engenharia</li>
-      </ul>
-    </aside>
-    <main id="content">
-      <header>
-        <div class="header-text">
-          <h1>Dossier Final da Qualidade</h1>
-          <p>Projeto 4001008 – Nuevas Plantas de Poliolefinas, Plataformas Logísticas y Offsites</p>
+  <div class="cover" id="cover">
+    <h1>Dossier Final da Qualidade</h1>
+    <p>Projeto 4001008 – Nuevas Plantas de Poliolefinas, Plataformas Logísticas y Offsites</p>
+    <button onclick="document.getElementById('cover').style.display='none';document.getElementById('app-content').style.display='flex'; window.scrollTo(0,0);">Entrar no Dossier</button>
+  </div>
+  <div id="app-content" style="display: none">
+    <div id="app">
+      <aside id="sidebar">
+        <h2>📘 Capítulos</h2>
+        <ul>
+          <li onclick="loadPdf('PQ.pdf')">📋 1.1 – Plano da Qualidade (PQ)</li>
+          <li onclick="loadPdf('PIE.pdf')">🧪 1.2 – Plano de Inspeção e Ensaios (PIE)</li>
+          <li onclick="loadPdf('PIE-calibracao.pdf')">📐 1.2.1 – Ensaios de Calibração</li>
+          <li onclick="loadPdf('PIE-materiais.pdf')">🧱 1.2.2 – Ensaios de Materiais</li>
+          <li onclick="loadPdf('certificados-calibracao.pdf')">📄 1.3 – Certificados de Calibração</li>
+          <li onclick="loadPdf('certificados-materiais.pdf')">📄 1.4 – Certificados de Materiais</li>
+          <li onclick="loadPdf('estudos-materiais.pdf')">📊 1.5 – Estudos de Materiais</li>
+          <li onclick="loadPdf('nao-conformidades.pdf')">⚠️ 1.6 – Não Conformidades</li>
+          <li onclick="loadPdf('ppis.pdf')">✅ 1.7 – Plano de Pontos de Inspeção</li>
+          <li onclick="loadPdf('punch-list.pdf')">📝 1.8 – Punch List</li>
+          <li onclick="loadPdf('execucao-obra.pdf')">🏗️ 2.0 – Execução da Obra</li>
+          <li onclick="loadPdf('execucao-funda.pdf')">🏗️ 2.1 – Fundação e Estrutura</li>
+          <li onclick="loadPdf('execucao-arquitetura.pdf')">🏠 2.2 – Arquitetura e Acabamentos</li>
+          <li onclick="loadPdf('execucao-redes.pdf')">🔌 2.3 – Redes Técnicas</li>
+          <li onclick="loadPdf('engenharia.pdf')">📐 3.0 – Documentos de Engenharia</li>
+        </ul>
+      </aside>
+      <main id="content">
+        <header>
+          <div class="header-text">
+            <h1>Dossier Final da Qualidade</h1>
+            <p>Projeto 4001008 – Nuevas Plantas de Poliolefinas, Plataformas Logísticas y Offsites</p>
+          </div>
+          <img src="https://www.asch.pt/wp-content/uploads/2022/03/ASCH-Infraestruturas-logo.png" alt="ASCH Logo" />
+        </header>
+        <div class="meta">
+          <p><strong>Data de Entrega:</strong> 08/04/2025</p>
+          <p><strong>Versão:</strong> Rev.002</p>
+          <div class="team">
+            <p><strong>Qualidade:</strong> José Antunes</p>
+            <p><strong>Diretor Técnico:</strong> Mário Cristiano</p>
+            <p><strong>Diretor de Obra:</strong> Luis Salvado</p>
+            <p><strong>Delegado:</strong> Gustavo Martínez</p>
+          </div>
         </div>
-        <img src="https://www.asch.pt/wp-content/uploads/2022/03/ASCH-Infraestruturas-logo.png" alt="ASCH Logo" />
-      </header>
-      <div class="meta">
-        <p><strong>Data de Entrega:</strong> 15/12/2024</p>
-        <p><strong>Versão:</strong> Rev.002</p>
-        <div class="team">
-          <p><strong>Qualidade:</strong> José Antunes</p>
-          <p><strong>Diretor Técnico:</strong> Mário Cristiano</p>
-          <p><strong>Diretor de Obra:</strong> Luis Salvado</p>
-          <p><strong>Delegado:</strong> Gustavo Martínez</p>
+        <div class="download-button">
+          <a href="/Plano-qualidade.pdf" download>⬇️ Download Dossier Completo</a>
         </div>
-      </div>
-      <div class="download-button">
-        <a href="/Plano-qualidade.pdf" download>⬇️ Download Dossier Completo</a>
-      </div>
-      <div id="pdf-container">
-        <canvas id="pdf-canvas"></canvas>
-        <div class="pdf-controls">
-          <button id="prev">◀ Anterior</button>
-          <span>Página <span id="page-num">1</span> de <span id="page-count">?</span></span>
-          <button id="next">Seguinte ▶</button>
-          <button id="zoom-in">🔍 Zoom +</button>
-          <button id="zoom-out">Zoom -</button>
+        <div id="pdf-container">
+          <canvas id="pdf-canvas"></canvas>
+          <div class="pdf-controls">
+            <button id="prev">◀ Anterior</button>
+            <span>Página <span id="page-num">1</span> de <span id="page-count">?</span></span>
+            <button id="next">Seguinte ▶</button>
+            <button id="zoom-in">🔍 Zoom +</button>
+            <button id="zoom-out">Zoom -</button>
+          </div>
         </div>
-      </div>
-    </main>
+      </main>
+    </div>
   </div>
   <script src="viewer.js"></script>
 </body>
