@@ -9,11 +9,11 @@
   <link rel="stylesheet" href="style.css">
   <style>
     :root {
-      --main-bg: #e0f2fe;
-      --sidebar-bg: #ffffff;
-      --highlight: #0284c7;
-      --hover: #0369a1;
-      --text: #0f172a;
+      --main-bg: #e6f0fa;
+      --sidebar-bg: #f1f5f9;
+      --highlight: #0b5394;
+      --hover: #073763;
+      --text: #1e293b;
     }
     * {
       margin: 0;
@@ -73,7 +73,7 @@
       border: 1px solid #cbd5e1;
     }
     .accordion h3 {
-      background: #bae6fd;
+      background: #b6d7f1;
       padding: 0.75rem 1rem;
       border-radius: 10px;
       cursor: pointer;
@@ -94,7 +94,7 @@
       margin-bottom: 0.5rem;
       padding: 0.5rem 1rem;
       border-radius: 8px;
-      background: #e0f2fe;
+      background: #ddeefc;
       cursor: pointer;
       transition: background 0.3s;
     }
@@ -106,18 +106,48 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 2rem;
+      margin-bottom: 1rem;
     }
     header img {
-      height: 50px;
+      height: 60px;
     }
     .header-text h1 {
-      font-size: 2rem;
+      font-size: 2.2rem;
       font-weight: 700;
     }
     .header-text p {
       font-size: 1rem;
       color: #475569;
+    }
+    .meta {
+      font-size: 0.95rem;
+      color: #475569;
+      margin-bottom: 1.5rem;
+    }
+    .meta strong {
+      color: #0f172a;
+    }
+    .meta .team {
+      margin-top: 0.5rem;
+    }
+    .meta .team p {
+      margin: 0.2rem 0;
+    }
+    .download-button {
+      margin-bottom: 1.5rem;
+    }
+    .download-button a {
+      display: inline-block;
+      background-color: var(--highlight);
+      color: #fff;
+      padding: 0.6rem 1.2rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background 0.3s;
+    }
+    .download-button a:hover {
+      background-color: var(--hover);
     }
     footer {
       margin-top: 3rem;
@@ -129,6 +159,11 @@
       text-decoration: underline;
       font-weight: 500;
     }
+    footer .back-to-top {
+      display: block;
+      margin-top: 1rem;
+      font-size: 0.95rem;
+    }
   </style>
 </head>
 <body>
@@ -138,36 +173,34 @@
     <p>Projeto 4001008 – Nuevas Plantas de Poliolefinas, Plataformas Logísticas y Offsites</p>
     <button onclick="document.getElementById('cover').style.display='none';document.getElementById('app-content').style.display='flex'; window.scrollTo(0,0);">Entrar no Dossier</button>
   </div>
-
   <div id="app-content" style="display: none">
     <div id="app">
       <aside id="sidebar">
         <h2>📘 Índice</h2>
         <input type="text" id="search" placeholder="🔎 Procurar capítulo..." oninput="filterChapters()" />
-        <!-- Ícones, agrupamentos e PDFs reais serão inseridos aqui -->
+        <!-- Conteúdo dos capítulos aqui -->
       </aside>
-
       <main id="content">
         <header>
           <div class="header-text">
             <h1>Dossier Final da Qualidade</h1>
             <p>Projeto 4001008 – Nuevas Plantas de Poliolefinas, Plataformas Logísticas y Offsites</p>
+            <div class="meta">
+              <p><strong>Data de Entrega:</strong> 08/04/2025</p>
+              <p><strong>Versão:</strong> Rev.002</p>
+              <div class="team">
+                <p><strong>Qualidade:</strong> José Antunes</p>
+                <p><strong>Diretor Técnico:</strong> Mário Cristiano</p>
+                <p><strong>Diretor de Obra:</strong> Luis Salvado</p>
+                <p><strong>Delegado:</strong> Gustavo Martínez</p>
+              </div>
+            </div>
+            <div class="download-button">
+              <a href="/Plano-qualidade.pdf" download>⬇️ Download Dossier Completo</a>
+            </div>
           </div>
           <img src="https://www.asch.pt/wp-content/uploads/2022/03/ASCH-Infraestruturas-logo.png" alt="ASCH Logo" />
         </header>
-        <div class="meta">
-          <p><strong>Data de Entrega:</strong> 08/04/2025</p>
-          <p><strong>Versão:</strong> Rev.002</p>
-          <div class="team">
-            <p><strong>Qualidade:</strong> José Antunes</p>
-            <p><strong>Diretor Técnico:</strong> Mário Cristiano</p>
-            <p><strong>Diretor de Obra:</strong> Luis Salvado</p>
-            <p><strong>Delegado:</strong> Gustavo Martínez</p>
-          </div>
-        </div>
-        <div class="download-button">
-          <a href="/Plano-qualidade.pdf" download>⬇️ Download Dossier Completo</a>
-        </div>
         <div id="pdf-container">
           <canvas id="pdf-canvas"></canvas>
           <div class="pdf-controls">
@@ -180,7 +213,7 @@
         </div>
         <footer>
           <p>&copy; 2025 ASCH Infraestruturas – Todos os direitos reservados</p>
-          <a href="#cover">🔝 Voltar ao Início</a>
+          <a class="back-to-top" href="#cover">🔝 Voltar ao Início</a>
         </footer>
       </main>
     </div>
