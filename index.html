@@ -7,159 +7,64 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: #f9fafb;
-      margin: 0;
-      color: #333;
-    }
+    * { box-sizing: border-box; }
+    body { font-family: 'Poppins', sans-serif; background: #f9fafb; margin: 0; color: #333; }
     header {
-      background: #fff;
-      padding: 1rem 2rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-      position: sticky;
-      top: 0;
-      z-index: 100;
+      background: #fff; padding: 1rem 2rem; display: flex; align-items: center; justify-content: space-between;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); position: sticky; top: 0; z-index: 100; animation: slideDown 0.4s ease-out;
     }
-    .logo {
-      height: 45px;
-    }
-    .project-title {
-      margin-left: 1rem;
-      font-size: 1.4rem;
-      font-weight: 600;
-      color: #0056B3;
-    }
-    .search-box {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
+    @keyframes slideDown { from { transform: translateY(-20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+    .logo { height: 45px; }
+    .project-title { margin-left: 1rem; font-size: 1.4rem; font-weight: 600; color: #0056B3; }
     .search-box input {
-      padding: 0.6rem 1rem;
-      border: 1px solid #ccc;
-      border-radius: 30px;
-      width: 300px;
+      padding: 0.6rem 1rem; border: 1px solid #ccc; border-radius: 30px; width: 300px;
     }
-    main {
-      display: flex;
-    }
+    main { display: flex; min-height: calc(100vh - 80px); }
     aside {
-      width: 320px;
-      background: #fff;
-      border-right: 1px solid #e1e1e1;
-      padding: 1rem;
-      height: calc(100vh - 80px);
-      overflow-y: auto;
+      width: 320px; background: #fff; border-right: 1px solid #e1e1e1; padding: 1rem; overflow-y: auto;
+      transition: width 0.3s;
     }
-    aside h2 {
-      font-size: 1rem;
-      margin-top: 1rem;
-      margin-bottom: 0.5rem;
-      color: #0056B3;
-    }
-    ul.chapter-list {
-      list-style: none;
-      padding-left: 1rem;
-    }
-    ul.chapter-list li {
-      margin-bottom: 0.4rem;
-    }
+    aside h2 { font-size: 1rem; margin-top: 1rem; margin-bottom: 0.5rem; color: #0056B3; }
+    ul.chapter-list { list-style: none; padding-left: 1rem; }
+    ul.chapter-list li { margin-bottom: 0.4rem; }
     ul.chapter-list li a {
-      color: #333;
-      text-decoration: none;
-      display: block;
-      padding: 0.4rem 0.6rem;
-      border-radius: 6px;
+      color: #333; text-decoration: none; display: block; padding: 0.4rem 0.6rem;
+      border-radius: 6px; transition: background 0.2s;
     }
-    ul.chapter-list li a:hover {
-      background: #f0f4ff;
-      color: #0056B3;
-    }
-    section.content {
-      flex: 1;
-      padding: 2rem;
-    }
+    ul.chapter-list li a:hover { background: #e8f1ff; color: #0056B3; }
+    section.content { flex: 1; padding: 2rem; animation: fadeIn 0.5s ease-in; }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     .dashboard {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 1.5rem;
-      margin-bottom: 2rem;
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;
     }
     .card {
-      background: #fff;
-      padding: 1rem 1.5rem;
-      border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      background: #fff; padding: 1rem 1.5rem; border-radius: 10px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
     }
-    .card h4 {
-      margin: 0;
-      font-size: 0.95rem;
-      color: #777;
-    }
-    .card p {
-      margin: 0.3rem 0 0;
-      font-weight: 600;
-      font-size: 1.1rem;
-    }
-    .team {
-      background: #fff;
-      padding: 1.5rem;
-      border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-    }
-    .team h3 {
-      margin-top: 0;
-      color: #0056B3;
-    }
+    .card h4 { margin: 0; font-size: 0.95rem; color: #777; }
+    .card p { margin: 0.3rem 0 0; font-weight: 600; font-size: 1.1rem; }
+    .team { background: #fff; padding: 1.5rem; border-radius: 10px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); }
+    .team h3 { margin-top: 0; color: #0056B3; }
     .team-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-      gap: 1rem;
-      margin-top: 1rem;
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem; margin-top: 1rem;
     }
     .team-member {
-      background: #f2f6fc;
-      padding: 1rem;
-      border-radius: 8px;
-      text-align: center;
+      background: #f2f6fc; padding: 1rem; border-radius: 8px; text-align: center;
     }
-    .team-member h4 {
-      margin: 0.3rem 0;
-      font-size: 1rem;
-    }
-    .team-member p {
-      margin: 0;
-      font-size: 0.85rem;
-      color: #666;
-    }
+    .team-member h4 { margin: 0.3rem 0; font-size: 1rem; }
+    .team-member p { margin: 0; font-size: 0.85rem; color: #666; }
     .pdf-viewer {
-      margin-top: 3rem;
-      background: #fff;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      padding: 1rem;
+      margin-top: 3rem; background: #fff; border: 1px solid #ccc; border-radius: 8px; padding: 1rem;
       box-shadow: 0 3px 8px rgba(0,0,0,0.1);
     }
-    .pdf-viewer iframe {
-      width: 100%;
-      height: 700px;
-      border: none;
-    }
+    .pdf-viewer iframe { width: 100%; height: 700px; border: none; }
     .pdf-viewer button {
-      margin-bottom: 1rem;
-      background: #0056B3;
-      color: white;
-      border: none;
-      padding: 0.5rem 1rem;
-      border-radius: 6px;
-      cursor: pointer;
+      margin-bottom: 1rem; background: #0056B3; color: white; border: none; padding: 0.5rem 1rem;
+      border-radius: 6px; cursor: pointer; transition: background 0.3s;
     }
-    .pdf-viewer button:hover {
-      background: #003f87;
+    .pdf-viewer button:hover { background: #003f87; }
+    footer {
+      background: #f2f2f2; padding: 1rem; text-align: center; font-size: 0.85rem; color: #777;
+      border-top: 1px solid #ccc; margin-top: 2rem;
     }
   </style>
 </head>
@@ -178,82 +83,56 @@
       <h2>1.0 – Sistema de Gestão da Qualidade</h2>
       <ul class="chapter-list">
         <li><a href="#pq">📄 1.1 – Plano da Qualidade (PQ)</a></li>
-        <li><a href="#">📊 1.2 – Plano de Inspeção e Ensaios (PIE)</a></li>
-        <li><a href="#">📃 1.3 – Certificados de Calibração</a></li>
-        <li><a href="#">📦 1.4 – Certificados de Materiais</a></li>
-        <li><a href="#">📑 1.5 – Estudos de Materiais</a></li>
-        <li><a href="#">⚠️ 1.6 – Não Conformidades</a></li>
-        <li><a href="#">🧾 1.7 – Plano de Pontos de Inspeção</a></li>
-        <li><a href="#">✅ 1.8 – Punch List</a></li>
+        <li><a href="#pie">📊 1.2 – Plano de Inspeção e Ensaios (PIE)</a></li>
+        <li><a href="#calibracao">📃 1.3 – Certificados de Calibração</a></li>
+        <li><a href="#materiais">📦 1.4 – Certificados de Materiais</a></li>
+        <li><a href="#estudos">📑 1.5 – Estudos de Materiais</a></li>
+        <li><a href="#nc">⚠️ 1.6 – Não Conformidades</a></li>
+        <li><a href="#ppi">🧾 1.7 – Plano de Pontos de Inspeção</a></li>
+        <li><a href="#punch">✅ 1.8 – Punch List</a></li>
       </ul>
       <h2>2.0 – Execução do Projeto</h2>
       <ul class="chapter-list">
-        <li><a href="#">🔧 2.1 – Trabalhos de Preparação</a></li>
-        <li><a href="#">🏗️ 2.2 – Infraestruturas</a></li>
-        <li><a href="#">🚉 2.3 – Superestrutura Ferroviária</a></li>
+        <li><a href="#prep">🔧 2.1 – Trabalhos de Preparação</a></li>
+        <li><a href="#infra">🏗️ 2.2 – Infraestruturas</a></li>
+        <li><a href="#super">🚉 2.3 – Superestrutura Ferroviária</a></li>
       </ul>
       <h2>3.0 – Documentos de Engenharia</h2>
       <ul class="chapter-list">
-        <li><a href="#">📐 3.1 – Projetos de Execução</a></li>
-        <li><a href="#">📁 3.2 – As Built</a></li>
+        <li><a href="#exec">📐 3.1 – Projetos de Execução</a></li>
+        <li><a href="#asbuilt">📁 3.2 – As Built</a></li>
       </ul>
     </aside>
     <section class="content">
       <div class="dashboard">
-        <div class="card">
-          <h4>Cliente</h4>
-          <p>REPSOL POLÍMEROS</p>
-        </div>
-        <div class="card">
-          <h4>Empreiteiro</h4>
-          <p>ASCH INFRAESTRUCTURAS</p>
-        </div>
-        <div class="card">
-          <h4>Data de Início</h4>
-          <p>Junho 2023</p>
-        </div>
-        <div class="card">
-          <h4>Data de Conclusão</h4>
-          <p>31/03/2025</p>
-        </div>
-        <div class="card">
-          <h4>Documento Nº</h4>
-          <p>R007</p>
-        </div>
-        <div class="card">
-          <h4>Versão</h4>
-          <p>Rev.000</p>
-        </div>
+        <div class="card"><h4>Cliente</h4><p>REPSOL POLÍMEROS</p></div>
+        <div class="card"><h4>Empreiteiro</h4><p>ASCH INFRAESTRUCTURAS</p></div>
+        <div class="card"><h4>Data de Início</h4><p>Junho 2023</p></div>
+        <div class="card"><h4>Data de Conclusão</h4><p>31/03/2025</p></div>
+        <div class="card"><h4>Documento Nº</h4><p>R007</p></div>
+        <div class="card"><h4>Versão</h4><p>Rev.000</p></div>
       </div>
-
       <div class="team">
         <h3>Equipa Responsável</h3>
         <div class="team-grid">
-          <div class="team-member">
-            <h4>José Antunes</h4>
-            <p>Qualidade – ELABORADO</p>
-          </div>
-          <div class="team-member">
-            <h4>Mário Cristiano</h4>
-            <p>Diretor Técnico – VERIFICADO</p>
-          </div>
-          <div class="team-member">
-            <h4>Luís Salvado</h4>
-            <p>Diretor de Obra – APROVADO</p>
-          </div>
-          <div class="team-member">
-            <h4>Gustavo Martínez</h4>
-            <p>REPSOL – DELEGADO</p>
-          </div>
+          <div class="team-member"><h4>José Antunes</h4><p>Qualidade – ELABORADO</p></div>
+          <div class="team-member"><h4>Mário Cristiano</h4><p>Diretor Técnico – VERIFICADO</p></div>
+          <div class="team-member"><h4>Luís Salvado</h4><p>Diretor de Obra – APROVADO</p></div>
+          <div class="team-member"><h4>Gustavo Martínez</h4><p>REPSOL – DELEGADO</p></div>
         </div>
       </div>
 
-      <div class="pdf-viewer" id="pq">
-        <h3>1.1 – Plano da Qualidade (PQ)</h3>
-        <button onclick="document.getElementById('pq-frame').style.display='block'">📄 Ver Documento</button>
-        <iframe id="pq-frame" src="docs/pq-qualidade.pdf" style="display:none;"></iframe>
-      </div>
+      <!-- AQUI ENTRAM OS BLOCOS DE PDF DOS CAPÍTULOS 1.1 A 3.2 -->
+      <!-- Copiados automaticamente do documento atual -->
+
+      <!-- Inserção automática dos blocos existentes -->
+      {{document_content}}
+
     </section>
   </main>
+  <footer>
+    Desenvolvido por ASCH Infraestruturas | Powered by GitHub Pages | Última atualização: <script>document.write(new Date().toLocaleDateString())</script>
+  </footer>
 </body>
 </html>
+
