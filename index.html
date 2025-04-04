@@ -37,7 +37,62 @@
       --white: #ffffff;
       --text: #333333;
       --section-bg: #f9fafb;
-      
+
+ /* Estilos da assinatura digital */
+.digital-signature {
+  border: 1px solid var(--gray-light);
+  border-radius: var(--border-radius);
+  padding: 1.5rem;
+  margin-top: 1rem;
+  background-color: rgba(0, 86, 179, 0.03);
+  position: relative;
+}
+
+.signature-info {
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+}
+
+.signature-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-top: 1px solid var(--gray-light);
+  padding-top: 1.5rem;
+}
+
+.signature-image {
+  max-height: 80px;
+  margin-bottom: 1rem;
+}
+
+.signature-details {
+  text-align: center;
+}
+
+.signature-name {
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-bottom: 0.2rem;
+}
+
+.signature-role, .signature-company {
+  font-size: 0.9rem;
+  color: var(--gray);
+  margin-bottom: 0.2rem;
+}
+
+.signature-seal {
+  margin-top: 1rem;
+  background-color: var(--primary);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}   
       /* Sombras e efeitos */
       --card-shadow: 0 5px 15px rgba(0, 0, 0, 0.07);
       --card-shadow-hover: 0 15px 30px rgba(0, 0, 0, 0.1);
@@ -1698,6 +1753,28 @@
               </button>
             </div>
           </div>
+          <div class="section-container">
+  <h2 class="section-title"><i class="fas fa-certificate"></i> Validação e Autenticidade</h2>
+  <div class="digital-signature">
+    <div class="signature-info">
+      <p>Este dossier digital de qualidade está certificado pela ASCH INFRAESTRUCTURAS Y SERVICIOS S.A. e tem validade legal.</p>
+      <p>Código de Verificação: <strong>ASCH-QD-R007-2025-V1</strong></p>
+      <p>Documento assinado digitalmente em: <span id="signature-date">04/04/2025</span></p>
+    </div>
+    <div class="signature-block">
+      <img src="assets/images/signature.png" alt="Assinatura Digital" class="signature-image">
+      <div class="signature-details">
+        <p class="signature-name">Luis Salvado</p>
+        <p class="signature-role">Director de Obra</p>
+        <p class="signature-company">ASCH INFRAESTRUCTURAS Y SERVICIOS S.A.</p>
+      </div>
+      <div class="signature-seal">
+        <i class="fas fa-shield-alt"></i>
+        <span>Documento verificado e certificado</span>
+      </div>
+    </div>
+  </div>
+</div>
         </div>
 
         <!-- PDF Viewer -->
