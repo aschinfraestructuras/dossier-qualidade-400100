@@ -181,11 +181,11 @@
 
     .top-navbar {
       background: var(--white);
-      height: 40px;
+      height: 80px;
       border-bottom: 1px solid var(--gray-light);
       display: flex;
-      align-items: center;
-      padding: 0 2rem;
+      align-items: flex-start;
+      padding: 0 1rem 2rem;
       position: sticky;
       top: 0;
       z-index: 100;
@@ -199,7 +199,9 @@
     }
 
     .brand-logo {
-      height: 20px;
+      max-height: 60px;
+      margin-top: 8px;
+      
     }
 
     .navbar-title {
@@ -966,7 +968,7 @@
   <!-- Splash Screen / Capa Inicial -->
   <div class="splash-screen" id="splash-screen">
     <div class="splash-content">
-      <img src="assets/images/logoasch.png" class="splash-logo" style="max-height: 100px; height: auto; width: auto; display: block; margin: 0 auto;">
+      <img src="assets/images/logoasch.png" class="brand-logo" style="max-height: 60px; height: auto; width: auto; margin-top: 8px;">
       <h1 class="splash-title">Dossier Final da Qualidade</h1>
       <p class="splash-subtitle">Projeto Alba – Nuevas Plantas de Poliolefinas, Plataformas Logísticas y Offsites</p>
       <button class="btn btn-primary btn-lg" onclick="enterDossier()">
@@ -983,7 +985,7 @@
         <i class="fas fa-bars"></i>
       </button>
       <div class="navbar-brand">
-        <img src="assets/images/logoasch.png" class="splash-logo" style="max-height: 100px; height: auto; width: auto; display: block; margin: 0 auto;">
+        <img src="assets/images/logoasch.png" class="brand-logo" style="max-height: 60px; height: auto; width: auto; margin-top: 8px;">
         <div class="navbar-title">Dossier da Qualidade</div>
       </div>
       <div class="navbar-tools">
@@ -1232,7 +1234,7 @@
     <!-- Footer -->
     <footer class="footer">
       <div class="footer-content">
-        <img src="assets/images/logoasch.png" class="splash-logo" style="max-height: 100px; height: auto; width: auto; display: block; margin: 0 auto;">
+        <img src="assets/images/logoasch.png" class="brand-logo" style="max-height: 60px; height: auto; width: auto; margin-top: 8px;"
         <div class="footer-text">
           <p>&copy; 2025 ASCH INFRAESTRUCTURAS Y SERVICIOS S.A. - Todos os direitos reservados</p>
           <p>Dossier de Qualidade - Rev.000</p>
