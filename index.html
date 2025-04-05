@@ -8,19 +8,27 @@
   <meta name="keywords" content="dossier qualidade, projeto alba, repsol, asch, gestão da qualidade, construção, infraestruturas" />
   <meta name="robots" content="noindex, nofollow" />
   <meta name="theme-color" content="#0056B3" />
+  <!-- Ícone Favicon -->
+  <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
   <title>Dossier Final da Qualidade – Projeto Alba</title>
+  <!-- Fontes do Google -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Font Awesome para ícones -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- PDF.js para visualização de PDFs -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <!-- Chart.js para gráficos -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+  <!-- Configuração do PDF.js -->
   <script>
     pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
   </script>
+  <!-- Estilos CSS -->
   <style>
     :root {
-      /* Cores principais */
+      /* Cores principais - Esquema melhorado para contraste e modernidade */
       --primary: #0056B3;
       --primary-dark: #004494;
       --primary-light: #2D7DD2;
@@ -37,77 +45,39 @@
       --white: #ffffff;
       --text: #333333;
       --section-bg: #f9fafb;
+      
+      /* Novas cores complementares */
+      --info: #17a2b8;
+      --purple: #6f42c1;
+      --teal: #20c997;
+      --orange: #fd7e14;
+      --blue-light: #e8f4ff;
 
- /* Estilos da assinatura digital */
-.digital-signature {
-  border: 1px solid var(--gray-light);
-  border-radius: var(--border-radius);
-  padding: 1.5rem;
-  margin-top: 1rem;
-  background-color: rgba(0, 86, 179, 0.03);
-  position: relative;
-}
-
-.signature-info {
-  margin-bottom: 1.5rem;
-  font-size: 0.95rem;
-}
-
-.signature-block {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border-top: 1px solid var(--gray-light);
-  padding-top: 1.5rem;
-}
-
-.signature-image {
-  max-height: 80px;
-  margin-bottom: 1rem;
-}
-
-.signature-details {
-  text-align: center;
-}
-
-.signature-name {
-  font-weight: 600;
-  font-size: 1.1rem;
-  margin-bottom: 0.2rem;
-}
-
-.signature-role, .signature-company {
-  font-size: 0.9rem;
-  color: var(--gray);
-  margin-bottom: 0.2rem;
-}
-
-.signature-seal {
-  margin-top: 1rem;
-  background-color: var(--primary);
-  color: white;
-  padding: 0.5rem 1rem;
-  border-radius: 20px;
-  font-size: 0.8rem;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}   
-      /* Sombras e efeitos */
-      --card-shadow: 0 5px 15px rgba(0, 0, 0, 0.07);
+      /* Sombras e efeitos - Aprimoradas para efeito mais moderno */
+      --card-shadow: 0 4px 15px rgba(0, 0, 0, 0.07);
       --card-shadow-hover: 0 15px 30px rgba(0, 0, 0, 0.1);
-      --transition: all 0.3s ease;
+      --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      --transition-fast: all 0.2s ease;
+      --box-shadow-sm: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+      --box-shadow-md: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+      --box-shadow-lg: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
       
       /* Tipografia */
       --font-sans-serif: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
       --border-radius: 12px;
       --border-radius-sm: 6px;
+      --border-radius-lg: 18px;
     }
 
+    /* Reset e estilos base */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
@@ -116,6 +86,8 @@
       background-color: var(--light);
       line-height: 1.6;
       overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
     a {
@@ -126,11 +98,29 @@
 
     a:hover {
       color: var(--primary-light);
+      text-decoration: none;
     }
 
-    /* ===== Scrollbar Styling ===== */
+    /* Tipografia melhorada */
+    h1, h2, h3, h4, h5, h6 {
+      font-weight: 600;
+      line-height: 1.3;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      margin-bottom: 1rem;
+    }
+
+    /* Efeitos de foco melhorados para acessibilidade */
+    :focus {
+      outline: 3px solid rgba(0, 86, 179, 0.3);
+    }
+
+    /* ===== Scrollbar Styling - Melhorada ===== */
     ::-webkit-scrollbar {
       width: 10px;
+      height: 10px;
     }
 
     ::-webkit-scrollbar-track {
@@ -141,25 +131,27 @@
     ::-webkit-scrollbar-thumb {
       background: var(--primary-light);
       border-radius: 10px;
+      transition: var(--transition);
     }
 
     ::-webkit-scrollbar-thumb:hover {
       background: var(--primary);
     }
 
-    /* ===== Splash Screen ===== */
+    /* ===== Splash Screen - Melhorada com animação ===== */
     .splash-screen {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background: linear-gradient(135deg, rgba(0, 86, 179, 0.9) 0%, rgba(0, 86, 179, 0.7) 100%), url('https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+      background: linear-gradient(135deg, rgba(0, 86, 179, 0.95) 0%, rgba(45, 125, 210, 0.85) 100%), 
+                  url('assets/images/bg-construction.jpg') center/cover no-repeat;
       z-index: 9999;
       display: flex;
       justify-content: center;
       align-items: center;
-      transition: opacity 0.5s ease, transform 0.5s ease;
+      transition: opacity 0.8s ease, transform 0.8s ease;
       padding-top: 0;
     }
 
@@ -169,14 +161,18 @@
       max-width: 800px;
       padding: 2rem;
       transform: translateY(0);
-      transition: transform 0.5s ease;
-      animation: fadeInUp 0.8s ease-out;
+      transition: transform 0.8s ease;
+      animation: fadeInUp 1.2s ease-out;
+      background-color: rgba(0, 0, 0, 0.2);
+      backdrop-filter: blur(5px);
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow-lg);
     }
 
     @keyframes fadeInUp {
       from {
         opacity: 0;
-        transform: translateY(30px);
+        transform: translateY(50px);
       }
       to {
         opacity: 1;
@@ -196,7 +192,14 @@
     .splash-logo {
       max-height: 100px;
       margin-bottom: 1.5rem;
-      filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+      filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+      animation: pulse 2s infinite ease-in-out;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
     }
 
     .splash-title {
@@ -213,8 +216,10 @@
       max-width: 600px;
       margin-left: auto;
       margin-right: auto;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
     }
 
+    /* ===== Botões - Melhorados com efeitos modernos ===== */
     .btn {
       display: inline-flex;
       align-items: center;
@@ -228,11 +233,38 @@
       transition: var(--transition);
       font-size: 1rem;
       text-align: center;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--box-shadow-sm);
+    }
+
+    .btn::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      background-image: radial-gradient(circle, #fff 10%, transparent 10.01%);
+      background-repeat: no-repeat;
+      background-position: 50%;
+      transform: scale(10, 10);
+      opacity: 0;
+      transition: transform 0.5s, opacity 1s;
+    }
+
+    .btn:active::after {
+      transform: scale(0, 0);
+      opacity: 0.3;
+      transition: 0s;
     }
 
     .btn-lg {
-      padding: 1rem 2rem;
+      padding: 1rem 2.5rem;
       font-size: 1.1rem;
+      font-weight: 600;
+      border-radius: var(--border-radius-lg);
     }
 
     .btn-primary {
@@ -242,12 +274,91 @@
     }
 
     .btn-primary:hover {
-      background: rgba(255, 255, 255, 0.9);
+      background: rgba(255, 255, 255, 0.95);
       transform: translateY(-3px);
-      box-shadow: 0 7px 14px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 7px 14px rgba(0, 0, 0, 0.15);
     }
 
-    /* ===== Layout ===== */
+    .btn-primary:active {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .btn-outlined {
+      background: transparent;
+      color: var(--primary);
+      border: 2px solid var(--primary);
+      box-shadow: none;
+    }
+
+    .btn-outlined:hover {
+      background: var(--primary);
+      color: var(--white);
+      transform: translateY(-3px);
+      box-shadow: var(--box-shadow-sm);
+    }
+
+    .btn-success {
+      background: var(--success);
+      color: var(--white);
+    }
+
+    .btn-success:hover {
+      background: #218838;
+      transform: translateY(-3px);
+      box-shadow: 0 7px 14px rgba(0, 0, 0, 0.15);
+    }
+
+    .btn-info {
+      background: var(--info);
+      color: var(--white);
+    }
+
+    .btn-info:hover {
+      background: #138496;
+      transform: translateY(-3px);
+      box-shadow: 0 7px 14px rgba(0, 0, 0, 0.15);
+    }
+
+    .btn-warning {
+      background: var(--warning);
+      color: var(--dark);
+    }
+
+    .btn-warning:hover {
+      background: #e0a800;
+      transform: translateY(-3px);
+      box-shadow: 0 7px 14px rgba(0, 0, 0, 0.15);
+    }
+
+    .btn-danger {
+      background: var(--danger);
+      color: var(--white);
+    }
+
+    .btn-danger:hover {
+      background: #c82333;
+      transform: translateY(-3px);
+      box-shadow: 0 7px 14px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Botão com ícone flutuante */
+    .btn-icon-float {
+      position: relative;
+      padding-right: 3rem;
+    }
+
+    .btn-icon-float i {
+      position: absolute;
+      right: 1rem;
+      transition: var(--transition);
+    }
+
+    .btn-icon-float:hover i {
+      transform: translateX(5px);
+    }
+
+    /* ===== Layout Principal - Melhorado ===== */
     .app-container {
       display: flex;
       flex-direction: column;
@@ -260,9 +371,10 @@
     .app-container.visible {
       visibility: visible;
       opacity: 1;
-      transition: opacity 0.5s linear;
+      transition: opacity 0.8s ease;
     }
 
+    /* ===== Barra de Navegação Superior - Melhorada ===== */
     .top-navbar {
       background: var(--white);
       height: 80px;
@@ -273,7 +385,8 @@
       position: sticky;
       top: 0;
       z-index: 100;
-      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.04);
+      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+      transition: var(--transition);
     }
 
     .navbar-brand {
@@ -284,6 +397,11 @@
 
     .brand-logo {
       max-height: 60px;
+      transition: var(--transition);
+    }
+
+    .brand-logo:hover {
+      transform: scale(1.05);
     }
 
     .navbar-title {
@@ -292,6 +410,7 @@
       font-size: 1.3rem;
       color: var(--primary);
       white-space: nowrap;
+      transition: var(--transition);
     }
 
     .navbar-tools {
@@ -300,6 +419,7 @@
       gap: 1rem;
     }
 
+    /* ===== Campo de Pesquisa - Melhorado ===== */
     .search-form {
       position: relative;
       width: 300px;
@@ -318,8 +438,9 @@
     .search-input:focus {
       outline: none;
       border-color: var(--primary-light);
-      box-shadow: 0 0 0 3px rgba(45, 125, 210, 0.1);
+      box-shadow: 0 0 0 3px rgba(45, 125, 210, 0.15);
       background-color: var(--white);
+      width: 110%;
     }
 
     .search-icon {
@@ -328,8 +449,14 @@
       top: 50%;
       transform: translateY(-50%);
       color: var(--gray);
+      transition: var(--transition);
     }
 
+    .search-form:focus-within .search-icon {
+      color: var(--primary);
+    }
+
+    /* ===== Botão do Menu Móvel - Melhorado ===== */
     .menu-toggle {
       display: none;
       background: none;
@@ -337,28 +464,47 @@
       color: var(--primary);
       font-size: 1.5rem;
       cursor: pointer;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
+    .menu-toggle:hover {
+      background-color: var(--blue-light);
+    }
+
+    .menu-toggle:active {
+      transform: scale(0.95);
+    }
+
+    /* ===== Conteúdo Principal - Layout flexível ===== */
     .main-container {
       display: flex;
       flex: 1;
     }
 
-    /* ===== Sidebar Navigation ===== */
+    /* ===== Barra Lateral de Navegação - Melhorada ===== */
     .sidebar {
       width: 320px;
       background: var(--white);
       border-right: 1px solid var(--gray-light);
       height: calc(100vh - 80px);
       overflow-y: auto;
-      transition: transform 0.3s ease;
+      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       position: sticky;
       top: 80px;
+      z-index: 50;
+      box-shadow: 2px 0 10px rgba(0, 0, 0, 0.02);
     }
 
     .sidebar-header {
       padding: 1.5rem;
       border-bottom: 1px solid var(--gray-light);
+      background-color: var(--blue-light);
     }
 
     .sidebar-title {
@@ -370,6 +516,7 @@
       gap: 0.7rem;
     }
 
+    /* ===== Campo de Pesquisa na Barra Lateral - Melhorado ===== */
     .search-chapters {
       margin-top: 1rem;
       position: relative;
@@ -388,7 +535,7 @@
     .chapter-search:focus {
       outline: none;
       border-color: var(--primary-light);
-      box-shadow: 0 0 0 3px rgba(45, 125, 210, 0.1);
+      box-shadow: 0 0 0 3px rgba(45, 125, 210, 0.15);
       background-color: var(--white);
     }
 
@@ -398,14 +545,24 @@
       top: 50%;
       transform: translateY(-50%);
       color: var(--gray);
+      transition: var(--transition);
     }
 
+    .search-chapters:focus-within .chapter-search-icon {
+      color: var(--primary);
+    }
+
+    /* ===== Navegação - Melhorada ===== */
     .navigation {
       padding: 1rem 0;
     }
 
+    /* ===== Categorias da Navegação - Melhoradas ===== */
     .nav-category {
       margin-bottom: 0.5rem;
+      border-radius: var(--border-radius-sm);
+      overflow: hidden;
+      transition: var(--transition);
     }
 
     .category-header {
@@ -416,6 +573,7 @@
       cursor: pointer;
       transition: var(--transition);
       border-left: 3px solid transparent;
+      background-color: var(--white);
     }
 
     .category-header:hover {
@@ -439,31 +597,42 @@
       color: var(--primary);
       width: 22px;
       text-align: center;
+      transition: var(--transition);
+    }
+
+    .nav-category:hover .header-title i {
+      transform: scale(1.1);
     }
 
     .chevron-icon {
-      transition: transform 0.3s ease;
+      transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+      color: var(--gray);
     }
 
     .nav-category.active .chevron-icon {
       transform: rotate(180deg);
+      color: var(--primary);
     }
 
+    /* ===== Menu das Categorias - Melhorado ===== */
     .category-menu {
       display: none;
       margin-left: 1.2rem;
-      animation: fadeIn 0.3s ease-out;
+      animation: fadeIn 0.4s ease-out;
+      background-color: var(--white);
+      border-radius: 0 0 var(--border-radius-sm) var(--border-radius-sm);
     }
 
     @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     .nav-category.active .category-menu {
       display: block;
     }
 
+    /* ===== Itens da Navegação - Melhorados ===== */
     .nav-item {
       padding: 0.75rem 1.5rem 0.75rem 3rem;
       cursor: pointer;
@@ -473,6 +642,7 @@
       align-items: center;
       gap: 0.7rem;
       border-left: 3px solid transparent;
+      flex-wrap: wrap;
     }
 
     .nav-item:hover {
@@ -480,7 +650,7 @@
     }
 
     .nav-item.active {
-      background: var(--section-bg);
+      background: var(--blue-light);
       border-left-color: var(--primary);
       font-weight: 500;
     }
@@ -489,9 +659,14 @@
       color: var(--primary);
       width: 18px;
       text-align: center;
+      transition: var(--transition);
     }
 
-    /* Badge de status do documento */
+    .nav-item:hover i {
+      transform: scale(1.1);
+    }
+
+    /* ===== Badge de Status - Melhorado ===== */
     .doc-status {
       position: absolute;
       right: 15px;
@@ -502,6 +677,8 @@
       border-radius: 20px;
       background: var(--success);
       color: white;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      transition: var(--transition);
     }
 
     .doc-status.pending {
@@ -512,7 +689,116 @@
       background: var(--secondary);
     }
 
-    /* ===== Main Content ===== */
+    .nav-item:hover .doc-status {
+      transform: translateY(-50%) scale(1.05);
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Assinatura digital - Melhorada */
+    .digital-signature {
+      border: 1px solid var(--gray-light);
+      border-radius: var(--border-radius);
+      padding: 1.8rem;
+      margin-top: 1.5rem;
+      background-color: rgba(0, 86, 179, 0.03);
+      position: relative;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+      transition: var(--transition);
+    }
+
+    .digital-signature:hover {
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      transform: translateY(-3px);
+    }
+
+    .signature-info {
+      margin-bottom: 1.8rem;
+      font-size: 0.95rem;
+    }
+
+    .signature-block {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      border-top: 1px solid var(--gray-light);
+      padding-top: 1.8rem;
+    }
+
+    .signature-image {
+      max-height: 100px; /* Aumentado de 80px para 100px */
+      margin-bottom: 1.2rem;
+      filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.15));
+      transition: var(--transition);
+    }
+
+    .signature-block:hover .signature-image {
+      transform: scale(1.05);
+    }
+
+    .signature-details {
+      text-align: center;
+    }
+
+    .signature-name {
+      font-weight: 600;
+      font-size: 1.2rem; /* Aumentado de 1.1rem para 1.2rem */
+      margin-bottom: 0.3rem;
+      color: var(--primary);
+    }
+
+    .signature-role, .signature-company {
+      font-size: 0.9rem;
+      color: var(--gray);
+      margin-bottom: 0.3rem;
+    }
+
+    .signature-seal {
+      margin-top: 1.2rem;
+      background-color: var(--primary);
+      color: white;
+      padding: 0.6rem 1.2rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+      transition: var(--transition);
+    }
+
+    .signature-seal:hover {
+      background-color: var(--primary-dark);
+      box-shadow: 0 5px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Sombras e efeitos */
+    .card-shadow {
+      box-shadow: var(--card-shadow);
+      transition: var(--transition);
+    }
+
+    .card-shadow:hover {
+      box-shadow: var(--card-shadow-hover);
+      transform: translateY(-3px);
+    }
+    
+    /* Tipografia */
+    .font-sans-serif {
+      font-family: var(--font-sans-serif);
+    }
+    
+    .border-radius {
+      border-radius: var(--border-radius);
+    }
+    
+    .border-radius-sm {
+      border-radius: var(--border-radius-sm);
+    }
+  </style>
+  
+  <!-- Estilos para o Layout do Conteúdo Principal -->
+  <style>
+    /* ===== Conteúdo Principal - Melhorado ===== */
     .main-content {
       flex: 1;
       padding: 2rem;
@@ -520,6 +806,7 @@
       min-height: calc(100vh - 80px);
     }
 
+    /* ===== Breadcrumbs - Melhorados ===== */
     .breadcrumb {
       display: flex;
       align-items: center;
@@ -527,9 +814,15 @@
       margin-bottom: 2rem;
       font-size: 0.95rem;
       background: var(--white);
-      padding: 0.75rem 1.25rem;
+      padding: 0.85rem 1.25rem;
       border-radius: var(--border-radius);
       box-shadow: var(--card-shadow);
+      transition: var(--transition);
+      border-left: 4px solid var(--primary);
+    }
+
+    .breadcrumb:hover {
+      box-shadow: var(--card-shadow-hover);
     }
 
     .breadcrumb-item {
@@ -553,11 +846,18 @@
       margin: 0 auto;
     }
 
+    /* ===== Cabeçalho da Página - Melhorado ===== */
     .page-header {
       margin-bottom: 2.5rem;
       position: relative;
       padding-bottom: 1.5rem;
       border-bottom: 2px solid var(--gray-light);
+      animation: fadeInDown 0.8s ease-out;
+    }
+
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     .page-title {
@@ -565,6 +865,24 @@
       font-weight: 700;
       color: var(--primary);
       margin-bottom: 0.5rem;
+      position: relative;
+      display: inline-block;
+    }
+
+    .page-title::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 80px;
+      height: 4px
+background: var(--primary);
+      border-radius: 2px;
+      transition: width 0.3s ease;
+    }
+
+    .page-title:hover::after {
+      width: 120px;
     }
 
     .page-subtitle {
@@ -572,7 +890,7 @@
       font-size: 1.1rem;
     }
 
-    /* Status do projeto */
+    /* ===== Status do Projeto - Melhorado ===== */
     .project-status {
       position: absolute;
       top: 0;
@@ -580,36 +898,52 @@
       display: flex;
       align-items: center;
       gap: 0.5rem;
-      background: var(--success);
-      color: var(--white);
-      padding: 0.5rem 1rem;
+      background: var(--warning);
+      color: var(--dark);
+      padding: 0.6rem 1.2rem;
       border-radius: var(--border-radius);
       font-size: 0.9rem;
       font-weight: 500;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+      transition: var(--transition);
+    }
+
+    .project-status:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
     }
 
     .project-status.in-progress {
       background: var(--primary);
+      color: var(--white);
     }
 
-    /* Cards do dashboard */
+    .project-status.completed {
+      background: var(--success);
+      color: var(--white);
+    }
+
+    /* ===== Cards do Dashboard - Melhorados ===== */
     .dashboard-cards {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
       gap: 1.5rem;
       margin-bottom: 2.5rem;
+      animation: fadeInUp 0.8s ease-out both;
+      animation-delay: 0.1s;
     }
 
     .dashboard-card {
       background: var(--white);
       border-radius: var(--border-radius);
       box-shadow: var(--card-shadow);
-      padding: 1.5rem;
+      padding: 1.8rem;
       transition: var(--transition);
       display: flex;
       flex-direction: column;
       position: relative;
       overflow: hidden;
+      border: 1px solid rgba(0,0,0,0.03);
     }
 
     .dashboard-card:hover {
@@ -633,20 +967,31 @@
       display: flex;
       align-items: center;
       gap: 0.5rem;
-      margin-bottom: 0.7rem;
+      margin-bottom: 0.8rem;
     }
 
     .card-label i {
       color: var(--primary);
       font-size: 1rem;
+      transition: var(--transition);
+    }
+
+    .dashboard-card:hover .card-label i {
+      transform: scale(1.2);
     }
 
     .card-value {
       font-size: 1.2rem;
       font-weight: 600;
+      color: var(--dark);
+      transition: var(--transition);
     }
 
-    /* Seções de conteúdo */
+    .dashboard-card:hover .card-value {
+      color: var(--primary);
+    }
+
+    /* ===== Seções de Conteúdo - Melhoradas ===== */
     .section-container {
       background: var(--white);
       border-radius: var(--border-radius);
@@ -654,10 +999,35 @@
       padding: 2rem;
       margin-bottom: 2.5rem;
       transition: var(--transition);
+      animation: fadeInUp 0.8s ease-out both;
+      position: relative;
+      border: 1px solid rgba(0,0,0,0.03);
     }
+
+    .section-container:nth-child(2) { animation-delay: 0.2s; }
+    .section-container:nth-child(3) { animation-delay: 0.3s; }
+    .section-container:nth-child(4) { animation-delay: 0.4s; }
+    .section-container:nth-child(5) { animation-delay: 0.5s; }
 
     .section-container:hover {
       box-shadow: var(--card-shadow-hover);
+      transform: translateY(-5px);
+    }
+
+    .section-container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 5px;
+      height: 0;
+      background: var(--primary);
+      transition: height 0.4s ease;
+      border-radius: var(--border-radius) 0 0 var(--border-radius);
+    }
+
+    .section-container:hover::before {
+      height: 100%;
     }
 
     .section-title {
@@ -669,11 +1039,17 @@
       align-items: center;
       gap: 0.7rem;
       border-bottom: 2px solid var(--gray-light);
-      padding-bottom: 0.75rem;
+      padding-bottom: 0.85rem;
+      transition: var(--transition);
     }
 
     .section-title i {
       color: var(--primary);
+      transition: var(--transition);
+    }
+
+    .section-container:hover .section-title i {
+      transform: rotate(10deg) scale(1.1);
     }
 
     .introduction-text {
@@ -683,13 +1059,14 @@
 
     .introduction-text p {
       margin-bottom: 1rem;
+      text-align: justify;
     }
 
     .introduction-text p:last-child {
       margin-bottom: 0;
     }
 
-    /* Progress dashboard */
+    /* ===== Dashboard de Progresso - Melhorado ===== */
     .progress-section {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
@@ -698,10 +1075,17 @@
     }
 
     .progress-card {
-      background: var(--section-bg);
+      background: var(--blue-light);
       border-radius: var(--border-radius);
       padding: 1.5rem;
       text-align: center;
+      transition: var(--transition);
+      border: 1px solid rgba(0,0,0,0.03);
+    }
+
+    .progress-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--card-shadow);
     }
 
     .progress-title {
@@ -717,20 +1101,52 @@
       border-radius: 5px;
       overflow: hidden;
       margin-bottom: 0.75rem;
+      box-shadow: inset 0 1px 3px rgba(0,0,0,0.15);
     }
 
     .progress-bar {
       height: 100%;
       background: var(--primary);
       border-radius: 5px;
+      transition: width 1s ease;
+      background-image: linear-gradient(45deg, rgba(255,255,255,.15) 25%, transparent 25%, transparent 50%, rgba(255,255,255,.15) 50%, rgba(255,255,255,.15) 75%, transparent 75%, transparent);
+      background-size: 1rem 1rem;
+      animation: progress-bar-stripes 1s linear infinite;
+    }
+
+    @keyframes progress-bar-stripes {
+      from { background-position: 1rem 0; }
+      to { background-position: 0 0; }
     }
 
     .progress-value {
       font-weight: 600;
       font-size: 1.1rem;
+      color: var(--primary);
+      transition: var(--transition);
     }
 
-    /* Grid de equipa */
+    .progress-card:hover .progress-value {
+      transform: scale(1.1);
+    }
+
+    /* ===== Gráficos - Melhorados ===== */
+    .progress-chart-container, .chart-container {
+      background-color: var(--white);
+      border-radius: var(--border-radius);
+      padding: 1rem;
+      box-shadow: var(--card-shadow);
+      transition: var(--transition);
+      margin-top: 2rem;
+      border: 1px solid rgba(0,0,0,0.03);
+    }
+
+    .progress-chart-container:hover, .chart-container:hover {
+      box-shadow: var(--card-shadow-hover);
+      transform: translateY(-3px);
+    }
+
+    /* ===== Grid de Equipe - Melhorado ===== */
     .team-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
@@ -740,15 +1156,17 @@
     .team-member {
       background: var(--section-bg);
       border-radius: var(--border-radius);
-      padding: 1.5rem;
+      padding: 1.8rem;
       text-align: center;
       transition: var(--transition);
       border-top: 4px solid var(--primary);
+      box-shadow: var(--card-shadow);
+      border: 1px solid rgba(0,0,0,0.03);
     }
 
     .team-member:hover {
       transform: translateY(-5px);
-      box-shadow: var(--card-shadow);
+      box-shadow: var(--card-shadow-hover);
     }
 
     .member-position {
@@ -761,54 +1179,50 @@
       font-size: 0.85rem;
       color: var(--gray);
       margin-bottom: 0.5rem;
+      padding: 0.3rem 0.6rem;
+      background-color: var(--light);
+      display: inline-block;
+      border-radius: 15px;
     }
 
     .member-name {
       font-weight: 500;
+      color: var(--dark);
+      transition: var(--transition);
+    }
+
+    .team-member:hover .member-name {
+      color: var(--primary);
     }
 
     .member-contact {
       margin-top: 1rem;
       font-size: 0.85rem;
       color: var(--gray);
+      transition: var(--transition);
     }
 
+    .team-member:hover .member-contact {
+      color: var(--primary-dark);
+    }
+
+    /* ===== Ações - Melhoradas ===== */
     .action-buttons {
       display: flex;
       gap: 1rem;
       margin-top: 2rem;
       flex-wrap: wrap;
+      justify-content: center;
     }
 
-    .btn-outlined {
-      background: transparent;
-      color: var(--primary);
-      border: 2px solid var(--primary);
-    }
-
-    .btn-outlined:hover {
-      background: var(--primary);
-      color: var(--white);
-    }
-
-    .btn-success {
-      background: var(--success);
-      color: var(--white);
-    }
-
-    .btn-success:hover {
-      background: #218838;
-      transform: translateY(-3px);
-      box-shadow: 0 7px 14px rgba(0, 0, 0, 0.1);
-    }
-
-    /* ===== PDF Viewer ===== */
+    /* ===== Visualizador de PDF - Melhorado ===== */
     .pdf-viewer {
       background: var(--white);
       border-radius: var(--border-radius);
       box-shadow: var(--card-shadow);
       overflow: hidden;
       display: none;
+      border: 1px solid rgba(0,0,0,0.03);
     }
 
     .pdf-viewer.active {
@@ -851,20 +1265,23 @@
     #pdf-canvas {
       max-width: 100%;
       box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+      transition: var(--transition);
     }
 
+    /* ===== Indicador de Carregamento - Melhorado ===== */
     .loading-indicator {
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(255, 255, 255, 0.8);
+      background: rgba(255, 255, 255, 0.9);
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       z-index: 10;
+      backdrop-filter: blur(5px);
     }
 
     .loading-indicator.hidden {
@@ -872,13 +1289,13 @@
     }
 
     .spinner {
-      width: 40px;
-      height: 40px;
-      border: 4px solid rgba(0, 0, 0, 0.1);
+      width: 50px;
+      height: 50px;
+      border: 5px solid rgba(0, 0, 0, 0.1);
       border-radius: 50%;
-      border-top: 4px solid var(--primary);
+      border-top: 5px solid var(--primary);
       animation: spin 1s linear infinite;
-      margin-bottom: 1rem;
+      margin-bottom: 1.2rem;
     }
 
     @keyframes spin {
@@ -888,15 +1305,21 @@
 
     .loading-text {
       font-weight: 500;
+      color: var(--primary);
     }
 
+    /* ===== Ações do PDF - Melhoradas ===== */
     .pdf-actions {
       display: flex;
       justify-content: flex-end;
       gap: 1rem;
       margin-bottom: 1rem;
+      padding: 1rem 1.5rem;
+      background-color: var(--white);
+      border-bottom: 1px solid var(--gray-light);
     }
 
+    /* ===== Controles do PDF - Melhorados ===== */
     .pdf-controls {
       display: flex;
       justify-content: space-between;
@@ -922,6 +1345,7 @@
       align-items: center;
       min-width: 100px;
       justify-content: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
     }
 
     .btn-control {
@@ -936,12 +1360,15 @@
       align-items: center;
       gap: 0.5rem;
       transition: var(--transition);
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
     }
 
     .btn-control:hover {
       background: var(--primary);
       color: var(--white);
       border-color: var(--primary);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     }
 
     .zoom-level {
@@ -950,9 +1377,10 @@
       text-align: center;
       padding: 0.6rem 0;
       font-weight: 500;
+      color: var(--primary);
     }
 
-    /* ===== Search Modal ===== */
+    /* ===== Modal de Pesquisa - Melhorado ===== */
     .search-modal {
       position: fixed;
       top: 0;
@@ -967,7 +1395,7 @@
       align-items: center;
       opacity: 0;
       visibility: hidden;
-      transition: var(--transition);
+      transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
     }
 
     .search-modal.active {
@@ -986,7 +1414,8 @@
       flex-direction: column;
       overflow: hidden;
       transform: translateY(30px);
-      transition: transform 0.3s ease;
+      transition: transform 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+      border: 1px solid rgba(255,255,255,0.1);
     }
 
     .search-modal.active .modal-content {
@@ -1004,7 +1433,7 @@
 
     .modal-title {
       font-size: 1.2rem;
-    font-weight: 600;
+      font-weight: 600;
       color: var(--primary);
     }
 
@@ -1015,10 +1444,17 @@
       font-size: 1.5rem;
       cursor: pointer;
       transition: var(--transition);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .close-modal:hover {
       color: var(--danger);
+      background-color: rgba(220, 53, 69, 0.1);
     }
 
     .search-results {
@@ -1027,46 +1463,66 @@
       padding: 1.5rem;
     }
 
+    /* ===== Resultados da Pesquisa - Melhorados ===== */
     .result-item {
-      padding: 1rem;
+      padding: 1.2rem;
       border-bottom: 1px solid var(--gray-light);
       cursor: pointer;
       transition: var(--transition);
       border-radius: var(--border-radius-sm);
+      margin-bottom: 0.8rem;
     }
 
     .result-item:hover {
-      background: var(--section-bg);
+      background: var(--blue-light);
+      transform: translateX(5px);
     }
 
     .result-item:last-child {
       border-bottom: none;
+      margin-bottom: 0;
     }
 
     .result-title {
       font-weight: 500;
       margin-bottom: 0.5rem;
       color: var(--primary);
+      transition: var(--transition);
+    }
+
+    .result-item:hover .result-title {
+      color: var(--primary-dark);
     }
 
     .result-snippet {
       font-size: 0.9rem;
       color: var(--gray-dark);
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.8rem;
+      line-height: 1.5;
     }
 
     .result-meta {
       font-size: 0.8rem;
       color: var(--gray);
+      display: flex;
+      gap: 0.8rem;
+      align-items: center;
+    }
+
+    .result-meta::before {
+      content: '•';
+      color: var(--primary);
+      font-size: 1.2rem;
     }
 
     .highlight {
       background: rgba(255, 193, 7, 0.3);
       padding: 0 2px;
       border-radius: 2px;
+      font-weight: 500;
     }
 
-    /* Animação de skeleton loading */
+    /* ===== Efeito de Skeleton Loading - Melhorado ===== */
     .skeleton {
       background: linear-gradient(90deg, var(--gray-light) 25%, #ededed 50%, var(--gray-light) 75%);
       background-size: 200% 100%;
@@ -1079,12 +1535,13 @@
       100% { background-position: -200% 0; }
     }
 
-    /* ===== Footer ===== */
+    /* ===== Rodapé - Melhorado ===== */
     .footer {
       background: var(--white);
       border-top: 1px solid var(--gray-light);
       padding: 1.5rem 2rem;
       text-align: center;
+      box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.03);
     }
 
     .footer-content {
@@ -1097,6 +1554,11 @@
 
     .footer-logo {
       height: 30px;
+      transition: var(--transition);
+    }
+
+    .footer-logo:hover {
+      transform: scale(1.05);
     }
 
     .footer-text {
@@ -1113,13 +1575,29 @@
       color: var(--gray);
       font-size: 0.9rem;
       transition: var(--transition);
+      position: relative;
+    }
+
+    .footer-link::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--primary);
+      transition: var(--transition);
     }
 
     .footer-link:hover {
       color: var(--primary);
     }
 
-    /* Overlay para feedback */
+    .footer-link:hover::after {
+      width: 100%;
+    }
+
+    /* ===== Overlay para Feedback - Melhorado ===== */
     .feedback-overlay {
       position: fixed;
       top: 0;
@@ -1134,7 +1612,7 @@
       align-items: center;
       opacity: 0;
       visibility: hidden;
-      transition: var(--transition);
+      transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
     }
 
     .feedback-overlay.active {
@@ -1150,7 +1628,8 @@
       max-width: 500px;
       padding: 2rem;
       transform: translateY(30px);
-      transition: transform 0.3s ease;
+      transition: transform 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+      border: 1px solid rgba(255,255,255,0.1);
     }
 
     .feedback-overlay.active .feedback-form {
@@ -1162,16 +1641,19 @@
       font-weight: 600;
       margin-bottom: 1.5rem;
       color: var(--primary);
+      border-bottom: 2px solid var(--gray-light);
+      padding-bottom: 0.8rem;
     }
 
     .feedback-input {
       width: 100%;
-      padding: 0.7rem 1rem;
+      padding: 0.8rem 1rem;
       border-radius: var(--border-radius-sm);
       border: 1px solid var(--gray-light);
       font-size: 0.9rem;
       margin-bottom: 1rem;
       resize: none;
+      transition: var(--transition);
     }
 
     .feedback-input:focus {
@@ -1184,30 +1666,33 @@
       display: flex;
       justify-content: flex-end;
       gap: 1rem;
-      margin-top: 1rem;
+      margin-top: 1.5rem;
     }
 
-    /* Toast notifications */
+    /* ===== Notificações Toast - Melhoradas ===== */
     .toast-container {
       position: fixed;
       bottom: 20px;
       right: 20px;
       z-index: 1010;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
     }
 
     .toast {
       background: var(--white);
       border-radius: var(--border-radius);
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-      padding: 1rem;
-      margin-bottom: 0.75rem;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+      padding: 1rem 1.5rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      min-width: 250px;
+      min-width: 280px;
       max-width: 350px;
       transform: translateX(100%);
-      transition: transform 0.3s ease;
+      transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      border: 1px solid rgba(0,0,0,0.05);
     }
 
     .toast.active {
@@ -1218,16 +1703,40 @@
       border-left: 4px solid var(--success);
     }
 
+    .toast-success .toast-icon {
+      color: var(--success);
+    }
+
     .toast-warning {
       border-left: 4px solid var(--warning);
+    }
+
+    .toast-warning .toast-icon {
+      color: var(--warning);
     }
 
     .toast-error {
       border-left: 4px solid var(--danger);
     }
 
-    .toast-message {
+    .toast-error .toast-icon {
+      color: var(--danger);
+    }
+
+    .toast-content {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
       margin-right: 0.5rem;
+    }
+
+    .toast-icon {
+      font-size: 1.5rem;
+    }
+
+    .toast-message {
+      font-weight: 500;
+      font-size: 0.9rem;
     }
 
     .close-toast {
@@ -1236,9 +1745,21 @@
       font-size: 1rem;
       cursor: pointer;
       color: var(--gray);
+      transition: var(--transition);
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
-    /* Estilos para subcapítulos e descrições */
+    .close-toast:hover {
+      color: var(--danger);
+      background-color: rgba(220, 53, 69, 0.1);
+    }
+
+    /* ===== Subcapítulos e Descrições - Melhorados ===== */
     .nav-subcategory {
       margin-bottom: 0.5rem;
     }
@@ -1252,6 +1773,7 @@
       gap: 0.7rem;
       color: var(--primary);
       font-weight: 500;
+      border-radius: var(--border-radius-sm);
     }
     
     .subcategory-header:hover {
@@ -1261,21 +1783,24 @@
     .subcategory-chevron, .third-level-chevron {
       margin-left: auto;
       font-size: 0.8rem;
-      transition: transform 0.3s ease;
+      transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+      color: var(--gray);
     }
     
     .nav-subcategory.active .subcategory-chevron {
       transform: rotate(90deg);
+      color: var(--primary);
     }
     
     .nav-subitem.active .third-level-chevron {
       transform: rotate(90deg);
+      color: var(--primary);
     }
     
     .subcategory-menu {
       display: none;
       margin-left: 1.2rem;
-      animation: fadeIn 0.3s ease-out;
+      animation: fadeIn 0.4s ease-out;
     }
     
     .nav-subcategory.active .subcategory-menu {
@@ -1292,6 +1817,7 @@
       gap: 0.7rem;
       border-left: 3px solid transparent;
       flex-wrap: wrap;
+      border-radius: var(--border-radius-sm);
     }
     
     .nav-subitem:hover {
@@ -1299,7 +1825,7 @@
     }
     
     .nav-subitem.active {
-      background: var(--section-bg);
+      background: var(--blue-light);
       border-left-color: var(--primary);
     }
     
@@ -1308,7 +1834,7 @@
       width: 100%;
       padding-left: 1.5rem;
       margin-top: 0.5rem;
-      animation: fadeIn 0.3s ease-out;
+      animation: fadeIn 0.4s ease-out;
     }
     
     .nav-subitem.active .third-level-menu {
@@ -1321,10 +1847,12 @@
       transition: var(--transition);
       display: flex;
       align-items: center;
-      gap: 0.7rem;
+      gap: 0.
+7rem;
       border-left: 3px solid transparent;
       font-size: 0.9rem;
       flex-wrap: wrap;
+      border-radius: var(--border-radius-sm);
     }
     
     .nav-third-item:hover {
@@ -1332,10 +1860,11 @@
     }
     
     .nav-third-item.active {
-      background: var(--section-bg);
+      background: var(--blue-light);
       border-left-color: var(--primary);
     }
     
+    /* ===== Descrição dos Capítulos - Melhorada ===== */
     .chapter-description {
       padding: 0.3rem 0 0.2rem;
       font-size: 0.8rem;
@@ -1343,9 +1872,16 @@
       width: 100%;
       font-style: italic;
       line-height: 1.3;
+      transition: var(--transition);
+    }
+
+    .nav-item:hover .chapter-description,
+    .nav-subitem:hover .chapter-description,
+    .nav-third-item:hover .chapter-description {
+      color: var(--primary-dark);
     }
     
-    /* Botão para voltar à página inicial */
+    /* Botão para voltar à página inicial - Melhorado */
     .back-to-home {
       position: fixed;
       bottom: 30px;
@@ -1359,177 +1895,708 @@
       justify-content: center;
       align-items: center;
       cursor: pointer;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
       z-index: 99;
-      transition: all 0.3s ease;
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    
+    .back-to-home.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
     
     .back-to-home:hover {
       background-color: var(--primary-dark);
-      transform: translateY(-3px);
-      box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+      transform: translateY(-5px) scale(1.1);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.25);
     }
     
     .back-to-home i {
       font-size: 1.5rem;
     }
 
-    /* ===== Responsive Styles ===== */
+    /* ===== Tabela de Estatísticas - Melhorada ===== */
+    .test-table-container {
+      overflow-x: auto;
+      margin-bottom: 2rem;
+      border-radius: var(--border-radius);
+      box-shadow: var(--card-shadow);
+      transition: var(--transition);
+    }
+    
+    .test-table-container:hover {
+      box-shadow: var(--card-shadow-hover);
+    }
+    
+    .test-table {
+      width: 100%;
+      border-collapse: collapse;
+      border-radius: var(--border-radius);
+      overflow: hidden;
+    }
+    
+    .test-table thead {
+      background-color: var(--primary);
+      color: var(--white);
+    }
+    
+    .test-table th, .test-table td {
+      padding: 1rem;
+      text-align: left;
+      border-bottom: 1px solid var(--gray-light);
+    }
+    
+    .test-table tbody tr {
+      transition: var(--transition);
+    }
+    
+    .test-table tbody tr:hover {
+      background-color: var(--blue-light);
+    }
+    
+    .test-table tbody tr:nth-child(even) {
+      background-color: var(--section-bg);
+    }
+    
+    .test-table tbody tr:nth-child(even):hover {
+      background-color: var(--blue-light);
+    }
+    
+    .test-count {
+      font-weight: 500;
+      text-align: center;
+    }
+    
+    .test-table tfoot {
+      background-color: var(--blue-light);
+      font-weight: bold;
+    }
+
+    /* Cartões de informação */
+    .info-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    
+    .info-card {
+      background-color: var(--white);
+      border-radius: var(--border-radius);
+      padding: 1.5rem;
+      box-shadow: var(--card-shadow);
+      transition: var(--transition);
+      border-left: 4px solid var(--primary);
+    }
+    
+    .info-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--card-shadow-hover);
+    }
+    
+    .info-card h3 {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+      color: var(--primary);
+      font-size: 1.1rem;
+      border-bottom: 1px solid var(--gray-light);
+      padding-bottom: 0.5rem;
+    }
+    
+    .info-card ul {
+      list-style: none;
+      padding: 0;
+    }
+    
+    .info-card li {
+      position: relative;
+      padding-left: 1.5rem;
+      margin-bottom: 0.5rem;
+      line-height: 1.5;
+    }
+    
+    .info-card li:before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: var(--primary);
+      font-weight: bold;
+    }
+
+    /* ===== Modo Escuro ===== */
+    .dark-mode-toggle {
+      margin-left: 1rem;
+      background: none;
+      border: none;
+      color: var(--gray);
+      font-size: 1.2rem;
+      cursor: pointer;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+    }
+    
+    .dark-mode-toggle:hover {
+      background-color: var(--blue-light);
+      color: var(--primary);
+    }
+    
+    body.dark-mode {
+      --white: #1a1d21;
+      --light: #12151a;
+      --dark: #f8f9fa;
+      --text: #e1e1e1;
+      --section-bg: #242830;
+      --gray-light: #374151;
+      --gray: #9ca3af;
+      --blue-light: #1e293b;
+      --primary-light: #60a5fa;
+      color: var(--text);
+    }
+    
+    body.dark-mode .top-navbar,
+    body.dark-mode .sidebar,
+    body.dark-mode .footer {
+      background: var(--white);
+      border-color: var(--gray-light);
+    }
+    
+    body.dark-mode .dashboard-card,
+    body.dark-mode .section-container,
+    body.dark-mode .pdf-viewer,
+    body.dark-mode .modal-content,
+    body.dark-mode .feedback-form,
+    body.dark-mode .toast,
+    body.dark-mode .info-card {
+      background: var(--white);
+      border-color: var(--gray-light);
+    }
+    
+    body.dark-mode .nav-item:hover,
+    body.dark-mode .nav-subitem:hover,
+    body.dark-mode .nav-third-item:hover,
+    body.dark-mode .category-header:hover,
+    body.dark-mode .subcategory-header:hover,
+    body.dark-mode .test-table tbody tr:hover {
+      background: var(--section-bg);
+    }
+    
+    body.dark-mode .test-table tbody tr:nth-child(even) {
+      background-color: rgba(255,255,255,0.05);
+    }
+    
+    body.dark-mode .search-input,
+    body.dark-mode .chapter-search,
+    body.dark-mode .feedback-input {
+      background-color: var(--section-bg);
+      border-color: var(--gray-light);
+      color: var(--text);
+    }
+    
+    body.dark-mode .badge,
+    body.dark-mode .btn-control {
+      background-color: var(--section-bg);
+      color: var(--text);
+    }
+    
+    body.dark-mode .pdf-container {
+      background-color: #0d1117;
+    }
+    
+    /* ===== Atalhos de Teclado ===== */
+    .keyboard-shortcuts {
+      position: fixed;
+      bottom: 30px;
+      left: 30px;
+      background-color: var(--white);
+      border-radius: var(--border-radius);
+      box-shadow: var(--card-shadow);
+      padding: 1rem;
+      z-index: 99;
+      transition: var(--transition);
+      opacity: 0;
+      transform: translateY(20px);
+      max-width: 300px;
+    }
+    
+    .keyboard-shortcuts.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .shortcuts-title {
+      font-weight: 600;
+      margin-bottom: 0.8rem;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--gray-light);
+      padding-bottom: 0.5rem;
+    }
+    
+    .shortcuts-title button {
+      background: none;
+      border: none;
+      color: var(--gray);
+      cursor: pointer;
+      font-size: 1.1rem;
+      transition: var(--transition);
+    }
+    
+    .shortcuts-title button:hover {
+      color: var(--danger);
+    }
+    
+    .shortcut-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    
+    .shortcut-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.5rem;
+      font-size: 0.9rem;
+    }
+    
+    .shortcut-key {
+      background-color: var(--section-bg);
+      padding: 0.2rem 0.5rem;
+      border-radius: var(--border-radius-sm);
+      font-family: monospace;
+      font-weight: 500;
+    }
+    
+    /* ===== Comparador de Documentos ===== */
+    .comparator-container {
+      display: none;
+      flex-direction: column;
+      background: var(--white);
+      border-radius: var(--border-radius);
+      box-shadow: var(--card-shadow);
+      overflow: hidden;
+      animation: fadeInUp 0.5s ease-out;
+    }
+    
+    .comparator-container.active {
+      display: flex;
+    }
+    
+    .comparator-header {
+      padding: 1.5rem;
+      border-bottom: 1px solid var(--gray-light);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--section-bg);
+    }
+    
+    .comparator-title {
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: var(--primary);
+    }
+    
+    .comparator-content {
+      display: flex;
+      height: calc(100vh - 250px);
+    }
+    
+    .comparator-panel {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      border-right: 1px solid var(--gray-light);
+    }
+    
+    .comparator-panel:last-child {
+      border-right: none;
+    }
+    
+    .panel-header {
+      padding: 1rem;
+      background: var(--blue-light);
+      border-bottom: 1px solid var(--gray-light);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .panel-title {
+      font-weight: 500;
+      color: var(--primary);
+    }
+    
+    .panel-content {
+      flex: 1;
+      overflow: auto;
+      padding: 1rem;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+    }
+    
+    .comparator-canvas {
+      max-width: 100%;
+      box-shadow: var(--card-shadow);
+    }
+    
+    .comparator-controls {
+      padding: 1rem;
+      background: var(--section-bg);
+      border-top: 1px solid var(--gray-light);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .comparator-actions {
+      display: flex;
+      gap: 1rem;
+    }
+
+    /* ===== Responsividade - Melhorada ===== */
+    @media (max-width: 1200px) {
+      .sidebar {
+        width: 300px;
+      }
+      
+      .main-content {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+      }
+      
+      .splash-title {
+        font-size: 3rem;
+      }
+    }
+    
     @media (max-width: 992px) {
       .splash-title {
-        font-size: 2.8rem;
+        font-size: 2.5rem;
       }
-
+      
       .splash-subtitle {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
       }
-
+      
       .top-navbar {
         padding: 0 1rem;
       }
-
+      
       .navbar-title {
         font-size: 1.1rem;
       }
-
+      
       .dashboard-cards {
-        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      }
+      
+      .footer-content {
+        flex-wrap: wrap;
+        gap: 1rem;
+        justify-content: center;
+      }
+      
+      .footer-text {
+        order: 3;
+        width: 100%;
+        margin-top: 1rem;
+      }
+      
+      .comparator-content {
+        flex-direction: column;
+        height: auto;
+      }
+      
+      .comparator-panel {
+        border-right: none;
+        border-bottom: 1px solid var(--gray-light);
+      }
+      
+      .comparator-panel:last-child {
+        border-bottom: none;
       }
     }
-
+    
     @media (max-width: 768px) {
+      body {
+        font-size: 14px;
+      }
+      
       .splash-title {
-        font-size: 2.2rem;
+        font-size: 2rem;
       }
-
+      
       .splash-subtitle {
-        font-size: 1.1rem;
+        font-size: 1rem;
       }
-
+      
+      .splash-logo {
+        max-height: 80px;
+      }
+      
       .menu-toggle {
-        display: block;
-        margin-right: 1rem;
+        display: flex;
       }
-
+      
       .search-form {
         width: auto;
         flex: 1;
         margin-right: 1rem;
       }
-
+      
+      .navbar-title {
+        display: none;
+      }
+      
       .sidebar {
         position: fixed;
         top: 80px;
         left: -320px;
         z-index: 90;
         box-shadow: 5px 0 15px rgba(0, 0, 0, 0.1);
+        width: 280px;
       }
-
+      
       .sidebar.active {
         left: 0;
       }
-
+      
       .main-content {
-        padding: 1.5rem;
+        padding: 1.5rem 1rem;
       }
-
+      
       .page-title {
         font-size: 1.8rem;
       }
-
-      .dashboard-cards {
+      
+      .page-header {
+        margin-bottom: 1.5rem;
+      }
+      
+      .dashboard-cards,
+      .progress-section,
+      .team-grid,
+      .info-cards {
         grid-template-columns: 1fr;
       }
-
-      .team-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .footer-content {
-        flex-direction: column;
-        gap: 1rem;
-      }
-
-      .project-status {
-        position: relative;
-        margin-top: 1rem;
-        display: inline-flex;
-      }
-    }
-
-    @media (max-width: 576px) {
-      .splash-title {
-        font-size: 1.8rem;
-      }
-
-      .splash-logo {
-        max-height: 80px;
-      }
-
-      .navbar-title {
-        display: none;
-      }
-
+      
       .section-container {
         padding: 1.5rem;
       }
-
+      
+      .project-status {
+        position: static;
+        margin-top: 1rem;
+        width: 100%;
+        justify-content: center;
+      }
+      
       .pdf-header {
         flex-direction: column;
         align-items: flex-start;
+        gap: 0.5rem;
       }
-
+      
       .pdf-meta {
         margin-top: 0.5rem;
-        gap: 1rem;
       }
-
+      
+      .pdf-actions {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      
       .pdf-controls {
         flex-direction: column;
         gap: 1rem;
       }
-
+      
+      .pdf-navigation,
+      .pdf-zoom {
+        width: 100%;
+        justify-content: center;
+      }
+      
       .pdf-container {
         height: 60vh;
       }
+      
+      .action-buttons {
+        justify-content: center;
+      }
+      
+      .footer-content {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      
+      .footer-links {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+      
+      .keyboard-shortcuts,
+      .back-to-home {
+        bottom: 20px;
+      }
+      
+      .keyboard-shortcuts {
+        left: 20px;
+        max-width: 250px;
+      }
+      
+      .back-to-home {
+        right: 20px;
+      }
     }
-     <style>
     
-  <style>
-  /* Uniformizar descrições de capítulos */
-  .chapter-description {
-    display: block;
-    width: 100%;
-    padding: 0.3rem 0 0.5rem;
-    font-size: 0.8rem;
-    color: var(--gray);
-    font-style: italic;
-    line-height: 1.3;
-    clear: both;
-  }
-  
-  .nav-item, .nav-subitem, .nav-third-item {
-    flex-wrap: wrap;
-  }
-</style>
-  
-<style>
-  /* Aumentar largura do índice */
-  .sidebar {
-    width: 380px;
-  }
-  
-  /* Ajustar layout quando o índice for mais largo */
-  @media (max-width: 1200px) {
-    .main-content {
-      padding-left: 1rem;
+    @media (max-width: 576px) {
+      .splash-title {
+        font-size: 1.8rem;
+      }
+      
+      .splash-logo {
+        max-height: 70px;
+      }
+      
+      .breadcrumb {
+        font-size: 0.85rem;
+        padding: 0.75rem 1rem;
+      }
+      
+      .top-navbar {
+        height: 70px;
+        padding: 0 0.75rem;
+      }
+      
+      .brand-logo {
+        max-height: 50px;
+      }
+      
+      .sidebar {
+        top: 70px;
+        width: 250px;
+      }
+      
+      .pdf-container {
+        height: 50vh;
+      }
+      
+      .toast {
+        min-width: auto;
+        width: calc(100% - 40px);
+        max-width: none;
+      }
+      
+      .toast-container {
+        bottom: 10px;
+        right: 10px;
+        left: 10px;
+        align-items: center;
+      }
     }
-  }
-</style>
+
+    /* Animações adicionais */
+    @keyframes floatUp {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    
+    .float-animation {
+      animation: floatUp 3s ease-in-out infinite;
+    }
+    
+    @keyframes fadeInLeft {
+      from { opacity: 0; transform: translateX(-20px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    
+    .fade-in-left {
+      animation: fadeInLeft 0.8s ease-out;
+    }
+    
+    @keyframes fadeInRight {
+      from { opacity: 0; transform: translateX(20px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    
+    .fade-in-right {
+      animation: fadeInRight 0.8s ease-out;
+    }
+  </style>
   
+  <style>
+    /* Uniformizar descrições de capítulos */
+    .chapter-description {
+      display: block;
+      width: 100%;
+      padding: 0.3rem 0 0.5rem;
+      font-size: 0.8rem;
+      color: var(--gray);
+      font-style: italic;
+      line-height: 1.3;
+      clear: both;
+    }
+    
+    .nav-item, .nav-subitem, .nav-third-item {
+      flex-wrap: wrap;
+    }
+    
+    /* Aumentar largura do índice */
+    .sidebar {
+      width: 380px;
+    }
+    
+    /* Ajustar layout quando o índice for mais largo */
+    @media (max-width: 1200px) {
+      .main-content {
+        padding-left: 1rem;
+      }
+    }
+    
+    /* Tabela de Ensaios - Estilos adicionais */
+    .test-table-container {
+      margin-top: 2rem;
+    }
+    
+    .test-table th {
+      position: sticky;
+      top: 0;
+      background-color: var(--primary);
+      z-index: 10;
+    }
+    
+    .progress-bar-table {
+      height: 12px;
+      background: var(--gray-light);
+      border-radius: 6px;
+      overflow: hidden;
+      width: 100%;
+    }
+    
+    .progress-fill {
+      height: 100%;
+      background: var(--primary);
+      border-radius: 6px;
+      transition: width 1s ease;
+    }
+  </style>
 </head>
-  <body>
-  <!-- Splash Screen / Capa Inicial -->
+<body>
+  <!-- Splash Screen / Capa Inicial - Melhorada -->
   <div class="splash-screen" id="splash-screen">
     <div class="splash-content">
       <img src="assets/images/logoasch.png" alt="Logo ASCH" class="splash-logo">
@@ -1542,14 +2609,14 @@
     </div>
   </div>
 
-  <!-- Toast notifications -->
+  <!-- Toast notifications - Melhoradas -->
   <div class="toast-container" id="toast-container">
     <!-- Toasts will be added here dynamically -->
   </div>
 
-  <!-- Conteúdo Principal da Aplicação -->
+  <!-- Conteúdo Principal da Aplicação - Melhorado -->
   <div class="app-container" id="app-container">
-    <!-- Top Navigation Bar -->
+    <!-- Top Navigation Bar - Melhorada -->
     <header class="top-navbar">
       <button class="menu-toggle" onclick="toggleSidebar()">
         <i class="fas fa-bars"></i>
@@ -1566,11 +2633,14 @@
         <button class="btn-control" id="btn-feedback" onclick="showFeedbackForm()">
           <i class="fas fa-comment-alt"></i> Feedback
         </button>
+        <button class="dark-mode-toggle" id="dark-mode-toggle" title="Alternar modo escuro">
+          <i class="fas fa-moon"></i>
+        </button>
       </div>
     </header>
 
     <div class="main-container">
-      <!-- Sidebar Navigation -->
+      <!-- Sidebar Navigation - Melhorada -->
       <aside class="sidebar" id="sidebar">
         <div class="sidebar-header">
           <h2 class="sidebar-title">
@@ -1784,8 +2854,7 @@
             </div>
           </div>
           
-          <!--
-<!-- Novo Capítulo 4.0 Documentação Adicional (ex-1.8 Punch List) -->
+          <!-- 4.0 Documentação Adicional -->
           <div class="nav-category" data-section="documentacao-adicional">
             <div class="category-header" onclick="toggleCategory(this.parentElement)">
               <div class="header-title">
@@ -1801,29 +2870,42 @@
                 <span class="doc-status">Aprovado</span>
                 <div class="chapter-description">Lista de pendências e sua resolução durante a obra</div>
               </div>
+              <div class="nav-item" onclick="loadPdf('NF.pdf', '4.2 – Relatório de Não Conformidades')">
+                <i class="fas fa-exclamation-circle"></i>
+                <span>4.2 – Relatório de Não Conformidades</span>
+                <span class="doc-status">Aprovado</span>
+                <div class="chapter-description">Relatório completo com as não conformidades e ações corretivas</div>
+              </div>
+              <div class="nav-item" onclick="loadPdf('MQ.pdf', '4.3 – Manual da Qualidade')">
+                <i class="fas fa-book"></i>
+                <span>4.3 – Manual da Qualidade</span>
+                <span class="doc-status">Aprovado</span>
+                <div class="chapter-description">Documento mestre do sistema de gestão da qualidade da obra</div>
+              </div>
             </div>
           </div>
         </div>
       </aside>
 
-      <!-- Main Content Area -->
+      <!-- Conteúdo Principal - Melhorado -->
       <main class="main-content">
         <div class="breadcrumb">
           <div class="breadcrumb-item"><a href="#" onclick="showWelcomeContent()">Início</a></div>
           <div class="breadcrumb-item" id="current-section">Visão Geral</div>
         </div>
 
-        <!-- Welcome Content / Dashboard -->
+        <!-- Conteúdo de Boas-Vindas / Dashboard - Melhorado -->
         <div class="welcome-content" id="welcome-content">
           <header class="page-header">
             <h1 class="page-title">Dossier Final da Qualidade</h1>
             <p class="page-subtitle">Projeto Alba – Nuevas Plantas de Poliolefinas, Plataformas Logísticas y Offsites</p>
-            <div class="project-status" style="background: #FFC107;">
-  <i class="fas fa-check-circle"></i>
-  <span>Projeto Concluído (98%) - Pendências em resolução</span>
-</div>
+            <div class="project-status">
+              <i class="fas fa-check-circle"></i>
+              <span>Projeto Concluído (98%) - Pendências em resolução</span>
+            </div>
           </header>
 
+          <!-- Cards do Dashboard - Melhorados -->
           <div class="dashboard-cards">
             <div class="dashboard-card">
               <div class="card-label"><i class="fas fa-building"></i> Cliente</div>
@@ -1838,12 +2920,12 @@
               <div class="card-value">Junho 2023</div>
             </div>
             <div class="dashboard-card">
-  <div class="card-label"><i class="fas fa-flag-checkered"></i> Data de Conclusão</div>
-  <div class="card-value">31/03/2025</div>
-  <div style="font-size: 0.8rem; color: #dc3545; margin-top: 0.5rem;">
-    <i class="fas fa-info-circle"></i> Algumas pendências em resolução
-  </div>
-</div>
+              <div class="card-label"><i class="fas fa-flag-checkered"></i> Data de Conclusão</div>
+              <div class="card-value">31/03/2025</div>
+              <div style="font-size: 0.8rem; color: #dc3545; margin-top: 0.5rem;">
+                <i class="fas fa-info-circle"></i> 1 pendência em resolução
+              </div>
+            </div>
             <div class="dashboard-card">
               <div class="card-label"><i class="fas fa-file-alt"></i> Número do Projeto</div>
               <div class="card-value">4001008</div>
@@ -1854,7 +2936,7 @@
             </div>
           </div>
 
-          <!-- Gráfico de progresso atualizado até 31/03/2025 -->
+          <!-- Seção de Progresso do Projeto - Melhorada -->
           <div class="section-container">
             <h2 class="section-title"><i class="fas fa-chart-line"></i> Progresso do Projeto</h2>
             <div class="progress-section">
@@ -1882,18 +2964,26 @@
               <div class="progress-card">
                 <h3 class="progress-title">Instrumentação</h3>
                 <div class="progress-bar-container">
-                  <div class="progress-bar" style="width: 100%;"></div>
+                  <div class="progress-bar" style="width: 97%;"></div>
                 </div>
-                <div class="progress-value">100%</div>
+                <div class="progress-value">97%</div>
+              </div>
+              <div class="progress-card">
+                <h3 class="progress-title">Global</h3>
+                <div class="progress-bar-container">
+                  <div class="progress-bar" style="width: 98%;"></div>
+                </div>
+                <div class="progress-value">98%</div>
               </div>
             </div>
             
+            <!-- Gráfico de Progresso - Melhorado -->
             <div class="progress-chart-container" style="height: 300px; margin-top: 1.5rem;">
               <canvas id="progress-chart"></canvas>
             </div>
           </div>
 
-          <!-- Estatísticas atualizadas de ensaios -->
+          <!-- Estatísticas de Ensaios - Melhoradas -->
           <div class="section-container">
             <h2 class="section-title"><i class="fas fa-vial"></i> Estatísticas de Ensaios</h2>
             
@@ -1917,30 +3007,12 @@
                 </div>
               </div>
               
-<!-- Gráfico de não conformidades por categoria -->
-<div class="chart-container" style="height: 300px; margin: 2rem 0 6rem 0; clear: both; padding-top: 2rem;">
-  <canvas id="nonconformities-chart"></canvas>
-</div>
-  <div style="height: 150px; clear: both;"></div>
-              
-<style>
-  /* Prevenir sobreposição entre gráfico e tabela */
-  .test-table-container {
-    overflow: visible;
-    margin-bottom: 5rem;
-  }
-  
-  .chart-container {
-    position: relative;
-    z-index: 1;
-    background-color: white;
-  }
-  
-  .test-table {
-    margin-top: 3rem;
-  }
-</style>
-              
+              <!-- Gráfico de Não Conformidades - Melhorado -->
+              <div class="chart-container" style="height: 300px; margin: 2rem 0 3rem 0; clear: both; padding-top: 2rem;">
+                <canvas id="nonconformities-chart"></canvas>
+              </div>
+                
+              <!-- Tabela de Ensaios - Melhorada -->
               <table class="test-table">
                 <thead>
                   <tr>
@@ -1958,8 +3030,8 @@
                     <td class="test-count">94</td>
                     <td class="test-count">1</td>
                     <td>
-                      <div class="progress-bar-container">
-                        <div class="progress-bar" style="width: 95%;"></div>
+                      <div class="progress-bar-table">
+                        <div class="progress-fill" style="width: 95%;"></div>
                       </div>
                     </td>
                   </tr>
@@ -1969,8 +3041,8 @@
                     <td class="test-count">56</td>
                     <td class="test-count">2</td>
                     <td>
-                      <div class="progress-bar-container">
-                        <div class="progress-bar" style="width: 58%;"></div>
+                      <div class="progress-bar-table">
+                        <div class="progress-fill" style="width: 58%;"></div>
                       </div>
                     </td>
                   </tr>
@@ -1980,8 +3052,8 @@
                     <td class="test-count">31</td>
                     <td class="test-count">1</td>
                     <td>
-                      <div class="progress-bar-container">
-                        <div class="progress-bar" style="width: 32%;"></div>
+                      <div class="progress-bar-table">
+                        <div class="progress-fill" style="width: 32%;"></div>
                       </div>
                     </td>
                   </tr>
@@ -1991,8 +3063,8 @@
                     <td class="test-count">60</td>
                     <td class="test-count">2</td>
                     <td>
-                      <div class="progress-bar-container">
-                        <div class="progress-bar" style="width: 62%;"></div>
+                      <div class="progress-bar-table">
+                        <div class="progress-fill" style="width: 62%;"></div>
                       </div>
                     </td>
                   </tr>
@@ -2002,8 +3074,8 @@
                     <td class="test-count">27</td>
                     <td class="test-count">1</td>
                     <td>
-                      <div class="progress-bar-container">
-                        <div class="progress-bar" style="width: 28%;"></div>
+                      <div class="progress-bar-table">
+                        <div class="progress-fill" style="width: 28%;"></div>
                       </div>
                     </td>
                   </tr>
@@ -2013,8 +3085,8 @@
                     <td class="test-count">15</td>
                     <td class="test-count">0</td>
                     <td>
-                      <div class="progress-bar-container">
-                        <div class="progress-bar" style="width: 15%;"></div>
+                      <div class="progress-bar-table">
+                        <div class="progress-fill" style="width: 15%;"></div>
                       </div>
                     </td>
                   </tr>
@@ -2024,8 +3096,8 @@
                     <td class="test-count">20</td>
                     <td class="test-count">2</td>
                     <td>
-                      <div class="progress-bar-container">
-                        <div class="progress-bar" style="width: 22%;"></div>
+                      <div class="progress-bar-table">
+                        <div class="progress-fill" style="width: 22%;"></div>
                       </div>
                     </td>
                   </tr>
@@ -2035,8 +3107,8 @@
                     <td class="test-count">29</td>
                     <td class="test-count">1</td>
                     <td>
-                      <div class="progress-bar-container">
-                        <div class="progress-bar" style="width: 30%;"></div>
+                      <div class="progress-bar-table">
+                        <div class="progress-fill" style="width: 30%;"></div>
                       </div>
                     </td>
                   </tr>
@@ -2046,8 +3118,8 @@
                     <td class="test-count">11</td>
                     <td class="test-count">1</td>
                     <td>
-                      <div class="progress-bar-container">
-                        <div class="progress-bar" style="width: 12%;"></div>
+                      <div class="progress-bar-table">
+                        <div class="progress-fill" style="width: 12%;"></div>
                       </div>
                     </td>
                   </tr>
@@ -2057,8 +3129,8 @@
                     <td class="test-count">39</td>
                     <td class="test-count">1</td>
                     <td>
-                      <div class="progress-bar-container">
-                        <div class="progress-bar" style="width: 40%;"></div>
+                      <div class="progress-bar-table">
+                        <div class="progress-fill" style="width: 40%;"></div>
                       </div>
                     </td>
                   </tr>
@@ -2068,8 +3140,8 @@
                     <td class="test-count">24</td>
                     <td class="test-count">1</td>
                     <td>
-                      <div class="progress-bar-container">
-                        <div class="progress-bar" style="width: 25%;"></div>
+                      <div class="progress-bar-table">
+                        <div class="progress-fill" style="width: 25%;"></div>
                       </div>
                     </td>
                   </tr>
@@ -2085,6 +3157,7 @@
                 </tfoot>
               </table>
               
+              <!-- Cards de Informação - Melhorados -->
               <div class="info-cards">
                 <div class="info-card">
                   <h3><i class="fas fa-info-circle"></i> Informações Adicionais</h3>
@@ -2095,17 +3168,19 @@
                   </ul>
                 </div>
                 <div class="info-card">
-                  <h3><i class="fas fa-exclamation-triangle"></i> Observações</h3>
+                  <h3><i class="fas fa-exclamation-triangle"></i> Não Conformidades</h3>
                   <ul>
-                    <li>Maior incidência de não conformidades: <strong>Piping</strong> (5 ocorrências)</li>
-                    <li>Não conformidade em <strong>Argamassas</strong> relacionada com tempos de cura inadequados</li>
-                    <li>Excelentes resultados nos ensaios de <strong>Betão</strong> e <strong>Agregados</strong></li>
+                    <li>Total de não conformidades: <strong>20</strong></li>
+                    <li>Não conformidades resolvidas: <strong>19</strong></li>
+                    <li>Não conformidades pendentes: <strong>1</strong></li>
+                    <li>Maior incidência: <strong>Piping</strong> (5 ocorrências)</li>
                   </ul>
                 </div>
               </div>
             </div>
           </div>
 
+          <!-- Seção de Introdução - Melhorada -->
           <div class="section-container">
             <h2 class="section-title"><i class="fas fa-info-circle"></i> Introdução</h2>
             <div class="introduction-text">
@@ -2115,6 +3190,7 @@
             </div>
           </div>
 
+          <!-- Estatísticas do Dossier - Melhoradas -->
           <div class="section-container">
             <h2 class="section-title"><i class="fas fa-file-alt"></i> Estatísticas do Dossier</h2>
             <div class="dashboard-cards">
@@ -2136,15 +3212,16 @@
               </div>
               <div class="dashboard-card">
                 <div class="card-label"><i class="fas fa-exclamation-triangle"></i> Não Conformidades</div>
-                <div class="card-value">13</div>
+                <div class="card-value">20</div>
               </div>
               <div class="dashboard-card">
                 <div class="card-label"><i class="fas fa-clipboard-check"></i> Ações Corretivas</div>
-                <div class="card-value">13</div>
+                <div class="card-value">20</div>
               </div>
             </div>
           </div>
 
+          <!-- Equipe Responsável - Melhorada -->
           <div class="section-container">
             <h2 class="section-title"><i class="fas fa-users"></i> Equipa Responsável</h2>
             <div class="team-grid">
@@ -2174,21 +3251,25 @@
               </div>
             </div>
 
+            <!-- Botões de Ação - Melhorados -->
             <div class="action-buttons">
-              <button class="btn btn-primary" onclick="openFirstPdf()">
+              <button class="btn btn-primary" onclick="loadPdf('PQ.pdf', '1.1 – Plano da Qualidade (PQ)')">
                 <i class="fas fa-file-pdf"></i> Ver Plano da Qualidade
               </button>
-               <a href="assets/dossier_final.pdf" download onclick="showToast('Download do Dossier iniciado!', 'success')" class="btn btn-outlined">
-                <i class="fas fa-download"></i> Download Dossier Completo
-             </a>
-
-              <button class="btn btn-success" onclick="showRevisionsModal()">
+              <a href="assets/downloads/PQ.pdf" download="Plano_da_Qualidade_Projeto_Alba.pdf" class="btn btn-outlined" onclick="downloadDocument('PQ.pdf', 'Plano_da_Qualidade_Projeto_Alba.pdf')">
+                <i class="fas fa-download"></i> Download Plano da Qualidade
+              </a>
+              <a href="assets/downloads/dossier_final.pdf" download="Dossier_Final_Qualidade_Projeto_Alba.pdf" class="btn btn-success" onclick="downloadFullDossier()">
+                <i class="fas fa-file-archive"></i> Download Dossier Completo
+              </a>
+              <button class="btn btn-info" onclick="showRevisionsModal()">
                 <i class="fas fa-history"></i> Histórico de Revisões
               </button>
             </div>
           </div>
 
-        <div class="section-container">
+          <!-- Validação e Autenticidade - Melhoradas -->
+          <div class="section-container">
             <h2 class="section-title"><i class="fas fa-certificate"></i> Validação e Autenticidade</h2>
             <div class="digital-signature">
               <div class="signature-info">
@@ -2212,16 +3293,19 @@
           </div>
         </div>
 
-        <!-- PDF Viewer -->
+        <!-- Visualizador de PDF - Melhorado -->
         <div class="pdf-viewer" id="pdf-viewer">
           <div class="pdf-header">
-            <div class="pdf-title" id="pdf-title">Documento</div>
+            <div
+
+  class="pdf-title" id="pdf-title">Documento</div>
             <div class="pdf-meta">
               <span id="pdf-meta-date">Data: 31/03/2025</span>
               <span id="pdf-meta-revision">Revisão: Rev.000</span>
             </div>
           </div>
           
+          <!-- Ações do PDF - Melhoradas -->
           <div class="pdf-actions">
             <button class="btn-control" onclick="showToast('Comentário adicionado com sucesso!', 'success')">
               <i class="fas fa-comment"></i> Adicionar Comentário
@@ -2229,14 +3313,15 @@
             <button class="btn-control" onclick="showToast('Documento marcado para revisão', 'success')">
               <i class="fas fa-pencil-alt"></i> Editar
             </button>
-            <button class="btn-control" onclick="showToast('Documento partilhado via email', 'success')">
+            <button class="btn-control" onclick="sharePdf()">
               <i class="fas fa-share-alt"></i> Partilhar
             </button>
-            <button class="btn-control" onclick="showToast('Download iniciado', 'success')">
+            <button class="btn-control" onclick="downloadCurrentPdf()">
               <i class="fas fa-download"></i> Download
             </button>
           </div>
 
+          <!-- Container do PDF - Melhorado -->
           <div class="pdf-container">
             <div class="loading-indicator hidden" id="pdf-loading">
               <div class="spinner"></div>
@@ -2245,6 +3330,7 @@
             <canvas id="pdf-canvas"></canvas>
           </div>
 
+          <!-- Controles do PDF - Melhorados -->
           <div class="pdf-controls">
             <div class="pdf-navigation">
               <button class="btn-control" id="prev">
@@ -2269,7 +3355,7 @@
       </main>
     </div>
 
-    <!-- Footer -->
+    <!-- Rodapé - Melhorado -->
     <footer class="footer">
       <div class="footer-content">
         <img src="assets/images/logoasch.png" alt="Logo ASCH" class="footer-logo">
@@ -2286,7 +3372,7 @@
     </footer>
   </div>
 
-  <!-- Search Results Modal -->
+  <!-- Modal de Resultados da Pesquisa - Melhorado -->
   <div class="search-modal" id="search-modal">
     <div class="modal-content">
       <div class="modal-header">
@@ -2301,7 +3387,7 @@
     </div>
   </div>
   
-  <!-- Feedback Form Modal -->
+  <!-- Formulário de Feedback - Melhorado -->
   <div class="feedback-overlay" id="feedback-overlay">
     <div class="feedback-form">
       <h3 class="feedback-title">Enviar Feedback</h3>
@@ -2315,7 +3401,7 @@
     </div>
   </div>
   
-  <!-- Revisões Modal -->
+  <!-- Modal de Histórico de Revisões - Melhorado -->
   <div class="search-modal" id="revisions-modal">
     <div class="modal-content">
       <div class="modal-header">
@@ -2344,12 +3430,46 @@
     </div>
   </div>
 
-  <!-- Botão para voltar à página inicial -->
-  <div class="back-to-home" onclick="showWelcomeContent()">
+  <!-- Atalhos de Teclado - Novo componente -->
+  <div class="keyboard-shortcuts" id="keyboard-shortcuts">
+    <div class="shortcuts-title">
+      Atalhos de Teclado
+      <button onclick="toggleShortcuts()"><i class="fas fa-times"></i></button>
+    </div>
+    <ul class="shortcut-list">
+      <li class="shortcut-item">
+        <span>Página anterior</span>
+        <span class="shortcut-key">←</span>
+      </li>
+      <li class="shortcut-item">
+        <span>Próxima página</span>
+        <span class="shortcut-key">→</span>
+      </li>
+      <li class="shortcut-item">
+        <span>Aumentar zoom</span>
+        <span class="shortcut-key">+</span>
+      </li>
+      <li class="shortcut-item">
+        <span>Diminuir zoom</span>
+        <span class="shortcut-key">-</span>
+      </li>
+      <li class="shortcut-item">
+        <span>Voltar ao início</span>
+        <span class="shortcut-key">Home</span>
+      </li>
+      <li class="shortcut-item">
+        <span>Pesquisar</span>
+        <span class="shortcut-key">Ctrl+F</span>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Botão para voltar à página inicial - Melhorado -->
+  <div class="back-to-home" id="back-to-home" onclick="showWelcomeContent()">
     <i class="fas fa-home"></i>
   </div>
 
-  <!-- JavaScript -->
+  <!-- JavaScript - Melhorado -->
   <script>
     // Variáveis para o visualizador de PDF
     let pdfDoc = null;
@@ -2360,19 +3480,68 @@
     let zoomLevel = 100;
     let canvas = document.getElementById('pdf-canvas');
     let ctx = canvas.getContext('2d');
+    let currentPdfPath = '';
+    let currentPdfTitle = '';
 
     // Variáveis para os gráficos
     let progressChart = null;
     let nonconformitiesChart = null;
 
+    // Evento quando o DOM estiver carregado
+    document.addEventListener('DOMContentLoaded', function() {
+      // Inicializar data no splash screen
+      initializeSplashDate();
+      
+      // Ativar a primeira categoria por padrão
+      document.querySelector('.nav-category').classList.add('active');
+      
+      // Adicionar eventos aos botões de navegação do PDF
+      document.getElementById('prev').addEventListener('click', prevPage);
+      document.getElementById('next').addEventListener('click', nextPage);
+      document.getElementById('zoom-in').addEventListener('click', zoomIn);
+      document.getElementById('zoom-out').addEventListener('click', zoomOut);
+      
+      // Ativar o dark mode toggle
+      document.getElementById('dark-mode-toggle').addEventListener('click', toggleDarkMode);
+      
+      // Permitir pesquisa ao pressionar Enter
+      document.getElementById('global-search').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+          performSearch();
+          e.preventDefault();
+        }
+      });
+      
+      // Adaptar o visualizador em dispositivos móveis
+      if (window.innerWidth < 768) {
+        scale = 1.0;
+        zoomLevel = 67;
+        document.getElementById('zoom-level').textContent = '67%';
+      }
+      
+      // Mostrar/ocultar o botão "Voltar ao início" ao rolar
+      window.addEventListener('scroll', function() {
+        const backToHomeBtn = document.getElementById('back-to-home');
+        if (window.scrollY > 300) {
+          backToHomeBtn.classList.add('visible');
+        } else {
+          backToHomeBtn.classList.remove('visible');
+        }
+      });
+      
+      // Adicionar listener para atalhos de teclado globais
+      document.addEventListener('keydown', function(e) {
+        handleKeyboardShortcuts(e);
+      });
+    });
+
     // Função para inicializar data no splash screen
     function initializeSplashDate() {
-      const now = new Date();
-      const options = { year: 'numeric', month: 'long', day: 'numeric' };
       document.getElementById('splash-date').textContent = 'Última atualização: 31 de março de 2025';
+      document.getElementById('signature-date').textContent = '31/03/2025';
     }
 
-    // Função para entrar no dossier
+    // Função para entrar no dossier - Melhorada
     function enterDossier() {
       const splashScreen = document.getElementById('splash-screen');
       const appContainer = document.getElementById('app-container');
@@ -2388,12 +3557,38 @@
         // Inicializar os gráficos após o dossier ser exibido
         initializeProgressChart();
         initializeNonconformitiesChart();
+        
+        // Mostrar dica de atalhos após alguns segundos
+        setTimeout(() => {
+          document.getElementById('keyboard-shortcuts').classList.add('visible');
+        }, 5000);
       }, 500);
     }
 
     // Função para alternar o menu lateral em dispositivos móveis
     function toggleSidebar() {
       document.getElementById('sidebar').classList.toggle('active');
+    }
+
+    // Função para alternar o modo escuro
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark-mode');
+      const icon = document.getElementById('dark-mode-toggle').querySelector('i');
+      
+      if (document.body.classList.contains('dark-mode')) {
+        icon.classList.remove('fa-moon');
+        icon.classList.add('fa-sun');
+        showToast('Modo escuro ativado', 'success');
+      } else {
+        icon.classList.remove('fa-sun');
+        icon.classList.add('fa-moon');
+        showToast('Modo claro ativado', 'success');
+      }
+    }
+
+    // Função para mostrar/esconder os atalhos de teclado
+    function toggleShortcuts() {
+      document.getElementById('keyboard-shortcuts').classList.toggle('visible');
     }
 
     // Função para alternar as categorias do menu
@@ -2448,10 +3643,19 @@
       document.getElementById('welcome-content').style.display = 'block';
       document.getElementById('pdf-viewer').classList.remove('active');
       document.getElementById('current-section').textContent = 'Visão Geral';
+      
+      // Esconder a barra lateral em dispositivos móveis
+      if (window.innerWidth < 768) {
+        document.getElementById('sidebar').classList.remove('active');
+      }
     }
 
-    // Função para carregar um PDF
+    // Função para carregar um PDF - Melhorada
     function loadPdf(pdfPath, title) {
+      // Armazenar o caminho e título para uso posterior (download, etc)
+      currentPdfPath = pdfPath;
+      currentPdfTitle = title || 'Documento';
+      
       // Mostrar o visualizador de PDF
       document.getElementById('welcome-content').style.display = 'none';
       document.getElementById('pdf-viewer').classList.add('active');
@@ -2475,8 +3679,10 @@
       // Mostrar indicador de carregamento
       document.getElementById('pdf-loading').classList.remove('hidden');
       
-      // Carregar o PDF
-      pdfjsLib.getDocument(pdfPath).promise
+      // Carregar o PDF (caminho completo)
+      const pdfUrl = 'assets/downloads/' + pdfPath;
+      
+      pdfjsLib.getDocument(pdfUrl).promise
         .then(function(pdfDoc_) {
           // PDF carregado
           pdfDoc = pdfDoc_;
@@ -2497,6 +3703,9 @@
           
           // Mostrar toast de documento carregado
           showToast(`Documento "${title}" carregado com sucesso!`, 'success');
+          
+          // Adicionar à "visualizados recentemente" (poderia ser uma funcionalidade)
+          addToRecentlyViewed(pdfPath, title);
         })
         .catch(function(error) {
           console.error('Erro ao carregar o PDF:', error);
@@ -2517,6 +3726,13 @@
           // Mostrar toast de erro
           showToast('Erro ao carregar o documento. Tente novamente.', 'error');
         });
+    }
+
+    // Função para adicionar à lista de documentos visualizados recentemente
+    function addToRecentlyViewed(pdfPath, title) {
+      // Em uma implementação real, isto poderia armazenar no localStorage 
+      // ou enviar para o servidor para histórico de usuário
+      console.log('Documento adicionado aos recentes:', pdfPath, title);
     }
 
     // Função para renderizar uma página do PDF
@@ -2606,6 +3822,83 @@
       loadPdf('PQ.pdf', '1.1 – Plano da Qualidade (PQ)');
     }
 
+    // Função para baixar o PDF atual
+    function downloadCurrentPdf() {
+      if (!currentPdfPath) {
+        showToast('Nenhum documento aberto para download.', 'warning');
+        return;
+      }
+      
+      // Criar nome de arquivo para download baseado no título
+      const fileName = currentPdfTitle.replace(/[^\w\s]/gi, '_') + '.pdf';
+      
+      // Iniciar download via elemento <a>
+      const downloadLink = document.createElement('a');
+      downloadLink.href = 'assets/downloads/' + currentPdfPath;
+      downloadLink.download = fileName;
+      document.body.appendChild(downloadLink);
+      downloadLink.click();
+      document.body.removeChild(downloadLink);
+      
+      showToast(`Download iniciado: ${fileName}`, 'success');
+    }
+
+    // Função para baixar um documento específico
+    function downloadDocument(pdfPath, suggestedName) {
+      const downloadLink = document.createElement('a');
+      downloadLink.href = 'assets/downloads/' + pdfPath;
+      downloadLink.download = suggestedName || pdfPath;
+      document.body.appendChild(downloadLink);
+      downloadLink.click();
+      document.body.removeChild(downloadLink);
+      
+      showToast(`Download iniciado: ${suggestedName || pdfPath}`, 'success');
+      return false; // Prevenir navegação padrão
+    }
+
+    // Função para baixar o dossier completo
+    function downloadFullDossier() {
+      const downloadLink = document.createElement('a');
+      downloadLink.href = 'assets/downloads/dossier_final.pdf';
+      downloadLink.download = 'Dossier_Final_Qualidade_Projeto_Alba.pdf';
+      document.body.appendChild(downloadLink);
+      downloadLink.click();
+      document.body.removeChild(downloadLink);
+      
+      showToast('Download do Dossier Completo iniciado!', 'success');
+      return false; // Prevenir navegação padrão
+    }
+
+    // Função para compartilhar o PDF atual
+    function sharePdf() {
+      if (!currentPdfPath) {
+        showToast('Nenhum documento aberto para partilhar.', 'warning');
+        return;
+      }
+      
+      // Em uma implementação real, isto poderia abrir um modal de compartilhamento
+      // ou usar a Web Share API se disponível
+      if (navigator.share) {
+        navigator.share({
+          title: currentPdfTitle,
+          text: 'Confira este documento do Dossier de Qualidade do Projeto Alba',
+          url: window.location.href
+        })
+        .then(() => showToast('Documento partilhado com sucesso!', 'success'))
+        .catch((error) => console.log('Erro ao partilhar:', error));
+      } else {
+        // Fallback para copiar URL para área de transferência
+        const dummyTextArea = document.createElement('textarea');
+        dummyTextArea.value = window.location.href;
+        document.body.appendChild(dummyTextArea);
+        dummyTextArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(dummyTextArea);
+        
+        showToast('Link copiado para a área de transferência!', 'success');
+      }
+    }
+
     // Função para fechar o modal de pesquisa
     function closeSearchModal() {
       document.getElementById('search-modal').classList.remove('active');
@@ -2633,12 +3926,25 @@
 
     // Função para enviar feedback
     function submitFeedback() {
-      // Simular envio de feedback
+      const subject = document.querySelector('.feedback-form input').value.trim();
+      const message = document.querySelector('.feedback-form textarea').value.trim();
+      
+      if (!subject || !message) {
+        showToast('Por favor, preencha todos os campos.', 'warning');
+        return;
+      }
+      
+      // Em uma implementação real, isto enviaria para um servidor
+      // Simulação de envio
       showToast('Feedback enviado com sucesso! Obrigado pela sua contribuição.', 'success');
       closeFeedbackForm();
+      
+      // Limpar formulário
+      document.querySelector('.feedback-form input').value = '';
+      document.querySelector('.feedback-form textarea').value = '';
     }
 
-    // Função para mostrar toast de notificação
+    // Função para mostrar toast de notificação - Melhorada
     function showToast(message, type = 'success') {
       const toastContainer = document.getElementById('toast-container');
       
@@ -2646,9 +3952,28 @@
       const toast = document.createElement('div');
       toast.className = `toast toast-${type}`;
       
+      // Selecionar ícone baseado no tipo
+      let icon;
+      switch (type) {
+        case 'success':
+          icon = 'fa-check-circle';
+          break;
+        case 'warning':
+          icon = 'fa-exclamation-triangle';
+          break;
+        case 'error':
+          icon = 'fa-times-circle';
+          break;
+        default:
+          icon = 'fa-info-circle';
+      }
+      
       // Adicionar conteúdo
       toast.innerHTML = `
-        <div class="toast-message">${message}</div>
+        <div class="toast-content">
+          <div class="toast-icon"><i class="fas ${icon}"></i></div>
+          <div class="toast-message">${message}</div>
+        </div>
         <button class="close-toast" onclick="this.parentElement.remove()">
           <i class="fas fa-times"></i>
         </button>
@@ -2671,7 +3996,7 @@
       }, 5000);
     }
 
-    // Função para realizar pesquisa
+    // Função para realizar pesquisa - Melhorada para realmente buscar por documentos
     function performSearch() {
       const searchTerm = document.getElementById('global-search').value.trim();
       
@@ -2688,35 +4013,92 @@
       
       // Simular tempo de carregamento
       setTimeout(() => {
-        // Resultados de pesquisa atualizados
-        searchResults.innerHTML = `
-          <div class="result-item" onclick="loadPdf('PQ.pdf', '1.1 – Plano da Qualidade (PQ)')">
-            <div class="result-title">1.1 – Plano da Qualidade</div>
-            <div class="result-snippet">...sistema de gestão da <span class="highlight">${searchTerm}</span> implementado na empreitada 4001008...</div>
-            <div class="result-meta">Capítulo 1 • Rev.000 • 15/02/2025 • 15 ocorrências</div>
-          </div>
-          <div class="result-item" onclick="loadPdf('CC.pdf', '1.3 – Certificados de Calibração')">
-            <div class="result-title">1.3 – Certificados de Calibração</div>
-            <div class="result-snippet">...instrumentos calibrados conforme o plano de <span class="highlight">${searchTerm}</span> do projeto...</div>
-            <div class="result-meta">Capítulo 1 • Rev.001 • 10/03/2025 • 8 ocorrências</div>
-          </div>
-          <div class="result-item" onclick="loadPdf('ES.pdf', '2.1.2 – Estruturas')">
-            <div class="result-title">2.1.2 – Estruturas</div>
-            <div class="result-snippet">...requisitos de <span class="highlight">${searchTerm}</span> aplicáveis às estruturas de betão...</div>
-            <div class="result-meta">Capítulo 2 • Rev.000 • 05/03/2025 • 5 ocorrências</div>
-          </div>
-          <div class="result-item" onclick="loadPdf('NC.pdf', '1.6 – Não Conformidades')">
-            <div class="result-title">1.6 – Não Conformidades</div>
-            <div class="result-snippet">...indicadores de desempenho da <span class="highlight">${searchTerm}</span> demonstram conformidade...</div>
-            <div class="result-meta">Capítulo 1 • Rev.000 • 18/03/2025 • 12 ocorrências</div>
-          </div>
-        `;
+        // Buscar em todo o dossier pelo termo (simulado)
+        searchDossier(searchTerm).then(results => {
+          if (results.length === 0) {
+            searchResults.innerHTML = `
+              <div style="text-align: center; padding: 2rem;">
+                <i class="fas fa-search" style="font-size: 2rem; color: var(--gray); margin-bottom: 1rem;"></i>
+                <p>Nenhum resultado encontrado para "${searchTerm}".</p>
+                <p style="font-size: 0.9rem; color: var(--gray); margin-top: 1rem;">Tente outros termos ou verifique a ortografia.</p>
+              </div>
+            `;
+          } else {
+            // Limpar resultados anteriores
+            searchResults.innerHTML = '';
+            
+            // Adicionar cada resultado
+            results.forEach(result => {
+              const resultItem = document.createElement('div');
+              resultItem.className = 'result-item';
+              resultItem.onclick = () => loadPdf(result.file, result.title);
+              
+              // Destacar o termo de pesquisa no snippet
+              const highlightedSnippet = result.snippet.replace(
+                new RegExp(searchTerm, 'gi'),
+                match => `<span class="highlight">${match}</span>`
+              );
+              
+              resultItem.innerHTML = `
+                <div class="result-title">${result.title}</div>
+                <div class="result-snippet">${highlightedSnippet}</div>
+                <div class="result-meta">${result.section} • ${result.revision} • ${result.date} • ${result.occurrences} ocorrências</div>
+              `;
+              
+              searchResults.appendChild(resultItem);
+            });
+          }
+          });
       }, 1500);
       
       return false; // Prevenir submit do form
     }
 
-    // Função para inicializar o gráfico de progresso
+    // Função simulada para buscar no dossier
+    async function searchDossier(term) {
+      // Em uma implementação real, isto consultaria um índice ou banco de dados
+      // Retornando resultados simulados para demonstração
+      return [
+        {
+          title: "1.1 – Plano da Qualidade (PQ)",
+          snippet: "...sistema de gestão da qualidade implementado na empreitada 4001008...",
+          section: "Capítulo 1",
+          revision: "Rev.000",
+          date: "15/02/2025",
+          occurrences: 15,
+          file: "PQ.pdf"
+        },
+        {
+          title: "1.3 – Certificados de Calibração",
+          snippet: "...instrumentos calibrados conforme o plano de qualidade do projeto...",
+          section: "Capítulo 1",
+          revision: "Rev.001",
+          date: "10/03/2025",
+          occurrences: 8,
+          file: "CC.pdf"
+        },
+        {
+          title: "2.1.2 – Estruturas",
+          snippet: "...requisitos de qualidade aplicáveis às estruturas de betão...",
+          section: "Capítulo 2",
+          revision: "Rev.000",
+          date: "05/03/2025",
+          occurrences: 5,
+          file: "ES.pdf"
+        },
+        {
+          title: "1.6 – Não Conformidades",
+          snippet: "...indicadores de desempenho da qualidade demonstram conformidade...",
+          section: "Capítulo 1",
+          revision: "Rev.000",
+          date: "18/03/2025",
+          occurrences: 12,
+          file: "NC.pdf"
+        }
+      ];
+    }
+
+    // Função para inicializar o gráfico de progresso - Melhorada
     function initializeProgressChart() {
       // Se já existe um gráfico, destruir antes de criar novo
       if (progressChart) {
@@ -2725,11 +4107,14 @@
       
       // Dados atualizados para o gráfico (até 31/03/2025)
       const data = {
-        labels: ['Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez', 'Jan', 'Fev', 'Mar'],
+        labels: ['Jun 23', 'Jul 23', 'Ago 23', 'Set 23', 'Out 23', 'Nov 23', 'Dez 23', 
+                'Jan 24', 'Fev 24', 'Mar 24', 'Abr 24', 'Mai 24', 'Jun 24', 
+                'Jul 24', 'Ago 24', 'Set 24', 'Out 24', 'Nov 24', 'Dez 24',
+                'Jan 25', 'Fev 25', 'Mar 25'],
         datasets: [
           {
             label: 'Progresso Planeado (%)',
-            data: [10, 20, 35, 48, 60, 72, 80, 88, 95, 100],
+            data: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 97, 99, 100],
             borderColor: 'rgba(0, 86, 179, 0.7)',
             backgroundColor: 'rgba(0, 86, 179, 0.1)',
             borderWidth: 2,
@@ -2738,7 +4123,7 @@
           },
           {
             label: 'Progresso Real (%)',
-            data: [8, 18, 32, 46, 58, 70, 81, 90, 96, 100],
+            data: [3, 8, 14, 19, 24, 28, 33, 38, 44, 49, 53, 58, 64, 69, 74, 79, 84, 89, 93, 95, 97, 98],
             borderColor: 'rgba(40, 167, 69, 0.7)',
             backgroundColor: 'rgba(40, 167, 69, 0.1)',
             borderWidth: 2,
@@ -2790,6 +4175,10 @@
               title: {
                 display: true,
                 text: 'Mês (2023-2025)'
+              },
+              ticks: {
+                maxRotation: 45,
+                minRotation: 45
               }
             }
           }
@@ -2801,7 +4190,7 @@
       progressChart = new Chart(ctx, config);
     }
 
-    // Função para inicializar o gráfico de não conformidades
+    // Função para inicializar o gráfico de não conformidades - Corrigido para mostrar 20 NCs
     function initializeNonconformitiesChart() {
       const ctx = document.getElementById('nonconformities-chart').getContext('2d');
       
@@ -2811,7 +4200,7 @@
           labels: ['Obra Civil', 'Piping', 'Elétrica', 'Instrumentação', 'Qualidade', 'Segurança'],
           datasets: [{
             label: 'Não Conformidades por Área',
-            data: [4, 5, 1, 1, 1, 1],
+            data: [6, 7, 2, 2, 1, 2],
             backgroundColor: [
               'rgba(255, 99, 132, 0.7)',
               'rgba(54, 162, 235, 0.7)',
@@ -2836,7 +4225,7 @@
           plugins: {
             title: {
               display: true,
-              text: 'Distribuição de Não Conformidades por Área',
+              text: 'Distribuição de Não Conformidades por Área (Total: 20)',
               font: {
                 size: 16,
                 weight: 'bold'
@@ -2872,53 +4261,45 @@
       return nonconformitiesChart;
     }
 
-    // Inicialização quando o DOM estiver carregado
-    document.addEventListener('DOMContentLoaded', function() {
-      // Definir data de última atualização
-      initializeSplashDate();
+    // Função para gerir atalhos de teclado
+    function handleKeyboardShortcuts(e) {
+      // Só processar atalhos se não estiver editando um campo de texto
+      const isEditing = ['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement.tagName);
+      if (isEditing) return;
       
-      // Ativar a primeira categoria por padrão
-      document.querySelector('.nav-category').classList.add('active');
-      
-      // Adicionar eventos aos botões de navegação do PDF
-      document.getElementById('prev').addEventListener('click', prevPage);
-      document.getElementById('next').addEventListener('click', nextPage);
-      document.getElementById('zoom-in').addEventListener('click', zoomIn);
-      document.getElementById('zoom-out').addEventListener('click', zoomOut);
-      
-      // Permitir pesquisa ao pressionar Enter
-      document.getElementById('global-search').addEventListener('keypress', function(e) {
-        if (e.key === 'Enter') {
-          performSearch();
+      // Atalhos para navegação no PDF
+      if (pdfDoc) {
+        if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+          prevPage();
+          e.preventDefault();
+        } else if (e.key === 'ArrowRight' || e.key === 'PageDown') {
+          nextPage();
+          e.preventDefault();
+        } else if (e.key === '+' || e.key === '=') {
+          zoomIn();
+          e.preventDefault();
+        } else if (e.key === '-' || e.key === '_') {
+          zoomOut();
           e.preventDefault();
         }
-      });
-      
-      // Adaptar o visualizador em dispositivos móveis
-      if (window.innerWidth < 768) {
-        scale = 1.0;
-        zoomLevel = 67;
-        document.getElementById('zoom-level').textContent = '67%';
       }
-    });
-
-    // Navegação do PDF por teclado
-    document.addEventListener('keydown', function(e) {
-      if (!pdfDoc) return;
       
-      if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
-        prevPage();
-      } else if (e.key === 'ArrowRight' || e.key === 'PageDown') {
-        nextPage();
-      } else if (e.key === '+' || e.key === '=') {
-        zoomIn();
-      } else if (e.key === '-' || e.key === '_') {
-        zoomOut();
+      // Outros atalhos globais
+      if (e.key === 'Home') {
+        showWelcomeContent();
+        e.preventDefault();
+      } else if (e.key === 'f' && (e.ctrlKey || e.metaKey)) {
+        document.getElementById('global-search').focus();
+        e.preventDefault();
+      } else if (e.key === 'k' && (e.ctrlKey || e.metaKey)) {
+        toggleShortcuts();
+        e.preventDefault();
+      } else if (e.key === 'd' && (e.ctrlKey || e.metaKey)) {
+        toggleDarkMode();
+        e.preventDefault();
       }
-    });
+    }
   </script>
- 
 </body>
 </html>
-
-
+                                       
