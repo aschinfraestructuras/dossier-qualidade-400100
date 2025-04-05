@@ -2883,10 +2883,28 @@ document.addEventListener('keydown', function(e) {
     zoomOut();
   }
 });
+      
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  window.enterDossier = function () {
+    const splashScreen = document.getElementById('splash-screen');
+    const appContainer = document.getElementById('app-container');
 
-  <script>
-  window.enterDossier = enterDossier;
-</script>  
-    
+    // Animação de saída
+    splashScreen.classList.add('fade-out');
+
+    // Mostrar conteúdo principal depois de meio segundo
+    setTimeout(() => {
+      splashScreen.style.display = 'none';
+      appContainer.classList.add('visible');
+      initializeProgressChart();
+      initializeNonconformitiesChart();
+    }, 500);
+  };
+});
+   <script>
+ 
+</script>
+   
 </body>
 </html>
