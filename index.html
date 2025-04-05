@@ -3256,10 +3256,11 @@ background: var(--primary);
               <button class="btn btn-primary" onclick="loadPdf('PQ.pdf', '1.1 – Plano da Qualidade (PQ)')">
                 <i class="fas fa-file-pdf"></i> Ver Plano da Qualidade
               </button>
-              <a href="assets/downloads/PQ.pdf" download="Plano_da_Qualidade_Projeto_Alba.pdf" class="btn btn-outlined" onclick="downloadDocument('PQ.pdf', 'Plano_da_Qualidade_Projeto_Alba.pdf')">
+             <a href="PQ.pdf" download="Plano_da_Qualidade_Projeto_Alba.pdf" class="btn btn-outlined" onclick="downloadDocument('PQ.pdf', 'Plano_da_Qualidade_Projeto_Alba.pdf')">
                 <i class="fas fa-download"></i> Download Plano da Qualidade
-              </a>
-              <a href="assets/downloads/dossier_final.pdf" download="Dossier_Final_Qualidade_Projeto_Alba.pdf" class="btn btn-success" onclick="downloadFullDossier()">
+             </a>
+
+               <a href="dossier_final.pdf" download="Dossier_Final_Qualidade_Projeto_Alba.pdf" class="btn btn-success" onclick="downloadFullDossier()">
                 <i class="fas fa-file-archive"></i> Download Dossier Completo
               </a>
               <button class="btn btn-info" onclick="showRevisionsModal()">
@@ -3650,83 +3651,78 @@ background: var(--primary);
       }
     }
 
-    // Função para carregar um PDF - Melhorada
-    function loadPdf(pdfPath, title) {
-      // Armazenar o caminho e título para uso posterior (download, etc)
-      currentPdfPath = pdfPath;
-      currentPdfTitle = title || 'Documento';
+    // Função para carregar um PDF - Corrigida para buscar na raiz
+function loadPdf(pdfPath, title) {
+  // Armazenar o caminho e título para uso posterior
+  currentPdfPath = pdfPath;
+  currentPdfTitle = title || 'Documento';
+  
+  // Mostrar o visualizador de PDF
+  document.getElementById('welcome-content').style.display = 'none';
+  document.getElementById('pdf-viewer').classList.add('active');
+  document.getElementById('pdf-title').textContent = title || 'Documento';
+  document.getElementById('current-section').textContent = title || 'Documento';
+  
+  // Esconder a barra lateral em dispositivos móveis
+  if (window.innerWidth < 768) {
+    document.getElementById('sidebar').classList.remove('active');
+  }
+  
+  // Resetar estado
+  if (pdfDoc) {
+    pdfDoc = null;
+    pageNum = 1;
+    scale = 1.5;
+    zoomLevel = 100;
+    document.getElementById('zoom-level').textContent = '100%';
+  }
+  
+  // Mostrar indicador de carregamento
+  document.getElementById('pdf-loading').classList.remove('hidden');
+  
+  // Carregar o PDF diretamente da raiz (sem prefixo de pasta)
+  pdfjsLib.getDocument(pdfPath).promise
+    .then(function(pdfDoc_) {
+      // PDF carregado
+      pdfDoc = pdfDoc_;
       
-      // Mostrar o visualizador de PDF
-      document.getElementById('welcome-content').style.display = 'none';
-      document.getElementById('pdf-viewer').classList.add('active');
-      document.getElementById('pdf-title').textContent = title || 'Documento';
-      document.getElementById('current-section').textContent = title || 'Documento';
+      // Atualizar contagem de páginas
+      document.getElementById('page-count').textContent = pdfDoc.numPages;
+      document.getElementById('page-num').textContent = pageNum;
       
-      // Esconder a barra lateral em dispositivos móveis
-      if (window.innerWidth < 768) {
-        document.getElementById('sidebar').classList.remove('active');
-      }
+      // Esconder indicador de carregamento
+      document.getElementById('pdf-loading').classList.add('hidden');
       
-      // Resetar estado
-      if (pdfDoc) {
-        pdfDoc = null;
-        pageNum = 1;
-        scale = 1.5;
-        zoomLevel = 100;
-        document.getElementById('zoom-level').textContent = '100%';
-      }
+      // Renderizar primeira página
+      renderPage(pageNum);
       
-      // Mostrar indicador de carregamento
-      document.getElementById('pdf-loading').classList.remove('hidden');
+      // Atualizar metadados do documento
+      document.getElementById('pdf-meta-date').textContent = 'Data: 31/03/2025';
+      document.getElementById('pdf-meta-revision').textContent = 'Revisão: Rev.000';
       
-      // Carregar o PDF (caminho completo)
-      const pdfUrl = 'assets/downloads/' + pdfPath;
+      // Mostrar toast de documento carregado
+      showToast(`Documento "${title}" carregado com sucesso!`, 'success');
+    })
+    .catch(function(error) {
+      console.error('Erro ao carregar o PDF:', error);
+      document.getElementById('pdf-loading').classList.add('hidden');
       
-      pdfjsLib.getDocument(pdfUrl).promise
-        .then(function(pdfDoc_) {
-          // PDF carregado
-          pdfDoc = pdfDoc_;
-          
-          // Atualizar contagem de páginas
-          document.getElementById('page-count').textContent = pdfDoc.numPages;
-          document.getElementById('page-num').textContent = pageNum;
-          
-          // Esconder indicador de carregamento
-          document.getElementById('pdf-loading').classList.add('hidden');
-          
-          // Renderizar primeira página
-          renderPage(pageNum);
-          
-          // Atualizar metadados do documento
-          document.getElementById('pdf-meta-date').textContent = 'Data: 31/03/2025';
-          document.getElementById('pdf-meta-revision').textContent = 'Revisão: Rev.000';
-          
-          // Mostrar toast de documento carregado
-          showToast(`Documento "${title}" carregado com sucesso!`, 'success');
-          
-          // Adicionar à "visualizados recentemente" (poderia ser uma funcionalidade)
-          addToRecentlyViewed(pdfPath, title);
-        })
-        .catch(function(error) {
-          console.error('Erro ao carregar o PDF:', error);
-          document.getElementById('pdf-loading').classList.add('hidden');
-          
-          // Mostrar mensagem de erro
-          const errorDiv = document.createElement('div');
-          errorDiv.style.padding = '2rem';
-          errorDiv.style.textAlign = 'center';
-          errorDiv.style.color = '#dc3545';
-          errorDiv.innerHTML = '<i class="fas fa-exclamation-triangle" style="font-size: 2rem; margin-bottom: 1rem;"></i><p>Não foi possível carregar o documento PDF. Por favor, tente novamente mais tarde.</p>';
-          document.querySelector('.pdf-container').appendChild(errorDiv);
-          
-          // Atualizar elementos de navegação
-          document.getElementById('page-count').textContent = '0';
-          document.getElementById('page-num').textContent = '0';
-          
-          // Mostrar toast de erro
-          showToast('Erro ao carregar o documento. Tente novamente.', 'error');
-        });
-    }
+      // Mostrar mensagem de erro
+      const errorDiv = document.createElement('div');
+      errorDiv.style.padding = '2rem';
+      errorDiv.style.textAlign = 'center';
+      errorDiv.style.color = '#dc3545';
+      errorDiv.innerHTML = '<i class="fas fa-exclamation-triangle" style="font-size: 2rem; margin-bottom: 1rem;"></i><p>Não foi possível carregar o documento PDF. Por favor, tente novamente mais tarde.</p>';
+      document.querySelector('.pdf-container').appendChild(errorDiv);
+      
+      // Atualizar elementos de navegação
+      document.getElementById('page-count').textContent = '0';
+      document.getElementById('page-num').textContent = '0';
+      
+      // Mostrar toast de erro
+      showToast('Erro ao carregar o documento. Tente novamente.', 'error');
+    });
+}
 
     // Função para adicionar à lista de documentos visualizados recentemente
     function addToRecentlyViewed(pdfPath, title) {
@@ -3822,52 +3818,52 @@ background: var(--primary);
       loadPdf('PQ.pdf', '1.1 – Plano da Qualidade (PQ)');
     }
 
-    // Função para baixar o PDF atual
-    function downloadCurrentPdf() {
-      if (!currentPdfPath) {
-        showToast('Nenhum documento aberto para download.', 'warning');
-        return;
-      }
-      
-      // Criar nome de arquivo para download baseado no título
-      const fileName = currentPdfTitle.replace(/[^\w\s]/gi, '_') + '.pdf';
-      
-      // Iniciar download via elemento <a>
-      const downloadLink = document.createElement('a');
-      downloadLink.href = 'assets/downloads/' + currentPdfPath;
-      downloadLink.download = fileName;
-      document.body.appendChild(downloadLink);
-      downloadLink.click();
-      document.body.removeChild(downloadLink);
-      
-      showToast(`Download iniciado: ${fileName}`, 'success');
-    }
+ // Função para baixar o PDF atual
+function downloadCurrentPdf() {
+  if (!currentPdfPath) {
+    showToast('Nenhum documento aberto para download.', 'warning');
+    return;
+  }
+  
+  // Criar nome de arquivo para download baseado no título
+  const fileName = currentPdfTitle.replace(/[^\w\s]/gi, '_') + '.pdf';
+  
+  // Iniciar download diretamente da raiz
+  const downloadLink = document.createElement('a');
+  downloadLink.href = currentPdfPath;
+  downloadLink.download = fileName;
+  document.body.appendChild(downloadLink);
+  downloadLink.click();
+  document.body.removeChild(downloadLink);
+  
+  showToast(`Download iniciado: ${fileName}`, 'success');
+}
 
-    // Função para baixar um documento específico
-    function downloadDocument(pdfPath, suggestedName) {
-      const downloadLink = document.createElement('a');
-      downloadLink.href = 'assets/downloads/' + pdfPath;
-      downloadLink.download = suggestedName || pdfPath;
-      document.body.appendChild(downloadLink);
-      downloadLink.click();
-      document.body.removeChild(downloadLink);
-      
-      showToast(`Download iniciado: ${suggestedName || pdfPath}`, 'success');
-      return false; // Prevenir navegação padrão
-    }
+// Função para baixar um documento específico
+function downloadDocument(pdfPath, suggestedName) {
+  const downloadLink = document.createElement('a');
+  downloadLink.href = pdfPath;
+  downloadLink.download = suggestedName || pdfPath;
+  document.body.appendChild(downloadLink);
+  downloadLink.click();
+  document.body.removeChild(downloadLink);
+  
+  showToast(`Download iniciado: ${suggestedName || pdfPath}`, 'success');
+  return false; // Prevenir navegação padrão
+}
 
     // Função para baixar o dossier completo
-    function downloadFullDossier() {
-      const downloadLink = document.createElement('a');
-      downloadLink.href = 'assets/downloads/dossier_final.pdf';
-      downloadLink.download = 'Dossier_Final_Qualidade_Projeto_Alba.pdf';
-      document.body.appendChild(downloadLink);
-      downloadLink.click();
-      document.body.removeChild(downloadLink);
-      
-      showToast('Download do Dossier Completo iniciado!', 'success');
-      return false; // Prevenir navegação padrão
-    }
+function downloadFullDossier() {
+  const downloadLink = document.createElement('a');
+  downloadLink.href = 'dossier_final.pdf';
+  downloadLink.download = 'Dossier_Final_Qualidade_Projeto_Alba.pdf';
+  document.body.appendChild(downloadLink);
+  downloadLink.click();
+  document.body.removeChild(downloadLink);
+  
+  showToast('Download do Dossier Completo iniciado!', 'success');
+  return false; // Prevenir navegação padrão
+}
 
     // Função para compartilhar o PDF atual
     function sharePdf() {
