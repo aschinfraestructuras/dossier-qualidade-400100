@@ -954,3 +954,7 @@ header {
     grid-template-columns: 1fr;
   }
 }
+
+#splash-screen {
+  display: none !important;
+}
