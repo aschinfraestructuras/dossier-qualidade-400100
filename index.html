@@ -11,6 +11,8 @@
   <title>Dossier Final da Qualidade – Projeto Alba</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
@@ -1413,58 +1415,399 @@
           </div>
         </div>
 
-        <div class="navigation">
-          <div class="nav-category" data-section="sgq">
-            <div class="category-header" onclick="toggleCategory(this.parentElement)">
-              <div class="header-title">
-                <i class="fas fa-tasks"></i>
-                <span>1.0 – Sistema de Gestão da Qualidade</span>
-              </div>
-              <i class="fas fa-chevron-down chevron-icon"></i>
+       <!-- Sidebar Navigation - Índice Atualizado -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <h2 class="sidebar-title">
+      <i class="fas fa-folder"></i> Índice do Dossier
+    </h2>
+    <div class="search-chapters">
+      <i class="fas fa-search chapter-search-icon"></i>
+      <input type="text" class="chapter-search" placeholder="Filtrar capítulos..." id="chapter-search" oninput="filterChapters()">
+    </div>
+  </div>
+
+  <div class="navigation">
+    <!-- 1.0 Sistema de Gestão da Qualidade -->
+    <div class="nav-category" data-section="sgq">
+      <div class="category-header" onclick="toggleCategory(this.parentElement)">
+        <div class="header-title">
+          <i class="fas fa-tasks"></i>
+          <span>1.0 – Sistema de Gestão da Qualidade</span>
+        </div>
+        <i class="fas fa-chevron-down chevron-icon"></i>
+      </div>
+      <div class="category-menu">
+        <div class="nav-item" onclick="loadPdf('PQ.pdf', '1.1 – Plano da Qualidade (PQ)')">
+          <i class="fas fa-clipboard-list"></i>
+          <span>1.1 – Plano da Qualidade</span>
+          <span class="doc-status">Aprovado</span>
+          <div class="chapter-description">Documentação principal que define os requisitos da qualidade do projeto</div>
+        </div>
+        <div class="nav-item" onclick="loadPdf('PIE.pdf', '1.2 – Plano de Inspeção e Ensaios (PIE)')">
+          <i class="fas fa-vial"></i>
+          <span>1.2 – Plano de Inspeção e Ensaios</span>
+          <span class="doc-status">Aprovado</span>
+          <div class="chapter-description">Plano detalhado das inspeções e ensaios realizados durante o projeto</div>
+        </div>
+        <div class="nav-item" onclick="loadPdf('CC.pdf', '1.3 – Certificados de Calibração')">
+          <i class="fas fa-ruler"></i>
+          <span>1.3 – Certificados de Calibração</span>
+          <span class="doc-status">Aprovado</span>
+          <div class="chapter-description">Documentos que comprovam a calibração dos equipamentos de medição</div>
+        </div>
+        
+        <!-- 1.4 Certificados de Materiais com Subcapítulos -->
+        <div class="nav-subcategory">
+          <div class="subcategory-header" onclick="toggleSubcategory(this.parentElement)">
+            <i class="fas fa-file-contract"></i>
+            <span>1.4 – Certificados de Materiais</span>
+            <i class="fas fa-chevron-right subcategory-chevron"></i>
+          </div>
+          <div class="subcategory-menu">
+            <div class="nav-subitem" onclick="loadPdf('MB.pdf', '1.4.1 – Materiais Base')">
+              <i class="fas fa-circle-dot"></i>
+              <span>1.4.1 – Materiais Base</span>
+              <div class="chapter-description">Certificados de materiais estruturais e base utilizados na obra</div>
             </div>
-            <div class="category-menu">
-              <div class="nav-item" onclick="loadPdf('PQ.pdf', '1.1 – Plano da Qualidade (PQ)')">
-                <i class="fas fa-clipboard-list"></i>
-                <span>1.1 – Plano da Qualidade (PQ)</span>
-                <span class="doc-status">Aprovado</span>
-              </div>
-              <div class="nav-item" onclick="loadPdf('PIE.pdf', '1.2 – Plano de Inspeção e Ensaios (PIE)')">
-                <i class="fas fa-vial"></i>
-                <span>1.2 – Plano de Inspeção e Ensaios (PIE)</span>
-                <span class="doc-status">Aprovado</span>
-              </div>
-              <div class="nav-item" onclick="loadPdf('CC.pdf', '1.3 – Certificados de Calibração')">
-                <i class="fas fa-ruler"></i>
-                <span>1.3 – Certificados de Calibração</span>
-                <span class="doc-status">Aprovado</span>
-              </div>
-              <div class="nav-item" onclick="loadPdf('CM.pdf', '1.4 – Certificados de Materiais')">
-                <i class="fas fa-file-contract"></i>
-                <span>1.4 – Certificados de Materiais</span>
-                <span class="doc-status">Aprovado</span>
-              </div>
-              <div class="nav-item" onclick="loadPdf('EM.pdf', '1.5 – Estudos de Materiais')">
-                <i class="fas fa-chart-bar"></i>
-                <span>1.5 – Estudos de Materiais</span>
-                <span class="doc-status">Aprovado</span>
-              </div>
-              <div class="nav-item" onclick="loadPdf('NC.pdf', '1.6 – Não Conformidades')">
-                <i class="fas fa-exclamation-triangle"></i>
-                <span>1.6 – Não Conformidades</span>
-                <span class="doc-status pending">Pendente</span>
-              </div>
-              <div class="nav-item" onclick="loadPdf('PQ.pdf', '1.7 – Plano de Pontos de Inspeção')">
-                <i class="fas fa-check-square"></i>
-                <span>1.7 – Plano de Pontos de Inspeção</span>
-                <span class="doc-status">Aprovado</span>
-              </div>
-              <div class="nav-item" onclick="loadPdf('PQ.pdf', '1.8 – Punch List')">
-                <i class="fas fa-clipboard-check"></i>
-                <span>1.8 – Punch List</span>
-                <span class="doc-status">Aprovado</span>
-              </div>
+            <div class="nav-subitem" onclick="loadPdf('PB.pdf', '1.4.2 – Pré-fabricados de Betão')">
+              <i class="fas fa-circle-dot"></i>
+              <span>1.4.2 – Pré-fabricados de Betão</span>
+              <div class="chapter-description">Certificados dos elementos pré-fabricados em betão</div>
+            </div>
+            <div class="nav-subitem" onclick="loadPdf('TB.pdf', '1.4.3 – Tubagem')">
+              <i class="fas fa-circle-dot"></i>
+              <span>1.4.3 – Tubagem</span>
+              <div class="chapter-description">Certificados de qualidade das tubagens instaladas</div>
+            </div>
+            <div class="nav-subitem" onclick="loadPdf('IM.pdf', '1.4.4 – Impermeabilização')">
+              <i class="fas fa-circle-dot"></i>
+              <span>1.4.4 – Impermeabilização</span>
+              <div class="chapter-description">Certificados dos materiais de impermeabilização</div>
+            </div>
+            <div class="nav-subitem" onclick="loadPdf('AC.pdf', '1.4.5 – Argamassas e Cimentos')">
+              <i class="fas fa-circle-dot"></i>
+              <span>1.4.5 – Argamassas e Cimentos</span>
+              <div class="chapter-description">Certificados das argamassas e cimentos utilizados</div>
+            </div>
+            <div class="nav-subitem" onclick="loadPdf('MA.pdf', '1.4.6 – Materiais e Acessórios')">
+              <i class="fas fa-circle-dot"></i>
+              <span>1.4.6 – Materiais e Acessórios</span>
+              <div class="chapter-description">Certificados de acessórios e outros materiais complementares</div>
             </div>
           </div>
+        </div>
+        
+        <div class="nav-item" onclick="loadPdf('EM.pdf', '1.5 – Estudos de Materiais')">
+          <i class="fas fa-chart-bar"></i>
+          <span>1.5 – Estudos de Materiais</span>
+          <span class="doc-status">Aprovado</span>
+          <div class="chapter-description">Estudos e análises realizados nos materiais utilizados no projeto</div>
+        </div>
+        <div class="nav-item" onclick="loadPdf('NC.pdf', '1.6 – Não Conformidades')">
+          <i class="fas fa-exclamation-triangle"></i>
+          <span>1.6 – Não Conformidades</span>
+          <span class="doc-status pending">Pendente</span>
+          <div class="chapter-description">Registo e tratamento das não conformidades identificadas</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2.0 Execução do Projeto -->
+    <div class="nav-category" data-section="execucao">
+      <div class="category-header" onclick="toggleCategory(this.parentElement)">
+        <div class="header-title">
+          <i class="fas fa-hard-hat"></i>
+          <span>2.0 – Execução do Projeto</span>
+        </div>
+        <i class="fas fa-chevron-down chevron-icon"></i>
+      </div>
+      <div class="category-menu">
+        <!-- 2.1 Obra Civil com Subcapítulos -->
+        <div class="nav-subcategory">
+          <div class="subcategory-header" onclick="toggleSubcategory(this.parentElement)">
+            <i class="fas fa-building"></i>
+            <span>2.1 – Obra Civil</span>
+            <i class="fas fa-chevron-right subcategory-chevron"></i>
+          </div>
+          <div class="subcategory-menu">
+            <div class="nav-subitem" onclick="loadPdf('TP.pdf', '2.1.1 – Topografia')">
+              <i class="fas fa-circle-dot"></i>
+              <span>2.1.1 – Topografia</span>
+              <div class="chapter-description">Levantamentos topográficos e implantação da obra</div>
+            </div>
+            <div class="nav-subitem" onclick="loadPdf('ES.pdf', '2.1.2 – Estruturas')">
+              <i class="fas fa-circle-dot"></i>
+              <span>2.1.2 – Estruturas</span>
+              <div class="chapter-description">Documentação das estruturas executadas no projeto</div>
+            </div>
+            <div class="nav-subitem" onclick="loadPdf('EP.pdf', '2.1.3 – Ensaios e Provas')">
+              <i class="fas fa-circle-dot"></i>
+              <span>2.1.3 – Ensaios e Provas</span>
+              <div class="chapter-description">Resultados dos ensaios realizados em elementos civis</div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 2.2 Piping com Subcapítulos -->
+        <div class="nav-subcategory">
+          <div class="subcategory-header" onclick="toggleSubcategory(this.parentElement)">
+            <i class="fas fa-project-diagram"></i>
+            <span>2.2 – Piping</span>
+            <i class="fas fa-chevron-right subcategory-chevron"></i>
+          </div>
+          <div class="subcategory-menu">
+            <div class="nav-subitem" onclick="toggleThirdLevel(this)">
+              <i class="fas fa-circle-dot"></i>
+              <span>2.2.1 – Soldadura</span>
+              <i class="fas fa-chevron-right third-level-chevron"></i>
+              <div class="chapter-description">Processos e qualificações de soldadura</div>
+              
+              <div class="third-level-menu">
+                <div class="nav-third-item" onclick="loadPdf('AC.pdf', '2.2.1.1 – Dossier Fabricação AC')">
+                  <i class="fas fa-minus"></i>
+                  <span>2.2.1.1 – Dossier Fabricação AC</span>
+                  <div class="chapter-description">Documentação de fabricação de componentes em aço carbono</div>
+                </div>
+                <div class="nav-third-item" onclick="loadPdf('HDPE.pdf', '2.2.1.2 – Dossier Fabricação HDPE')">
+                  <i class="fas fa-minus"></i>
+                  <span>2.2.1.2 – Dossier Fabricação HDPE</span>
+                  <div class="chapter-description">Documentação de fabricação de componentes em HDPE</div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="nav-subitem" onclick="loadPdf('TAC.pdf', '2.2.2 – Tratamento Anti-Corrosivo')">
+              <i class="fas fa-circle-dot"></i>
+              <span>2.2.2 – Tratamento Anti-Corrosivo</span>
+              <div class="chapter-description">Processos e resultados dos tratamentos anticorrosivos aplicados</div>
+            </div>
+            <div class="nav-subitem" onclick="loadPdf('PH.pdf', '2.2.3 – Provas Hidráulicas')">
+              <i class="fas fa-circle-dot"></i>
+              <span>2.2.3 – Provas Hidráulicas</span>
+              <div class="chapter-description">Resultados dos testes de pressão hidráulica</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3.0 Documentos de Engenharia -->
+    <div class="nav-category" data-section="documentos">
+      <div class="category-header" onclick="toggleCategory(this.parentElement)">
+        <div class="header-title">
+          <i class="fas fa-drafting-compass"></i>
+          <span>3.0 – Documentos de Engenharia</span>
+        </div>
+        <i class="fas fa-chevron-down chevron-icon"></i>
+      </div>
+      <div class="category-menu">
+        <div class="nav-item" onclick="loadPdf('ET.pdf', '3.1 – Especificações Técnicas')">
+          <i class="fas fa-file-alt"></i>
+          <span>3.1 – Especificações Técnicas</span>
+          <span class="doc-status">Aprovado</span>
+          <div class="chapter-description">Especificações técnicas dos materiais e processos</div>
+        </div>
+        <div class="nav-item" onclick="loadPdf('PC.pdf', '3.2 – Planos Construtivos')">
+          <i class="fas fa-blueprint"></i>
+          <span>3.2 – Planos Construtivos</span>
+          <span class="doc-status">Aprovado</span>
+          <div class="chapter-description">Desenhos e planos usados durante a construção</div>
+        </div>
+        <div class="nav-item" onclick="loadPdf('RL.pdf', '3.3 – Planos Red-Line')">
+          <i class="fas fa-edit"></i>
+          <span>3.3 – Planos Red-Line</span>
+          <span class="doc-status review">Em revisão</span>
+          <div class="chapter-description">Planos com anotações e modificações realizadas em obra</div>
+        </div>
+        <div class="nav-item" onclick="loadPdf('AB.pdf', '3.4 – Planos As-Built')">
+          <i class="fas fa-draw-polygon"></i>
+          <span>3.4 – Planos As-Built</span>
+          <span class="doc-status pending">Pendente</span>
+          <div class="chapter-description">Planos finais que representam a obra tal como foi construída</div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Novo Capítulo 4.0 Documentação Adicional (ex-1.8 Punch List) -->
+    <div class="nav-category" data-section="documentacao-adicional">
+      <div class="category-header" onclick="toggleCategory(this.parentElement)">
+        <div class="header-title">
+          <i class="fas fa-file-alt"></i>
+          <span>4.0 – Documentação Adicional</span>
+        </div>
+        <i class="fas fa-chevron-down chevron-icon"></i>
+      </div>
+      <div class="category-menu">
+        <div class="nav-item" onclick="loadPdf('PL.pdf', '4.1 – Punch List')">
+          <i class="fas fa-clipboard-check"></i>
+          <span>4.1 – Punch List</span>
+          <span class="doc-status">Aprovado</span>
+          <div class="chapter-description">Lista de pendências e sua resolução durante a obra</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</aside>
+
+<!-- Estilos adicionais para as descrições e níveis de navegação -->
+<style>
+  /* Estilos para subcapítulos e descrições */
+  .nav-subcategory {
+    margin-bottom: 0.5rem;
+  }
+  
+  .subcategory-header {
+    padding: 0.75rem 1.5rem;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    color: var(--primary);
+    font-weight: 500;
+  }
+  
+  .subcategory-header:hover {
+    background: var(--section-bg);
+  }
+  
+  .subcategory-chevron, .third-level-chevron {
+    margin-left: auto;
+    font-size: 0.8rem;
+    transition: transform 0.3s ease;
+  }
+  
+  .nav-subcategory.active .subcategory-chevron {
+    transform: rotate(90deg);
+  }
+  
+  .nav-subitem.active .third-level-chevron {
+    transform: rotate(90deg);
+  }
+  
+  .subcategory-menu {
+    display: none;
+    margin-left: 1.2rem;
+    animation: fadeIn 0.3s ease-out;
+  }
+  
+  .nav-subcategory.active .subcategory-menu {
+    display: block;
+  }
+  
+  .nav-subitem {
+    padding: 0.65rem 1.5rem 0.65rem 2.5rem;
+    cursor: pointer;
+    transition: var(--transition);
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    border-left: 3px solid transparent;
+    flex-wrap: wrap;
+  }
+  
+  .nav-subitem:hover {
+    background: var(--section-bg);
+  }
+  
+  .nav-subitem.active {
+    background: var(--section-bg);
+    border-left-color: var(--primary);
+  }
+  
+  .third-level-menu {
+    display: none;
+    width: 100%;
+    padding-left: 1.5rem;
+    margin-top: 0.5rem;
+    animation: fadeIn 0.3s ease-out;
+  }
+  
+  .nav-subitem.active .third-level-menu {
+    display: block;
+  }
+  
+  .nav-third-item {
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    border-left: 3px solid transparent;
+    font-size: 0.9rem;
+    flex-wrap: wrap;
+  }
+  
+  .nav-third-item:hover {
+    background: var(--section-bg);
+  }
+  
+  .nav-third-item.active {
+    background: var(--section-bg);
+    border-left-color: var(--primary);
+  }
+  
+  .chapter-description {
+    padding: 0.3rem 0 0.2rem;
+    font-size: 0.8rem;
+    color: var(--gray);
+    width: 100%;
+    font-style: italic;
+    line-height: 1.3;
+  }
+  
+  /* Botão para voltar à página inicial */
+  .back-to-home {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background-color: var(--primary);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    z-index: 99;
+    transition: all 0.3s ease;
+  }
+  
+  .back-to-home:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+  }
+  
+  .back-to-home i {
+    font-size: 1.5rem;
+  }
+</style>
+
+<!-- JavaScript para controlar os subcapítulos -->
+<script>
+  // Função para controlar os subcapítulos
+  function toggleSubcategory(subcategory) {
+    subcategory.classList.toggle('active');
+    event.stopPropagation(); // Impedir que o clique propague para o pai
+  }
+  
+  // Função para controlar o terceiro nível
+  function toggleThirdLevel(item) {
+    item.classList.toggle('active');
+    event.stopPropagation(); // Impedir que o clique propague para o pai
+  }
+</script>
+
+<!-- Botão para voltar à página inicial -->
+<div class="back-to-home" onclick="enterDossier()">
+  <i class="fas fa-home"></i>
+</div>
 
           <div class="nav-category" data-section="execucao">
             <div class="category-header" onclick="toggleCategory(this.parentElement)">
@@ -1603,38 +1946,38 @@
           <header class="page-header">
             <h1 class="page-title">Dossier Final da Qualidade</h1>
             <p class="page-subtitle">Projeto Alba – Nuevas Plantas de Poliolefinas, Plataformas Logísticas y Offsites</p>
-            <div class="project-status in-progress">
-              <i class="fas fa-spinner fa-spin"></i>
-              <span>Projeto em execução (85% concluído)</span>
-            </div>
+            <<div class="project-status">
+             <i class="fas fa-check-circle"></i>
+             <span>Projeto Concluído (100%)</span>
+          </div>
           </header>
 
           <div class="dashboard-cards">
-            <div class="dashboard-card">
-              <div class="card-label"><i class="fas fa-building"></i> Cliente</div>
-              <div class="card-value">REPSOL POLÍMEROS</div>
-            </div>
-            <div class="dashboard-card">
-              <div class="card-label"><i class="fas fa-hard-hat"></i> Empreiteiro</div>
-              <div class="card-value">ASCH INFRAESTRUCTURAS Y SERVICIOS S.A.</div>
-            </div>
-            <div class="dashboard-card">
-              <div class="card-label"><i class="fas fa-calendar-alt"></i> Data de Início</div>
-              <div class="card-value">Junho 2023</div>
-            </div>
-            <div class="dashboard-card">
-              <div class="card-label"><i class="fas fa-flag-checkered"></i> Data de Conclusão</div>
-              <div class="card-value">31/03/2025</div>
-            </div>
-            <div class="dashboard-card">
-              <div class="card-label"><i class="fas fa-file-alt"></i> Documento Nº</div>
-              <div class="card-value">R007</div>
-            </div>
-            <div class="dashboard-card">
-              <div class="card-label"><i class="fas fa-code-branch"></i> Versão</div>
-              <div class="card-value">Rev.000</div>
-            </div>
-          </div>
+  <div class="dashboard-card">
+    <div class="card-label"><i class="fas fa-building"></i> Cliente</div>
+    <div class="card-value">REPSOL POLÍMEROS</div>
+  </div>
+  <div class="dashboard-card">
+    <div class="card-label"><i class="fas fa-hard-hat"></i> Empreiteiro</div>
+    <div class="card-value">ASCH INFRAESTRUCTURAS Y SERVICIOS S.A.</div>
+  </div>
+  <div class="dashboard-card">
+    <div class="card-label"><i class="fas fa-calendar-alt"></i> Data de Início</div>
+    <div class="card-value">Junho 2023</div>
+  </div>
+  <div class="dashboard-card">
+    <div class="card-label"><i class="fas fa-flag-checkered"></i> Data de Conclusão</div>
+    <div class="card-value">31/03/2025</div>
+  </div>
+  <div class="dashboard-card">
+    <div class="card-label"><i class="fas fa-file-alt"></i> Número do Projeto</div>
+    <div class="card-value">4001008</div>
+  </div>
+  <div class="dashboard-card">
+    <div class="card-label"><i class="fas fa-code-branch"></i> Versão</div>
+    <div class="card-value">Rev.000</div>
+  </div>
+</div>
           
           <div class="section-container">
   <h2 class="section-title"><i class="fas fa-vial"></i> Estatísticas de Ensaios</h2>
@@ -1838,41 +2181,42 @@
 </div>
 
           <div class="section-container">
-            <h2 class="section-title"><i class="fas fa-chart-line"></i> Progresso do Projeto</h2>
-            <div class="progress-section">
-              <div class="progress-card">
-                <h3 class="progress-title">Obra Civil</h3>
-                <div class="progress-bar-container">
-                  <div class="progress-bar" style="width: 95%;"></div>
-                </div>
-                <div class="progress-value">95%</div>
-              </div>
-              <div class="progress-card">
-                <h3 class="progress-title">Piping</h3>
-                <div class="progress-bar-container">
-                  <div class="progress-bar" style="width: 78%;"></div>
-                </div>
-                <div class="progress-value">78%</div>
-              </div>
-              <div class="progress-card">
-                <h3 class="progress-title">Elétrica</h3>
-                <div class="progress-bar-container">
-                  <div class="progress-bar" style="width: 65%;"></div>
-                </div>
-                <div class="progress-value">65%</div>
-              </div>
-              <div class="progress-card">
-                <h3 class="progress-title">Instrumentação</h3>
-                <div class="progress-bar-container">
-                  <div class="progress-bar" style="width: 55%;"></div>
-                </div>
-                <div class="progress-value">55%</div>
-              </div>
-            </div>
-            <div class="progress-chart-container" style="height: 300px; margin-top: 1.5rem;">
-              <canvas id="progress-chart"></canvas>
-            </div>
-          </div>
+  <h2 class="section-title"><i class="fas fa-chart-line"></i> Progresso do Projeto</h2>
+  <div class="progress-section">
+    <div class="progress-card">
+      <h3 class="progress-title">Obra Civil</h3>
+      <div class="progress-bar-container">
+        <div class="progress-bar" style="width: 100%;"></div>
+      </div>
+      <div class="progress-value">100%</div>
+    </div>
+    <div class="progress-card">
+      <h3 class="progress-title">Piping</h3>
+      <div class="progress-bar-container">
+        <div class="progress-bar" style="width: 100%;"></div>
+      </div>
+      <div class="progress-value">100%</div>
+    </div>
+    <div class="progress-card">
+      <h3 class="progress-title">Elétrica</h3>
+      <div class="progress-bar-container">
+        <div class="progress-bar" style="width: 100%;"></div>
+      </div>
+      <div class="progress-value">100%</div>
+    </div>
+    <div class="progress-card">
+      <h3 class="progress-title">Instrumentação</h3>
+      <div class="progress-bar-container">
+        <div class="progress-bar" style="width: 100%;"></div>
+      </div>
+      <div class="progress-value">100%</div>
+    </div>
+  </div>
+  
+  <div class="progress-chart-container" style="height: 300px; margin-top: 1.5rem;">
+    <canvas id="progress-chart"></canvas>
+  </div>
+</div>
 
           <div class="section-container">
             <h2 class="section-title"><i class="fas fa-info-circle"></i> Introdução</h2>
@@ -2111,461 +2455,418 @@
     </div>
   </div>
 
-  <!-- JavaScript -->
-  <script>
-    // Variáveis para o visualizador de PDF
-    let pdfDoc = null;
-    let pageNum = 1;
-    let pageRendering = false;
-    let pageNumPending = null;
-    let scale = 1.5;
-    let zoomLevel = 100;
-    let canvas = document.getElementById('pdf-canvas');
-    let ctx = canvas.getContext('2d');
+// Variáveis para o visualizador de PDF
+let pdfDoc = null;
+let pageNum = 1;
+let pageRendering = false;
+let pageNumPending = null;
+let scale = 1.5;
+let zoomLevel = 100;
+let canvas = document.getElementById('pdf-canvas');
+let ctx = canvas.getContext('2d');
 
-    // Inicializar o gráfico de progresso
-    let progressChart = null;
+// Variáveis para os gráficos
+let progressChart = null;
+let nonconformitiesChart = null;
 
-    // Função para inicializar data no splash screen
-    function initializeSplashDate() {
-      const now = new Date();
-      const options = { year: 'numeric', month: 'long', day: 'numeric' };
-      document.getElementById('splash-date').textContent = 'Última atualização: ' + now.toLocaleDateString('pt-PT', options);
-    }
+// Função para inicializar data no splash screen
+function initializeSplashDate() {
+  const now = new Date();
+  const options = { year: 'numeric', month: 'long', day: 'numeric' };
+  document.getElementById('splash-date').textContent = 'Última atualização: 31 de março de 2025';
+}
 
-    // Função para entrar no dossier
-    function enterDossier() {
-      const splashScreen = document.getElementById('splash-screen');
-      const appContainer = document.getElementById('app-container');
-      
-      // Animar a transição
-      splashScreen.classList.add('fade-out');
-      
-      // Mostrar o conteúdo principal após a animação
-      setTimeout(() => {
-        splashScreen.style.display = 'none';
-        appContainer.classList.add('visible');
-        
-        // Inicializar o gráfico de progresso após o dossier ser exibido
-        initializeProgressChart();
-      }, 500);
-    }
-
-    // Função para alternar o menu lateral em dispositivos móveis
-    function toggleSidebar() {
-      document.getElementById('sidebar').classList.toggle('active');
-    }
-
-    // Função para alternar as categorias do menu
-    function toggleCategory(category) {
-      category.classList.toggle('active');
-    }
-
-    // Função para filtrar os capítulos na busca
-    function filterChapters() {
-      const query = document.getElementById('chapter-search').value.toLowerCase();
-      document.querySelectorAll('.nav-category').forEach(category => {
-        const categoryText = category.innerText.toLowerCase();
-        const match = categoryText.includes(query);
-        category.style.display = match ? 'block' : 'none';
-      });
-    }
-
-    // Função para mostrar o conteúdo de boas-vindas
-    function showWelcomeContent() {
-      document.getElementById('welcome-content').style.display = 'block';
-      document.getElementById('pdf-viewer').classList.remove('active');
-      document.getElementById('current-section').textContent = 'Visão Geral';
-    }
-
-    // Função para carregar um PDF
-    function loadPdf(pdfPath, title) {
-      // Mostrar o visualizador de PDF
-      document.getElementById('welcome-content').style.display = 'none';
-      document.getElementById('pdf-viewer').classList.add('active');
-      document.getElementById('pdf-title').textContent = title || 'Documento';
-      document.getElementById('current-section').textContent = title || 'Documento';
-      
-      // Esconder a barra lateral em dispositivos móveis
-      if (window.innerWidth < 768) {
-        document.getElementById('sidebar').classList.remove('active');
-      }
-      
-      // Resetar estado
-      if (pdfDoc) {
-        pdfDoc = null;
-        pageNum = 1;
-        scale = 1.5;
-        zoomLevel = 100;
-        document.getElementById('zoom-level').textContent = '100%';
-      }
-      
-      // Mostrar indicador de carregamento
-      document.getElementById('pdf-loading').classList.remove('hidden');
-      
-      // Carregar o PDF
-      pdfjsLib.getDocument(pdfPath).promise
-        .then(function(pdfDoc_) {
-          // PDF carregado
-          pdfDoc = pdfDoc_;
-          
-          // Atualizar contagem de páginas
-          document.getElementById('page-count').textContent = pdfDoc.numPages;
-          document.getElementById('page-num').textContent = pageNum;
-          
-          // Esconder indicador de carregamento
-          document.getElementById('pdf-loading').classList.add('hidden');
-          
-          // Renderizar primeira página
-          renderPage(pageNum);
-          
-          // Atualizar metadados do documento
-          const today = new Date();
-          const formattedDate = today.toLocaleDateString('pt-PT');
-          document.getElementById('pdf-meta-date').textContent = 'Data: ' + formattedDate;
-          document.getElementById('pdf-meta-revision').textContent = 'Revisão: Rev.000';
-          
-          // Mostrar toast de documento carregado
-          showToast(`Documento "${title}" carregado com sucesso!`, 'success');
-        })
-        .catch(function(error) {
-          console.error('Erro ao carregar o PDF:', error);
-          document.getElementById('pdf-loading').classList.add('hidden');
-          
-          // Mostrar mensagem de erro
-          const errorDiv = document.createElement('div');
-          errorDiv.style.padding = '2rem';
-          errorDiv.style.textAlign = 'center';
-          errorDiv.style.color = '#dc3545';
-          errorDiv.innerHTML = '<i class="fas fa-exclamation-triangle" style="font-size: 2rem; margin-bottom: 1rem;"></i><p>Não foi possível carregar o documento PDF. Por favor, tente novamente mais tarde.</p>';
-          document.querySelector('.pdf-container').appendChild(errorDiv);
-          
-          // Atualizar elementos de navegação
-          document.getElementById('page-count').textContent = '0';
-          document.getElementById('page-num').textContent = '0';
-          
-          // Mostrar toast de erro
-          showToast('Erro ao carregar o documento. Tente novamente.', 'error');
-        });
-    }
-
-    // Função para renderizar uma página do PDF
-    function renderPage(num) {
-      pageRendering = true;
-      
-      // Buscar a página
-      pdfDoc.getPage(num).then(function(page) {
-        // Ajustar canvas para dimensões da página
-        const viewport = page.getViewport({ scale });
-        canvas.height = viewport.height;
-        canvas.width = viewport.width;
-        
-        // Renderizar a página no canvas
-        const renderContext = {
-          canvasContext: ctx,
-          viewport: viewport
-        };
-        
-        const renderTask = page.render(renderContext);
-        
-        // Aguardar a renderização
-        renderTask.promise.then(function() {
-          pageRendering = false;
-          
-          if (pageNumPending !== null) {
-            // Nova renderização pendente
-            renderPage(pageNumPending);
-            pageNumPending = null;
-          }
-        });
-      });
-      
-      // Atualizar número da página atual
-      document.getElementById('page-num').textContent = num;
-    }
-
-    // Função para enfileirar renderização para evitar concorrência
-    function queueRenderPage(num) {
-      if (pageRendering) {
-        pageNumPending = num;
-      } else {
-        renderPage(num);
-      }
-    }
-
-    // Função para ir para página anterior
-    function prevPage() {
-      if (pageNum <= 1 || !pdfDoc) {
-        return;
-      }
-      pageNum--;
-      queueRenderPage(pageNum);
-    }
-
-    // Função para ir para próxima página
-    function nextPage() {
-      if (!pdfDoc || pageNum >= pdfDoc.numPages) {
-        return;
-      }
-      pageNum++;
-      queueRenderPage(pageNum);
-    }
-
-    // Função para aumentar zoom
-    function zoomIn() {
-      if (zoomLevel >= 200) return;
-      
-      zoomLevel += 25;
-      scale += 0.25;
-      document.getElementById('zoom-level').textContent = zoomLevel + '%';
-      queueRenderPage(pageNum);
-    }
-
-    // Função para diminuir zoom
-    function zoomOut() {
-      if (zoomLevel <= 50) return;
-      
-      zoomLevel -= 25;
-      scale -= 0.25;
-      document.getElementById('zoom-level').textContent = zoomLevel + '%';
-      queueRenderPage(pageNum);
-    }
-
-    // Função para abrir o primeiro PDF
-    function openFirstPdf() {
-      loadPdf('PQ.pdf', '1.1 – Plano da Qualidade (PQ)');
-    }
-
-    // Função para fechar o modal de pesquisa
-    function closeSearchModal() {
-      document.getElementById('search-modal').classList.remove('active');
-    }
-
-    // Função para mostrar o modal de revisões
-    function showRevisionsModal() {
-      document.getElementById('revisions-modal').classList.add('active');
-    }
-
-    // Função para fechar o modal de revisões
-    function closeRevisionsModal() {
-      document.getElementById('revisions-modal').classList.remove('active');
-    }
-
-    // Função para mostrar o formulário de feedback
-    function showFeedbackForm() {
-      document.getElementById('feedback-overlay').classList.add('active');
-    }
-
-    // Função para fechar o formulário de feedback
-    function closeFeedbackForm() {
-      document.getElementById('feedback-overlay').classList.remove('active');
-    }
-
-    // Função para enviar feedback
-    function submitFeedback() {
-      // Simular envio de feedback
-      showToast('Feedback enviado com sucesso! Obrigado pela sua contribuição.', 'success');
-      closeFeedbackForm();
-    }
-
-    // Função para mostrar toast de notificação
-    function showToast(message, type = 'success') {
-      const toastContainer = document.getElementById('toast-container');
-      
-      // Criar toast
-      const toast = document.createElement('div');
-      toast.className = `toast toast-${type}`;
-      
-      // Adicionar conteúdo
-      toast.innerHTML = `
-        <div class="toast-message">${message}</div>
-        <button class="close-toast" onclick="this.parentElement.remove()">
-          <i class="fas fa-times"></i>
-        </button>
-      `;
-      
-      // Adicionar ao container
-      toastContainer.appendChild(toast);
-      
-      // Animar entrada
-      setTimeout(() => {
-        toast.classList.add('active');
-      }, 10);
-      
-      // Auto remover após 5 segundos
-      setTimeout(() => {
-        toast.classList.remove('active');
-        setTimeout(() => {
-          toast.remove();
-        }, 300);
-      }, 5000);
-    }
-
-    // Função para realizar pesquisa
-    function performSearch() {
-      const searchTerm = document.getElementById('global-search').value.trim();
-      
-      if (searchTerm.length < 3) {
-        showToast('Por favor, informe pelo menos 3 caracteres para pesquisar.', 'warning');
-        return false;
-      }
-      
-      document.getElementById('search-term').textContent = searchTerm;
-      document.getElementById('search-modal').classList.add('active');
-      
-      const searchResults = document.getElementById('search-results');
-      searchResults.innerHTML = '<div class="loading-indicator" style="padding: 2rem;"><div class="spinner"></div><p>Pesquisando documentos...</p></div>';
-      
-      // Simular tempo de carregamento
-      setTimeout(() => {
-        searchResults.innerHTML = `
-          <div class="result-item" onclick="loadPdf('PQ.pdf', '1.1 – Plano da Qualidade (PQ)')">
-            <div class="result-title">1.1 – Plano da Qualidade</div>
-            <div class="result-snippet">...sistema de gestão da <span class="highlight">${searchTerm}</span> implementado na empreitada 4001008...</div>
-            <div class="result-meta">Capítulo 1 • Rev.000 • 04/07/2023 • 15 ocorrências</div>
-          </div>
-          <div class="result-item" onclick="loadPdf('df-capitulo 1.1.pdf', '1.3 – Certificados de Calibração')">
-            <div class="result-title">1.3 – Certificados de Calibração</div>
-            <div class="result-snippet">...instrumentos calibrados conforme o plano de <span class="highlight">${searchTerm}</span> do projeto...</div>
-            <div class="result-meta">Capítulo 1 • Rev.001 • 15/09/2023 • 8 ocorrências</div>
-          </div>
-          <div class="result-item" onclick="loadPdf('PQ.pdf', '2.1 – Obra Civil')">
-            <div class="result-title">2.1 – Obra Civil</div>
-            <div class="result-snippet">...requisitos de <span class="highlight">${searchTerm}</span> aplicáveis às estruturas de concreto...</div>
-            <div class="result-meta">Capítulo 2 • Rev.000 • 22/11/2023 • 5 ocorrências</div>
-          </div>
-          <div class="result-item" onclick="loadPdf('PQ.pdf', '4.3 – Métricas da Qualidade')">
-            <div class="result-title">4.3 – Métricas da Qualidade</div>
-            <div class="result-snippet">...indicadores de desempenho da <span class="highlight">${searchTerm}</span> demonstram tendência positiva...</div>
-            <div class="result-meta">Capítulo 4 • Rev.000 • 18/01/2025 • 12 ocorrências</div>
-          </div>
-        `;
-      }, 1500);
-      
-      return false; // Prevenir submit do form
-    }
+// Função para entrar no dossier
+function enterDossier() {
+  const splashScreen = document.getElementById('splash-screen');
+  const appContainer = document.getElementById('app-container');
+  
+  // Animar a transição
+  splashScreen.classList.add('fade-out');
+  
+  // Mostrar o conteúdo principal após a animação
+  setTimeout(() => {
+    splashScreen.style.display = 'none';
+    appContainer.classList.add('visible');
     
-    // Função para inicializar o gráfico de progresso
-    function initializeProgressChart() {
-      // Se já existe um gráfico, destruir antes de criar novo
-      if (progressChart) {
-        progressChart.destroy();
+    // Inicializar os gráficos após o dossier ser exibido
+    initializeProgressChart();
+    initializeNonconformitiesChart();
+  }, 500);
+}
+
+// Função para alternar o menu lateral em dispositivos móveis
+function toggleSidebar() {
+  document.getElementById('sidebar').classList.toggle('active');
+}
+
+// Função para alternar as categorias do menu
+function toggleCategory(category) {
+  category.classList.toggle('active');
+}
+
+// Função para controlar os subcapítulos
+function toggleSubcategory(subcategory) {
+  subcategory.classList.toggle('active');
+  event.stopPropagation(); // Impedir que o clique propague para o pai
+}
+
+// Função para controlar o terceiro nível
+function toggleThirdLevel(item) {
+  item.classList.toggle('active');
+  event.stopPropagation(); // Impedir que o clique propague para o pai
+}
+
+// Função para filtrar os capítulos na busca
+function filterChapters() {
+  const query = document.getElementById('chapter-search').value.toLowerCase();
+  
+  // Filtrar categorias principais
+  document.querySelectorAll('.nav-category').forEach(category => {
+    const categoryText = category.innerText.toLowerCase();
+    const match = categoryText.includes(query);
+    category.style.display = match ? 'block' : 'none';
+  });
+  
+  // Expandir categorias que contenham o termo de pesquisa
+  if (query.length > 2) {
+    document.querySelectorAll('.nav-category').forEach(category => {
+      const categoryText = category.innerText.toLowerCase();
+      if (categoryText.includes(query)) {
+        category.classList.add('active');
+        
+        // Expandir subcategorias relevantes
+        category.querySelectorAll('.nav-subcategory').forEach(subcategory => {
+          const subcategoryText = subcategory.innerText.toLowerCase();
+          if (subcategoryText.includes(query)) {
+            subcategory.classList.add('active');
+          }
+        });
       }
+    });
+  }
+}
+
+// Função para mostrar o conteúdo de boas-vindas
+function showWelcomeContent() {
+  document.getElementById('welcome-content').style.display = 'block';
+  document.getElementById('pdf-viewer').classList.remove('active');
+  document.getElementById('current-section').textContent = 'Visão Geral';
+}
+
+// Função para carregar um PDF
+function loadPdf(pdfPath, title) {
+  // Mostrar o visualizador de PDF
+  document.getElementById('welcome-content').style.display = 'none';
+  document.getElementById('pdf-viewer').classList.add('active');
+  document.getElementById('pdf-title').textContent = title || 'Documento';
+  document.getElementById('current-section').textContent = title || 'Documento';
+  
+  // Esconder a barra lateral em dispositivos móveis
+  if (window.innerWidth < 768) {
+    document.getElementById('sidebar').classList.remove('active');
+  }
+  
+  // Resetar estado
+  if (pdfDoc) {
+    pdfDoc = null;
+    pageNum = 1;
+    scale = 1.5;
+    zoomLevel = 100;
+    document.getElementById('zoom-level').textContent = '100%';
+  }
+  
+  // Mostrar indicador de carregamento
+  document.getElementById('pdf-loading').classList.remove('hidden');
+  
+  // Carregar o PDF
+  pdfjsLib.getDocument(pdfPath).promise
+    .then(function(pdfDoc_) {
+      // PDF carregado
+      pdfDoc = pdfDoc_;
       
-      // Dados para o gráfico
-      const data = {
-        labels: ['Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez', 'Jan', 'Fev', 'Mar', 'Abr'],
-        datasets: [
-          {
-            label: 'Progresso Planeado (%)',
-            data: [10, 20, 30, 40, 50, 60, 65, 70, 75, 80, 85],
-            borderColor: 'rgba(0, 86, 179, 0.7)',
-            backgroundColor: 'rgba(0, 86, 179, 0.1)',
-            borderWidth: 2,
-            tension: 0.3,
-            fill: true
-          },
-          {
-            label: 'Progresso Real (%)',
-            data: [8, 17, 28, 42, 53, 62, 68, 72, 80, 85, 85],
-            borderColor: 'rgba(40, 167, 69, 0.7)',
-            backgroundColor: 'rgba(40, 167, 69, 0.1)',
-            borderWidth: 2,
-            tension: 0.3,
-            fill: true
-          }
-        ]
-      };
+      // Atualizar contagem de páginas
+      document.getElementById('page-count').textContent = pdfDoc.numPages;
+      document.getElementById('page-num').textContent = pageNum;
       
-      // Configuração do gráfico
-      const config = {
-        type: 'line',
-        data: data,
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          plugins: {
-            legend: {
-              position: 'top',
-            },
-            tooltip: {
-              mode: 'index',
-              intersect: false,
-              callbacks: {
-                label: function(context) {
-                  return context.dataset.label + ': ' + context.parsed.y + '%';
-                }
-              }
-            }
-          },
-          scales: {
-            y: {
-              beginAtZero: true,
-              max: 100,
-              title: {
-                display: true,
-                text: 'Percentagem de Conclusão (%)'
-              }
-            },
-            x: {
-              title: {
-                display: true,
-                text: 'Mês (2023-2025)'
-              }
-            }
-          }
-        }
-      };
+      // Esconder indicador de carregamento
+      document.getElementById('pdf-loading').classList.add('hidden');
       
-      // Criar o gráfico
-      const ctx = document.getElementById('progress-chart').getContext('2d');
-      progressChart = new Chart(ctx, config);
+      // Renderizar primeira página
+      renderPage(pageNum);
+      
+      // Atualizar metadados do documento
+      document.getElementById('pdf-meta-date').textContent = 'Data: 31/03/2025';
+      document.getElementById('pdf-meta-revision').textContent = 'Revisão: Rev.000';
+      
+      // Mostrar toast de documento carregado
+      showToast(`Documento "${title}" carregado com sucesso!`, 'success');
+    })
+    .catch(function(error) {
+      console.error('Erro ao carregar o PDF:', error);
+      document.getElementById('pdf-loading').classList.add('hidden');
+      
+      // Mostrar mensagem de erro
+      const errorDiv = document.createElement('div');
+      errorDiv.style.padding = '2rem';
+      errorDiv.style.textAlign = 'center';
+      errorDiv.style.color = '#dc3545';
+      errorDiv.innerHTML = '<i class="fas fa-exclamation-triangle" style="font-size: 2rem; margin-bottom: 1rem;"></i><p>Não foi possível carregar o documento PDF. Por favor, tente novamente mais tarde.</p>';
+      document.querySelector('.pdf-container').appendChild(errorDiv);
+      
+      // Atualizar elementos de navegação
+      document.getElementById('page-count').textContent = '0';
+      document.getElementById('page-num').textContent = '0';
+      
+      // Mostrar toast de erro
+      showToast('Erro ao carregar o documento. Tente novamente.', 'error');
+    });
+}
+
+// Função para renderizar uma página do PDF
+function renderPage(num) {
+  pageRendering = true;
+  
+  // Buscar a página
+  pdfDoc.getPage(num).then(function(page) {
+    // Ajustar canvas para dimensões da página
+    const viewport = page.getViewport({ scale });
+    canvas.height = viewport.height;
+    canvas.width = viewport.width;
+    
+    // Renderizar a página no canvas
+    const renderContext = {
+      canvasContext: ctx,
+      viewport: viewport
+    };
+    
+    const renderTask = page.render(renderContext);
+    
+    // Aguardar a renderização
+    renderTask.promise.then(function() {
+      pageRendering = false;
+      
+      if (pageNumPending !== null) {
+        // Nova renderização pendente
+        renderPage(pageNumPending);
+        pageNumPending = null;
+      }
+    });
+  });
+  
+  // Atualizar número da página atual
+  document.getElementById('page-num').textContent = num;
+}
+
+// Função para enfileirar renderização para evitar concorrência
+function queueRenderPage(num) {
+  if (pageRendering) {
+    pageNumPending = num;
+  } else {
+    renderPage(num);
+  }
+}
+
+// Função para ir para página anterior
+function prevPage() {
+  if (pageNum <= 1 || !pdfDoc) {
+    return;
+  }
+  pageNum--;
+  queueRenderPage(pageNum);
+}
+
+// Função para ir para próxima página
+function nextPage() {
+  if (!pdfDoc || pageNum >= pdfDoc.numPages) {
+    return;
+  }
+  pageNum++;
+  queueRenderPage(pageNum);
+}
+
+// Função para aumentar zoom
+function zoomIn() {
+  if (zoomLevel >= 200) return;
+  
+  zoomLevel += 25;
+  scale += 0.25;
+  document.getElementById('zoom-level').textContent = zoomLevel + '%';
+  queueRenderPage(pageNum);
+}
+
+// Função para diminuir zoom
+function zoomOut() {
+  if (zoomLevel <= 50) return;
+  
+  zoomLevel -= 25;
+  scale -= 0.25;
+  document.getElementById('zoom-level').textContent = zoomLevel + '%';
+  queueRenderPage(pageNum);
+}
+
+// Função para abrir o primeiro PDF (Plano da Qualidade)
+function openFirstPdf() {
+  loadPdf('PQ.pdf', '1.1 – Plano da Qualidade (PQ)');
+}
+
+// Função para fechar o modal de pesquisa
+function closeSearchModal() {
+  document.getElementById('search-modal').classList.remove('active');
+}
+
+// Função para mostrar o modal de revisões
+function showRevisionsModal() {
+  document.getElementById('revisions-modal').classList.add('active');
+}
+
+// Função para fechar o modal de revisões
+function closeRevisionsModal() {
+  document.getElementById('revisions-modal').classList.remove('active');
+}
+
+// Função para mostrar o formulário de feedback
+function showFeedbackForm() {
+  document.getElementById('feedback-overlay').classList.add('active');
+}
+
+// Função para fechar o formulário de feedback
+function closeFeedbackForm() {
+  document.getElementById('feedback-overlay').classList.remove('active');
+}
+
+// Função para enviar feedback
+function submitFeedback() {
+  // Simular envio de feedback
+  showToast('Feedback enviado com sucesso! Obrigado pela sua contribuição.', 'success');
+  closeFeedbackForm();
+}
+
+// Função para mostrar toast de notificação
+function showToast(message, type = 'success') {
+  const toastContainer = document.getElementById('toast-container');
+  
+  // Criar toast
+  const toast = document.createElement('div');
+  toast.className = `toast toast-${type}`;
+  
+  // Adicionar conteúdo
+  toast.innerHTML = `
+    <div class="toast-message">${message}</div>
+    <button class="close-toast" onclick="this.parentElement.remove()">
+      <i class="fas fa-times"></i>
+    </button>
+  `;
+  
+  // Adicionar ao container
+  toastContainer.appendChild(toast);
+  
+  // Animar entrada
+  setTimeout(() => {
+    toast.classList.add('active');
+  }, 10);
+  
+  // Auto remover após 5 segundos
+  setTimeout(() => {
+    toast.classList.remove('active');
+    setTimeout(() => {
+      toast.remove();
+    }, 300);
+  }, 5000);
+}
+
+// Função para realizar pesquisa
+function performSearch() {
+  const searchTerm = document.getElementById('global-search').value.trim();
+  
+  if (searchTerm.length < 3) {
+    showToast('Por favor, informe pelo menos 3 caracteres para pesquisar.', 'warning');
+    return false;
+  }
+  
+  document.getElementById('search-term').textContent = searchTerm;
+  document.getElementById('search-modal').classList.add('active');
+  
+  const searchResults = document.getElementById('search-results');
+  searchResults.innerHTML = '<div class="loading-indicator" style="padding: 2rem;"><div class="spinner"></div><p>Pesquisando documentos...</p></div>';
+  
+  // Simular tempo de carregamento
+  setTimeout(() => {
+    // Resultados de pesquisa atualizados
+    searchResults.innerHTML = `
+      <div class="result-item" onclick="loadPdf('PQ.pdf', '1.1 – Plano da Qualidade (PQ)')">
+        <div class="result-title">1.1 – Plano da Qualidade</div>
+        <div class="result-snippet">...sistema de gestão da <span class="highlight">${searchTerm}</span> implementado na empreitada 4001008...</div>
+        <div class="result-meta">Capítulo 1 • Rev.000 • 15/02/2025 • 15 ocorrências</div>
+      </div>
+      <div class="result-item" onclick="loadPdf('CC.pdf', '1.3 – Certificados de Calibração')">
+        <div class="result-title">1.3 – Certificados de Calibração</div>
+        <div class="result-snippet">...instrumentos calibrados conforme o plano de <span class="highlight">${searchTerm}</span> do projeto...</div>
+        <div class="result-meta">Capítulo 1 • Rev.001 • 10/03/2025 • 8 ocorrências</div>
+      </div>
+      <div class="result-item" onclick="loadPdf('ES.pdf', '2.1.2 – Estruturas')">
+        <div class="result-title">2.1.2 – Estruturas</div>
+        <div class="result-snippet">...requisitos de <span class="highlight">${searchTerm}</span> aplicáveis às estruturas de betão...</div>
+        <div class="result-meta">Capítulo 2 • Rev.000 • 05/03/2025 • 5 ocorrências</div>
+      </div>
+      <div class="result-item" onclick="loadPdf('NC.pdf', '1.6 – Não Conformidades')">
+        <div class="result-title">1.6 – Não Conformidades</div>
+        <div class="result-snippet">...indicadores de desempenho da <span class="highlight">${searchTerm}</span> demonstram conformidade...</div>
+        <div class="result-meta">Capítulo 1 • Rev.000 • 18/03/2025 • 12 ocorrências</div>
+      </div>
+    `;
+  }, 1500);
+  
+  return false; // Prevenir submit do form
+}
+
+// Inicialização quando o DOM estiver carregado
+document.addEventListener('DOMContentLoaded', function() {
+  // Definir data de última atualização
+  initializeSplashDate();
+  
+  // Ativar a primeira categoria por padrão
+  document.querySelector('.nav-category').classList.add('active');
+  
+  // Adicionar eventos aos botões de navegação do PDF
+  document.getElementById('prev').addEventListener('click', prevPage);
+  document.getElementById('next').addEventListener('click', nextPage);
+  document.getElementById('zoom-in').addEventListener('click', zoomIn);
+  document.getElementById('zoom-out').addEventListener('click', zoomOut);
+  
+  // Permitir pesquisa ao pressionar Enter
+  document.getElementById('global-search').addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') {
+      performSearch();
+      e.preventDefault();
     }
+  });
+  
+  // Adaptar o visualizador em dispositivos móveis
+  if (window.innerWidth < 768) {
+    scale = 1.0;
+    zoomLevel = 67;
+    document.getElementById('zoom-level').textContent = '67%';
+  }
+});
 
-    // Inicialização quando o DOM estiver carregado
-    document.addEventListener('DOMContentLoaded', function() {
-      // Definir data de última atualização
-      initializeSplashDate();
-      
-      // Ativar a primeira categoria por padrão
-      document.querySelector('.nav-category').classList.add('active');
-      
-      // Adicionar eventos aos botões de navegação do PDF
-      document.getElementById('prev').addEventListener('click', prevPage);
-      document.getElementById('next').addEventListener('click', nextPage);
-      document.getElementById('zoom-in').addEventListener('click', zoomIn);
-      document.getElementById('zoom-out').addEventListener('click', zoomOut);
-      
-      // Permitir pesquisa ao pressionar Enter
-      document.getElementById('global-search').addEventListener('keypress', function(e) {
-        if (e.key === 'Enter') {
-          performSearch();
-          e.preventDefault();
-        }
-      });
-      
-      // Adaptar o visualizador em dispositivos móveis
-      if (window.innerWidth < 768) {
-        scale = 1.0;
-        zoomLevel = 67;
-        document.getElementById('zoom-level').textContent = '67%';
-      }
-    });
-
-    // Navegação do PDF por teclado
-    document.addEventListener('keydown', function(e) {
-      if (!pdfDoc) return;
-      
-      if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
-        prevPage();
-      } else if (e.key === 'ArrowRight' || e.key === 'PageDown') {
-        nextPage();
-      } else if (e.key === '+' || e.key === '=') {
-        zoomIn();
-      } else if (e.key === '-' || e.key === '_') {
-        zoomOut();
-      }
-    });
-  </script>
+// Navegação do PDF por teclado
+document.addEventListener('keydown', function(e) {
+  if (!pdfDoc) return;
+  
+  if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+    prevPage();
+  } else if (e.key === 'ArrowRight' || e.key === 'PageDown') {
+    nextPage();
+  } else if (e.key === '+' || e.key === '=') {
+    zoomIn();
+  } else if (e.key === '-' || e.key === '_') {
+    zoomOut();
+  }
+});
+    <!-- Botão para voltar à página inicial -->
+<div class="back-to-home" onclick="showWelcomeContent()">
+  <i class="fas fa-home"></i>
+</div>
 </body>
 </html>
