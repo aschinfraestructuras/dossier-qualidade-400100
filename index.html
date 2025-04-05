@@ -1493,7 +1493,40 @@
         height: 60vh;
       }
     }
-  </style>
+     <style>
+    
+  <style>
+  /* Uniformizar descrições de capítulos */
+  .chapter-description {
+    display: block;
+    width: 100%;
+    padding: 0.3rem 0 0.5rem;
+    font-size: 0.8rem;
+    color: var(--gray);
+    font-style: italic;
+    line-height: 1.3;
+    clear: both;
+  }
+  
+  .nav-item, .nav-subitem, .nav-third-item {
+    flex-wrap: wrap;
+  }
+</style>
+  
+<style>
+  /* Aumentar largura do índice */
+  .sidebar {
+    width: 380px;
+  }
+  
+  /* Ajustar layout quando o índice for mais largo */
+  @media (max-width: 1200px) {
+    .main-content {
+      padding-left: 1rem;
+    }
+  }
+</style>
+  
 </head>
   <body>
   <!-- Splash Screen / Capa Inicial -->
@@ -1785,10 +1818,10 @@
           <header class="page-header">
             <h1 class="page-title">Dossier Final da Qualidade</h1>
             <p class="page-subtitle">Projeto Alba – Nuevas Plantas de Poliolefinas, Plataformas Logísticas y Offsites</p>
-            <div class="project-status">
-              <i class="fas fa-check-circle"></i>
-              <span>Projeto Concluído (100%)</span>
-            </div>
+            <div class="project-status" style="background: #FFC107;">
+  <i class="fas fa-check-circle"></i>
+  <span>Projeto Concluído (98%) - Pendências em resolução</span>
+</div>
           </header>
 
           <div class="dashboard-cards">
@@ -1805,9 +1838,12 @@
               <div class="card-value">Junho 2023</div>
             </div>
             <div class="dashboard-card">
-              <div class="card-label"><i class="fas fa-flag-checkered"></i> Data de Conclusão</div>
-              <div class="card-value">31/03/2025</div>
-            </div>
+  <div class="card-label"><i class="fas fa-flag-checkered"></i> Data de Conclusão</div>
+  <div class="card-value">31/03/2025</div>
+  <div style="font-size: 0.8rem; color: #dc3545; margin-top: 0.5rem;">
+    <i class="fas fa-info-circle"></i> Algumas pendências em resolução
+  </div>
+</div>
             <div class="dashboard-card">
               <div class="card-label"><i class="fas fa-file-alt"></i> Número do Projeto</div>
               <div class="card-value">4001008</div>
@@ -1882,9 +1918,27 @@
               </div>
               
               <!-- Gráfico de não conformidades por categoria -->
-              <div class="chart-container" style="height: 300px; margin: 2rem 0;">
-                <canvas id="nonconformities-chart"></canvas>
-              </div>
+<div class="chart-container" style="height: 300px; margin: 2rem 0; clear: both; padding-top: 2rem;">
+  <canvas id="nonconformities-chart"></canvas>
+</div>
+
+<style>
+  /* Prevenir sobreposição entre gráfico e tabela */
+  .test-table-container {
+    overflow: visible;
+    margin-bottom: 5rem;
+  }
+  
+  .chart-container {
+    position: relative;
+    z-index: 1;
+    background-color: white;
+  }
+  
+  .test-table {
+    margin-top: 3rem;
+  }
+</style>
               
               <table class="test-table">
                 <thead>
