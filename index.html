@@ -1809,7 +1809,7 @@
       <!-- Main Content Area -->
       <main class="main-content">
         <div class="breadcrumb">
-          <div class="breadcrumb-item"><a href="#" onclick="showWelcomeContent()">Início</a></div>
+          <div class="breadcrumb-item"><<a href="javascript:void(0)" onclick="showWelcomeContent()">Início</a>
           <div class="breadcrumb-item" id="current-section">Visão Geral</div>
         </div>
 
@@ -2166,32 +2166,40 @@
                 <div class="member-name">Luis Salvado</div>
                 <div class="member-contact">lsalvado@achportugal.pt</div>
               </div>
-              <div class="team-member">
-                <div class="member-position">DELEGADO</div>
-                <div class="member-role">ASCH Infraestructuras</div>
-                <div class="member-name">Gustavo Martínez</div>
-                <div class="member-contact">gmartinez@aschinfraestructuras.com</div>
-              </div>
-            </div>
+<div class="team-member">
+  <div class="member-position">DELEGADO</div>
+  <div class="member-role">ASCH Infraestructuras</div>
+  <div class="member-name">Gustavo Martínez</div>
+  <div class="member-contact">gmartinez@aschinfraestructuras.com</div>
+</div>
 
-            <div class="action-buttons">
-              <button class="btn btn-primary" onclick="openFirstPdf()">
-                <i class="fas fa-file-pdf"></i> Ver Plano da Qualidade
-              </button>
-               <a href="assets/dossier_final.pdf" download onclick="showToast('Download do Dossier iniciado!', 'success')" class="btn btn-outlined">
-                <i class="fas fa-download"></i> Download Dossier Completo
-             </a>
+<div class="action-buttons">
+  <!-- Ver o primeiro PDF (Plano da Qualidade) -->
+  <button class="btn btn-primary" onclick="openFirstPdf()">
+    <i class="fas fa-file-pdf"></i> Ver Plano da Qualidade
+  </button>
 
-              <button class="btn btn-success" onclick="showRevisionsModal()">
-                <i class="fas fa-history"></i> Histórico de Revisões
-              </button>
-            </div>
-          </div>
+  <!-- Download do documento atualmente visível no visualizador -->
+  <a href="#" onclick="downloadCurrentPdf()" class="btn btn-outlined">
+    <i class="fas fa-download"></i> Download Documento Atual
+  </a>
 
-        <div class="section-container">
-            <h2 class="section-title"><i class="fas fa-certificate"></i> Validação e Autenticidade</h2>
-            <div class="digital-signature">
-              <div class="signature-info">
+  <!-- Download do Dossier Final completo -->
+  <a href="assets/dossier_final.pdf" download onclick="showToast('Download do Dossier Completo iniciado!', 'success')" class="btn btn-outlined">
+    <i class="fas fa-archive"></i> Download Dossier Completo
+  </a>
+
+  <!-- Histórico de Revisões -->
+  <button class="btn btn-success" onclick="showRevisionsModal()">
+    <i class="fas fa-history"></i> Histórico de Revisões
+  </button>
+</div>
+
+<div class="section-container">
+  <h2 class="section-title"><i class="fas fa-certificate"></i> Validação e Autenticidade</h2>
+  <div class="digital-signature">
+    <div class="signature-inf">
+
                 <p>Este dossier digital de qualidade está certificado pela ASCH INFRAESTRUCTURAS Y SERVICIOS S.A. e tem validade legal.</p>
                 <p>Código de Verificação: <strong>ASCH-QD-4001008-2025-V1</strong></p>
                 <p>Documento assinado digitalmente em: <span id="signature-date">31/03/2025</span></p>
@@ -2232,9 +2240,9 @@
             <button class="btn-control" onclick="showToast('Documento partilhado via email', 'success')">
               <i class="fas fa-share-alt"></i> Partilhar
             </button>
-            <button class="btn-control" onclick="showToast('Download iniciado', 'success')">
-              <i class="fas fa-download"></i> Download
-            </button>
+            <button class="btn-control" onclick="downloadCurrentPdf()">
+            <i class="fas fa-download"></i> Download
+             </button>
           </div>
 
           <div class="pdf-container">
@@ -2916,8 +2924,27 @@
         zoomOut();
       }
     });
-  </script>
- 
+
+  
+  // Nova função para fazer download do PDF atualmente carregado
+  function downloadCurrentPdf() {
+  if (!pdfPath) {
+    showToast('Nenhum documento carregado.', 'warning');
+    return;
+  }
+
+  const link = document.createElement('a');
+  link.href = `${pdfPath}`; // Caminho correto para a raiz
+  link.download = pdfPath;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+
+  showToast('Download do documento iniciado.', 'success');
+}
+    
+</script>
+
 </body>
 </html>
 
