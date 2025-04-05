@@ -1921,6 +1921,7 @@
 <div class="chart-container" style="height: 300px; margin: 2rem 0 6rem 0; clear: both; padding-top: 2rem;">
   <canvas id="nonconformities-chart"></canvas>
 </div>
+  <div style="height: 150px; clear: both;"></div>
               
 <style>
   /* Prevenir sobreposição entre gráfico e tabela */
@@ -2177,9 +2178,10 @@
               <button class="btn btn-primary" onclick="openFirstPdf()">
                 <i class="fas fa-file-pdf"></i> Ver Plano da Qualidade
               </button>
-              <a href="#" onclick="showToast('Iniciando download do dossier completo...', 'success')" class="btn btn-outlined">
+               <a href="assets/dossier_final.pdf" download onclick="showToast('Download do Dossier iniciado!', 'success')" class="btn btn-outlined">
                 <i class="fas fa-download"></i> Download Dossier Completo
-              </a>
+             </a>
+
               <button class="btn btn-success" onclick="showRevisionsModal()">
                 <i class="fas fa-history"></i> Histórico de Revisões
               </button>
@@ -2915,6 +2917,8 @@
       }
     });
   </script>
+ 
 </body>
 </html>
+
 
