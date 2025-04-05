@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-  <meta charset="UTF-8">
-  <title>Dossier Final da Qualidade - Projeto Alba (Exemplo)</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <title>Dossier Final da Qualidade (Unificado)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <!-- Fontes e ícones -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link 
@@ -12,329 +13,369 @@
   <link 
     rel="stylesheet" 
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <!-- PDF.js & Chart.js -->
+
+  <!-- PDF.js e Chart.js -->
   <script 
     src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js">
   </script>
   <script 
     src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js">
   </script>
-  
+
   <style>
     :root {
-      --color-primary: #5A82F5;       /* tom de azul “lindo” */
-      --color-primary-dark: #4A6DC7;
-      --color-secondary: #FF5A5F;     /* vermelho/rosa */
-      --color-bg: #f3f5f9;
-      --color-white: #fff;
-      --color-text: #333;
-      --color-gray: #bbb;
+      /* Cores principais */
+      --primary: #0056B3;
+      --secondary: #FF5A5F;
+      --bg: #f5f7fb;
+      --white: #fff;
+      --text: #333;
+      --gray: #bbb;
       --transition: 0.3s ease;
       --font-main: 'Poppins', sans-serif;
     }
-    * { margin:0; padding:0; box-sizing:border-box; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: var(--font-main);
-      background: var(--color-bg);
-      color: var(--color-text);
+      background: var(--bg);
+      color: var(--text);
       overflow-x: hidden;
     }
     a { text-decoration: none; color: inherit; }
-    
-    /* Splash Screen */
+
+    /* SPLASH SCREEN */
     .splash-screen {
       position: fixed; top:0; left:0; width:100%; height:100%;
-      background: linear-gradient(
-        135deg, rgba(90,130,245,0.9) 0%, rgba(90,130,245,0.7) 100%
-      ), 
-      url('https://images.unsplash.com/photo-1581094794329-c8112a89af12?fit=crop&w=1920&q=80')
-      center/cover no-repeat;
-      z-index:9999; display:flex; align-items:center; justify-content:center;
-      flex-direction: column; text-align:center; color:var(--color-white);
-      transition: opacity var(--transition), transform var(--transition);
-    }
-    .splash-content {
-      animation: fadeInUp 0.8s ease-out;
-    }
-    @keyframes fadeInUp {
-      from { opacity:0; transform: translateY(50px); }
-      to { opacity:1; transform: translateY(0); }
+      background: linear-gradient(135deg, rgba(0, 86, 179, 0.9), rgba(0,86,179,0.7)),
+        url('https://images.unsplash.com/photo-1581094794329-c8112a89af12?fit=crop&w=1920&q=80') 
+        center/cover no-repeat;
+      display:flex; align-items:center; justify-content:center;
+      flex-direction:column; text-align:center; color:#fff;
+      z-index:9999; transition: opacity var(--transition);
     }
     .splash-title {
-      font-size:2.5rem; font-weight:700; margin-bottom:1rem;
-      text-shadow:0 3px 6px rgba(0,0,0,0.3);
+      font-size:2rem; font-weight:700; margin-bottom:0.8rem;
+      text-shadow:0 2px 5px rgba(0,0,0,0.3);
     }
-    .splash-subtitle { font-size:1.2rem; margin-bottom:2rem; }
+    .splash-subtitle {
+      font-size:1rem; margin-bottom:1.5rem;
+    }
     .btn-big {
-      background: var(--color-white);
-      color: var(--color-primary);
-      padding:1rem 2rem; border-radius:3rem; font-weight:600; 
-      font-size:1rem; display:inline-flex; align-items:center; gap:0.5rem;
-      border:none; cursor:pointer; 
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-      transition: transform var(--transition);
-    }
-    .btn-big:hover { transform:translateY(-3px); }
-
-    /* Ocultar quando sair do splash */
-    .splash-screen.fade-out {
-      opacity:0; pointer-events: none;
-    }
-    
-    /* Container principal */
-    .app-container {
-      display:flex; flex-direction:column; min-height:100vh;
-      visibility:hidden; opacity:0; 
-      transition: opacity 0.5s ease;
-    }
-    .app-container.visible {
-      visibility:visible; opacity:1;
-    }
-
-    /* Top Nav */
-    .top-navbar {
-      background: var(--color-white);
-      height:70px; display:flex; align-items:center;
-      padding:0 1.5rem; box-shadow:0 2px 12px rgba(0,0,0,0.06);
-      z-index:1000; position:sticky; top:0;
-    }
-    .navbar-brand {
-      display:flex; align-items:center; gap:0.8rem; 
-      margin-right:auto; 
-    }
-    .brand-logo { height:50px; }
-    .navbar-title {
-      font-size:1.3rem; font-weight:600; color:var(--color-primary);
-    }
-    .navbar-tools { display:flex; gap:1rem; }
-    .btn-nav {
-      background: none; border:1px solid var(--color-gray); 
-      border-radius:0.5rem; padding:0.6rem 1rem; 
-      display:flex; align-items:center; gap:0.5rem; 
-      cursor:pointer; transition: background var(--transition);
-      font-size:0.9rem; color:var(--color-primary);
-    }
-    .btn-nav:hover {
-      background: var(--color-primary);
-      color: var(--color-white);
-      border-color: var(--color-primary);
-    }
-    .menu-toggle { display:none; background:none; border:none; font-size:1.5rem; cursor:pointer; }
-    
-    /* Main */
-    .main-container {
-      display:flex; flex:1;
-    }
-    /* Sidebar */
-    .sidebar {
-      width:300px; background:var(--color-white);
-      border-right:1px solid #ddd;
-      overflow-y:auto; position:sticky; top:70px; height:calc(100vh - 70px);
-      transition: transform var(--transition);
-    }
-    .sidebar-header {
-      padding:1rem; border-bottom:1px solid #eee;
-    }
-    .sidebar-title {
-      font-size:1.2rem; font-weight:600; color:var(--color-primary);
+      background:#fff; color:var(--primary);
+      padding:0.8rem 1.6rem; border-radius:2rem;
+      border:none; cursor:pointer; font-weight:600; font-size:1rem;
+      box-shadow:0 3px 10px rgba(0,0,0,0.15);
       display:flex; align-items:center; gap:0.5rem;
+      transition: transform var(--transition);
     }
-    .search-chapters {
-      margin-top:1rem; position:relative;
-    }
-    .search-chapters input {
-      width:100%; padding:0.6rem 2.5rem 0.6rem 0.8rem;
-      border-radius:1rem; border:1px solid #ccc; outline:none; 
-      transition:border var(--transition);
-    }
-    .search-chapters input:focus {
-      border-color:var(--color-primary);
-    }
-    .search-icon {
-      position:absolute; top:50%; right:0.8rem; transform:translateY(-50%);
-      color:#999; font-size:0.9rem;
-    }
-    .navigation { padding:0.5rem 0; }
-    .nav-category {
-      border-bottom:1px solid #f0f0f0; 
-      transition: background var(--transition);
-    }
-    .category-header {
-      padding:0.75rem 1rem; display:flex; align-items:center; 
-      justify-content:space-between; cursor:pointer; 
-    }
-    .header-title {
-      display:flex; align-items:center; gap:0.5rem; 
-      font-weight:500; font-size:0.95rem;
-    }
-    .category-header:hover {
-      background:#fafafa;
-    }
-    .chevron-icon { transition: transform 0.3s; }
-    .nav-category.active .chevron-icon {
-      transform: rotate(180deg);
-    }
-    .category-menu {
-      display:none; animation:fadeIn 0.3s ease forwards;
-    }
-    @keyframes fadeIn {
-      from {opacity:0;}
-      to {opacity:1;}
-    }
-    .nav-category.active .category-menu {
-      display:block;
-    }
-    .nav-item {
-      padding:0.5rem 2rem; display:flex; align-items:center; gap:0.5rem;
-      font-size:0.9rem; cursor:pointer; transition: background 0.2s;
-      position:relative;
-    }
-    .nav-item:hover {
-      background:#f7f7f7;
-    }
-    .nav-item i { color:var(--color-primary); }
-    .doc-status {
-      position:absolute; right:1.5rem; top:50%; transform:translateY(-50%);
-      font-size:0.7rem; background:var(--color-secondary); 
-      color:#fff; padding:0.2rem 0.4rem; border-radius:1rem;
+    .btn-big:hover { transform: translateY(-3px); }
+
+    .splash-screen.fade-out {
+      opacity:0; pointer-events:none;
     }
 
-    /* Main Content */
-    .main-content { flex:1; padding:1.5rem; }
-    .breadcrumb { 
-      display:flex; align-items:center; gap:0.5rem; margin-bottom:1.5rem;
-      font-size:0.9rem;
-    }
-    .breadcrumb-item:not(:last-child)::after {
-      content:"/"; margin:0 0.3rem; color:#aaa;
-    }
-    .page-header {
-      margin-bottom:1.5rem; 
-      padding-bottom:1rem; border-bottom:2px solid #e0e0e0;
-    }
-    .page-title {
-      font-size:1.8rem; font-weight:700; color:var(--color-primary);
-      margin-bottom:0.3rem;
-    }
-    .page-subtitle {
-      font-size:1rem; color:#666;
-    }
-
-    /* Dashboard Cards */
-    .dashboard-cards {
-      display:grid; grid-template-columns:repeat(auto-fill, minmax(220px,1fr));
-      gap:1rem; margin-bottom:1.5rem;
-    }
-    .dashboard-card {
-      background:var(--color-white); border-radius:0.5rem;
-      padding:1rem; box-shadow:0 2px 10px rgba(0,0,0,0.05);
-      transition:transform 0.2s;
-      position:relative; overflow:hidden;
-    }
-    .dashboard-card:hover {
-      transform: translateY(-3px);
-    }
-    .card-label {
-      font-size:0.8rem; color:#777; margin-bottom:0.3rem; 
-      display:flex; align-items:center; gap:0.4rem;
-    }
-    .card-value {
-      font-size:1.2rem; font-weight:600; color:#222;
-    }
-
-    .section-container {
-      background:var(--color-white); border-radius:0.5rem;
-      padding:1rem; box-shadow:0 2px 10px rgba(0,0,0,0.05);
-      margin-bottom:1.5rem;
-    }
-    .section-title {
-      font-size:1.2rem; font-weight:600; color:var(--color-primary);
-      margin-bottom:1rem; display:flex; gap:0.5rem; align-items:center;
-    }
-    .pdf-viewer { display:none; }
-    .pdf-viewer.active { display:block; }
-
-    /* Toast (bem simples) */
+    /* TOAST */
     .toast-container {
       position:fixed; bottom:1rem; right:1rem; z-index:9999;
       display:flex; flex-direction:column; gap:0.5rem;
     }
     .toast {
-      background: #333; color:#fff; padding:0.7rem 1rem;
-      border-radius:0.4rem; font-size:0.9rem; 
+      background:#333; color:#fff; padding:0.7rem 1rem;
+      border-radius:0.4rem; font-size:0.9rem;
       animation: fadeInUp 0.5s ease forwards;
     }
     @keyframes fadeInUp {
       from {opacity:0; transform: translateY(20px);}
       to {opacity:1; transform: translateY(0);}
     }
-    /* Responsividade */
-    @media(max-width:768px) {
-      .menu-toggle { display:block; }
+
+    /* BOTÃO VOLTAR AO TOPO */
+    .btn-topo {
+      position: fixed; bottom:20px; right:20px;
+      background: var(--primary); color:#fff; border:none; border-radius:50%;
+      padding:0.8rem; font-size:1.2rem; cursor:pointer;
+      box-shadow:0 2px 8px rgba(0,0,0,0.2);
+      display:none; z-index:9999;
+    }
+    .btn-topo.show { display:block; }
+
+    /* APP CONTAINER */
+    .app-container {
+      display:flex; flex-direction:column;
+      min-height:100vh; visibility:hidden; opacity:0; transition: opacity 0.5s;
+    }
+    .app-container.visible {
+      visibility:visible; opacity:1;
+    }
+
+    /* TOP NAVBAR */
+    .top-navbar {
+      background: var(--white);
+      height:70px; display:flex; align-items:center;
+      padding:0 1.5rem; box-shadow:0 2px 10px rgba(0,0,0,0.05);
+      position:sticky; top:0; z-index:1000;
+    }
+    .navbar-brand {
+      display:flex; align-items:center; gap:0.5rem; margin-right:auto;
+    }
+    .brand-logo { height:50px; }
+    .navbar-title {
+      font-size:1.1rem; font-weight:600; color: var(--primary);
+    }
+    .navbar-tools { display:flex; gap:1rem; }
+    .btn-nav {
+      background:none; border:1px solid var(--gray);
+      padding:0.6rem 1rem; border-radius:0.4rem;
+      display:flex; align-items:center; gap:0.3rem;
+      cursor:pointer; color:var(--primary); 
+      transition: background var(--transition);
+      font-size:0.9rem;
+    }
+    .btn-nav:hover {
+      background: var(--primary); color:#fff; border-color: var(--primary);
+    }
+
+    /* LAYOUT PRINCIPAL */
+    .main-container {
+      display:flex; flex:1;
+    }
+
+    /* SIDEBAR */
+    .sidebar {
+      width:300px; background:#fff; border-right:1px solid #eee;
+      position:sticky; top:70px; height:calc(100vh - 70px); overflow-y:auto;
+    }
+    .sidebar-header {
+      padding:1rem; border-bottom:1px solid #eee;
+    }
+    .sidebar-title {
+      font-size:1.05rem; font-weight:600; color:var(--primary);
+      display:flex; align-items:center; gap:0.5rem;
+    }
+    .search-chapters {
+      margin-top:0.5rem; position:relative;
+    }
+    .search-chapters input {
+      width:100%; padding:0.5rem 2.5rem 0.5rem 0.8rem; border-radius:1.5rem;
+      border:1px solid #ccc; outline:none; transition: border var(--transition);
+    }
+    .search-chapters input:focus { border-color: var(--primary); }
+    .search-icon {
+      position:absolute; top:50%; right:0.8rem; transform:translateY(-50%);
+      font-size:0.8rem; color:#999;
+    }
+    .navigation { padding:0.5rem 0; }
+    .nav-category {
+      border-bottom:1px solid #f4f4f4;
+    }
+    .category-header {
+      padding:0.75rem 1rem; display:flex; align-items:center; justify-content:space-between;
+      cursor:pointer; transition: background 0.3s;
+    }
+    .header-title { display:flex; align-items:center; gap:0.5rem; font-size:0.9rem; }
+    .category-header:hover { background:#fafafa; }
+    .chevron-icon { transition:transform 0.3s; }
+    .nav-category.active .chevron-icon {
+      transform:rotate(180deg);
+    }
+    .category-menu { display:none; }
+    .nav-category.active .category-menu {
+      display:block; animation:fadeIn 0.3s forwards;
+    }
+    @keyframes fadeIn {
+      from {opacity:0;}
+      to {opacity:1;}
+    }
+    .nav-item {
+      padding:0.5rem 2rem; display:flex; align-items:center; gap:0.5rem;
+      font-size:0.9rem; cursor:pointer; position:relative;
+      transition: background 0.2s;
+    }
+    .nav-item:hover { background:#f9f9f9; }
+    .nav-item i { color:var(--primary); }
+    .doc-status {
+      position:absolute; right:1rem; top:50%; transform:translateY(-50%);
+      font-size:0.7rem; background: var(--secondary); color:#fff;
+      padding:0.2rem 0.5rem; border-radius:1rem;
+    }
+
+    /* MAIN CONTENT */
+    .main-content {
+      flex:1; padding:1rem 2rem;
+    }
+    .breadcrumb {
+      display:flex; align-items:center; gap:0.3rem; margin-bottom:1rem;
+      font-size:0.85rem;
+    }
+    .breadcrumb-item:not(:last-child)::after {
+      content:"/"; margin:0 0.3rem; color:#aaa;
+    }
+    .page-header {
+      margin-bottom:1rem; padding-bottom:0.8rem;
+      border-bottom:2px solid #eee;
+    }
+    .page-title {
+      font-size:1.4rem; font-weight:700; color:var(--primary);
+      margin-bottom:0.3rem;
+    }
+    .page-subtitle { font-size:0.9rem; color:#666; }
+
+    /* STATS COMPACTAS */
+    .stats-container {
+      display:flex; flex-wrap:wrap; gap:1rem;
+      margin-bottom:1.5rem;
+    }
+    .stats-box {
+      background:#f9fafb;
+      border-radius:0.4rem;
+      box-shadow:0 1px 5px rgba(0,0,0,0.05);
+      flex:1; min-width:120px;
+      padding:0.7rem; text-align:center;
+    }
+    .stats-label {
+      font-size:0.8rem; color:#666; margin-bottom:0.3rem;
+    }
+    .stats-value {
+      font-size:1.3rem; font-weight:600; color:#333;
+    }
+
+    /* CHART */
+    .chart-container {
+      background:#fff; border-radius:0.5rem; 
+      box-shadow:0 1px 5px rgba(0,0,0,0.05);
+      padding:1rem; margin-bottom:1.5rem;
+    }
+    .chart-title { font-size:1rem; font-weight:600; color:var(--primary); margin-bottom:0.5rem; }
+
+    /* TEAM (Assinaturas) */
+    .team-section {
+      background:#fff; border-radius:0.5rem;
+      box-shadow:0 1px 5px rgba(0,0,0,0.05);
+      padding:1rem; margin-bottom:1.5rem;
+    }
+    .team-title {
+      font-size:1rem; font-weight:600; color:var(--primary); margin-bottom:1rem;
+    }
+    .team-list {
+      display:flex; flex-wrap:wrap; gap:1rem;
+    }
+    .team-member {
+      flex:1; min-width:180px; 
+      background:#fafafa; border-radius:0.5rem; 
+      padding:1rem; text-align:center;
+      box-shadow:0 1px 5px rgba(0,0,0,0.03);
+    }
+    .member-photo {
+      width:80px; height:80px; border-radius:50%;
+      background:#ddd; margin:0 auto 0.5rem;
+      display:flex; align-items:center; justify-content:center;
+      font-size:2rem; color:#777;
+    }
+    .member-position {
+      font-size:0.85rem; font-weight:600; color:var(--primary);
+    }
+    .member-role {
+      font-size:0.8rem; color:#666; margin-bottom:0.3rem;
+    }
+    .member-name { font-size:0.95rem; font-weight:600; margin-bottom:0.5rem; }
+    .signature-seal {
+      background: var(--primary); color:#fff;
+      padding:0.3rem 0.6rem; border-radius:1rem;
+      font-size:0.75rem; display:inline-flex; align-items:center; gap:0.3rem;
+    }
+
+    /* PDF VIEWER */
+    .pdf-viewer {
+      display:none; background:#fff; border-radius:0.5rem;
+      box-shadow:0 1px 5px rgba(0,0,0,0.05);
+      margin-top:1rem; overflow:hidden;
+    }
+    .pdf-viewer.active { display:block; }
+    .pdf-header {
+      display:flex; justify-content:space-between; align-items:center;
+      padding:0.7rem 1rem; border-bottom:1px solid #eee; background:#fafafa;
+    }
+    .pdf-title { font-weight:600; }
+    .pdf-body {
+      position:relative; height:70vh; background:#eaeaea; display:flex; justify-content:center; align-items:center; overflow:auto;
+    }
+    .pdf-controls {
+      display:flex; justify-content:space-between; align-items:center;
+      padding:0.5rem 1rem; border-top:1px solid #eee; background:#fafafa;
+    }
+    .loading-indicator {
+      position:absolute; display:none; flex-direction:column; align-items:center;
+    }
+    .spinner {
+      width:40px; height:40px; border:4px solid rgba(0,0,0,0.1);
+      border-top:4px solid var(--primary); border-radius:50%;
+      animation:spin 1s linear infinite; margin-bottom:0.5rem;
+    }
+    @keyframes spin {
+      to {transform:rotate(360deg);}
+    }
+
+    @media(max-width:768px){
       .sidebar { position:fixed; left:-300px; top:70px; }
       .sidebar.active { left:0; }
       .main-content { padding:1rem; }
-      .page-title { font-size:1.5rem; }
     }
   </style>
 </head>
 <body>
   <!-- Splash Screen -->
   <div class="splash-screen" id="splash-screen">
-    <div class="splash-content">
-      <h1 class="splash-title">Dossier Final da Qualidade</h1>
-      <p class="splash-subtitle">Projeto Alba - Empreitada 4001008</p>
-      <button class="btn-big" onclick="enterDossier()">
-        <i class="fa fa-book-open"></i> Entrar no Dossier
-      </button>
-    </div>
+    <h1 class="splash-title">Dossier Final da Qualidade</h1>
+    <p class="splash-subtitle">Projeto 4001008 - Alba</p>
+    <button class="btn-big" onclick="enterDossier()">
+      <i class="fa fa-book-open"></i> Entrar no Dossier
+    </button>
   </div>
 
   <!-- Toast Container -->
   <div class="toast-container" id="toast-container"></div>
 
+  <!-- Botão Voltar ao Topo -->
+  <button class="btn-topo" id="btn-topo" onclick="scrollToTop()">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
   <!-- App Container -->
   <div class="app-container" id="app-container">
     <!-- Top Navbar -->
     <header class="top-navbar">
-      <button class="menu-toggle" onclick="toggleSidebar()">
-        <i class="fas fa-bars"></i>
-      </button>
       <div class="navbar-brand">
         <img src="assets/images/logoasch.png" alt="Logo" class="brand-logo">
         <div class="navbar-title">Dossier de Qualidade (4001008)</div>
       </div>
       <div class="navbar-tools">
-        <button class="btn-nav" onclick="showToast('Feedback em breve!','info')">
-          <i class="fas fa-comment-alt"></i> Feedback
+        <button class="btn-nav" onclick="showToast('Voltando ao Início...','info'); goHome();">
+          <i class="fas fa-home"></i> Início
         </button>
-        <button class="btn-nav" onclick="showToast('Opções avançadas','info')">
-          <i class="fas fa-cog"></i> Opções
+        <button class="btn-nav" onclick="showToast('Feedback em breve!','info')">
+          <i class="fas fa-comment"></i> Feedback
         </button>
       </div>
     </header>
 
-    <!-- Main Container -->
     <div class="main-container">
       <!-- Sidebar -->
       <aside class="sidebar" id="sidebar">
         <div class="sidebar-header">
           <h2 class="sidebar-title">
-            <i class="fa fa-folder"></i> Índice
+            <i class="fas fa-folder"></i> Índice
           </h2>
           <div class="search-chapters">
             <input 
               type="text" 
-              placeholder="Pesquisar capítulo..." 
-              id="chapter-search" 
-              oninput="filterChapters()">
+              placeholder="Pesquisar capítulo..."
+              id="chapterSearch" oninput="filterChapters()">
             <i class="fas fa-search search-icon"></i>
           </div>
         </div>
-        <div class="navigation" id="navigation-container">
-          
-          <!-- Exemplo de Capítulo 1 -->
-          <div class="nav-category" data-cat="cap1">
+        <div class="navigation" id="nav-container">
+          <!-- Exemplo de nav-cat 1 -->
+          <div class="nav-category">
             <div class="category-header" onclick="toggleCategory(this.parentNode)">
               <div class="header-title">
                 <i class="fas fa-tasks"></i>
@@ -343,47 +384,20 @@
               <i class="fas fa-chevron-down chevron-icon"></i>
             </div>
             <div class="category-menu">
-              <div class="nav-item" onclick="openPdf('cap1.1.pdf','1.1 - Plano da Qualidade')">
+              <div class="nav-item" onclick="openPdf('1.1-PQ.pdf','1.1 - Plano da Qualidade')">
                 <i class="fas fa-clipboard-list"></i>
-                <span>1.1 - Plano da Qualidade</span>
+                <span>1.1 – Plano da Qualidade</span>
                 <span class="doc-status">Aprovado</span>
               </div>
-              <div class="nav-item" onclick="openPdf('cap1.2.pdf','1.2 - Plano de Inspeção e Ensaios')">
+              <div class="nav-item" onclick="openPdf('1.2-PIE.pdf','1.2 – Plano de Inspeção e Ensaios')">
                 <i class="fas fa-vial"></i>
-                <span>1.2 - Plano de Inspeção e Ensaios</span>
-                <span class="doc-status">Aprovado</span>
-              </div>
-              <div class="nav-item" onclick="openPdf('cap1.3.pdf','1.3 - Certificados de Calibração')">
-                <i class="fas fa-ruler"></i>
-                <span>1.3 - Certificados de Calibração</span>
-              </div>
-              <div class="nav-item" onclick="toggleSubmenu('submateriais')">
-                <i class="fas fa-file-contract"></i>
-                <span>1.4 - Certificados de Materiais</span>
-              </div>
-              <div id="submateriais" style="display:none; margin-left:1rem;">
-                <div class="nav-item" onclick="openPdf('cap1.4.1.pdf','1.4.1 - Materiais Base')">
-                  <i class="fas fa-cube"></i>
-                  <span>1.4.1 - Materiais Base</span>
-                </div>
-                <div class="nav-item" onclick="openPdf('cap1.4.2.pdf','1.4.2 - Pré-Fabricados de Betão')">
-                  <i class="fas fa-cubes"></i>
-                  <span>1.4.2 - Pré-Fabricados de Betão</span>
-                </div>
-              </div>
-              <div class="nav-item" onclick="openPdf('cap1.5.pdf','1.5 - Estudos de Materiais')">
-                <i class="fas fa-chart-bar"></i>
-                <span>1.5 - Estudos de Materiais</span>
-              </div>
-              <div class="nav-item" onclick="openPdf('cap1.6.pdf','1.6 - Não Conformidades')">
-                <i class="fas fa-exclamation-triangle"></i>
-                <span>1.6 - Não Conformidades</span>
+                <span>1.2 – Plano de Inspeção e Ensaios</span>
               </div>
             </div>
           </div>
 
-          <!-- Exemplo de Capítulo 2 -->
-          <div class="nav-category" data-cat="cap2">
+          <!-- Exemplo de nav-cat 2 -->
+          <div class="nav-category">
             <div class="category-header" onclick="toggleCategory(this.parentNode)">
               <div class="header-title">
                 <i class="fas fa-hard-hat"></i>
@@ -392,39 +406,19 @@
               <i class="fas fa-chevron-down chevron-icon"></i>
             </div>
             <div class="category-menu">
-              <div class="nav-item" onclick="toggleSubmenu('obraCivilSub')">
+              <div class="nav-item" onclick="openPdf('2.1-obraCivil.pdf','2.1 – Obra Civil')">
                 <i class="fas fa-building"></i>
                 <span>2.1 – Obra Civil</span>
               </div>
-              <div id="obraCivilSub" style="display:none; margin-left:1rem;">
-                <div class="nav-item" onclick="openPdf('cap2.1.1.pdf','2.1.1 Topografia')">
-                  <i class="fas fa-map"></i>
-                  <span>2.1.1 Topografia</span>
-                </div>
-                <div class="nav-item" onclick="openPdf('cap2.1.2.pdf','2.1.2 Estruturas')">
-                  <i class="fas fa-university"></i>
-                  <span>2.1.2 Estruturas</span>
-                </div>
-              </div>
-              <div class="nav-item" onclick="toggleSubmenu('pipingSub')">
+              <div class="nav-item" onclick="openPdf('2.2-piping.pdf','2.2 – Piping')">
                 <i class="fas fa-project-diagram"></i>
                 <span>2.2 – Piping</span>
-              </div>
-              <div id="pipingSub" style="display:none; margin-left:1rem;">
-                <div class="nav-item" onclick="openPdf('cap2.2.1.pdf','2.2.1 - Soldadura')">
-                  <i class="fas fa-tools"></i>
-                  <span>2.2.1 - Soldadura</span>
-                </div>
-                <div class="nav-item" onclick="openPdf('cap2.2.2.pdf','2.2.2 - Tratamento Anticorrosivo')">
-                  <i class="fas fa-shield-alt"></i>
-                  <span>2.2.2 - Tratamento Anticorrosivo</span>
-                </div>
               </div>
             </div>
           </div>
 
-          <!-- Exemplo de Capítulo 3 -->
-          <div class="nav-category" data-cat="cap3">
+          <!-- Exemplo de nav-cat 3 -->
+          <div class="nav-category">
             <div class="category-header" onclick="toggleCategory(this.parentNode)">
               <div class="header-title">
                 <i class="fas fa-drafting-compass"></i>
@@ -433,20 +427,20 @@
               <i class="fas fa-chevron-down chevron-icon"></i>
             </div>
             <div class="category-menu">
-              <div class="nav-item" onclick="openPdf('cap3.1.pdf','3.1 Especificações Técnicas')">
+              <div class="nav-item" onclick="openPdf('3.1-especificacoes.pdf','3.1 – Especificações Técnicas')">
                 <i class="fas fa-file-alt"></i>
-                <span>3.1 - Especificações Técnicas</span>
+                <span>3.1 – Especificações Técnicas</span>
                 <span class="doc-status">Aprovado</span>
               </div>
-              <div class="nav-item" onclick="openPdf('cap3.2.pdf','3.2 Planos Construtivos')">
+              <div class="nav-item" onclick="openPdf('3.2-planos.pdf','3.2 – Planos Construtivos')">
                 <i class="fas fa-blueprint"></i>
-                <span>3.2 - Planos Construtivos</span>
+                <span>3.2 – Planos Construtivos</span>
               </div>
             </div>
           </div>
 
-          <!-- Exemplo de Capítulo 4 -->
-          <div class="nav-category" data-cat="cap4">
+          <!-- Exemplo de nav-cat 4 -->
+          <div class="nav-category">
             <div class="category-header" onclick="toggleCategory(this.parentNode)">
               <div class="header-title">
                 <i class="fas fa-archive"></i>
@@ -455,72 +449,92 @@
               <i class="fas fa-chevron-down chevron-icon"></i>
             </div>
             <div class="category-menu">
-              <div class="nav-item" onclick="openPdf('cap4.1.pdf','4.1 Punch List')">
+              <div class="nav-item" onclick="openPdf('4.1-Punch.pdf','4.1 – Punch List')">
                 <i class="fas fa-clipboard-check"></i>
-                <span>4.1 - Punch List</span>
+                <span>4.1 – Punch List</span>
               </div>
             </div>
           </div>
         </div>
       </aside>
 
-      <!-- Conteúdo Principal -->
+      <!-- Conteúdo principal -->
       <main class="main-content">
         <div class="breadcrumb">
-          <span class="breadcrumb-item" onclick="showWelcome()">
-            Início
-          </span>
-          <span class="breadcrumb-item" id="current-section">
-            Dashboard
-          </span>
+          <span class="breadcrumb-item" onclick="showDashboard()">Início</span>
+          <span class="breadcrumb-item" id="current-section">Dashboard</span>
         </div>
+
+        <!-- Dashboard -->
         <div id="dashboard">
           <header class="page-header">
             <h1 class="page-title">Dossier Final da Qualidade</h1>
             <p class="page-subtitle">
-              Projeto Alba - Código 4001008 (Junho 2023 a 31/03/2025)
+              Projeto Alba – Empreitada 4001008 (Jun.2023 – 31/03/2025)
             </p>
           </header>
-          
-          <!-- Exemplos de Cards -->
-          <div class="dashboard-cards">
-            <div class="dashboard-card">
-              <div class="card-label">
-                <i class="fas fa-building"></i> Cliente
-              </div>
-              <div class="card-value">REPSOL POLÍMEROS</div>
+
+          <!-- Estatísticas Compactas -->
+          <section class="stats-container">
+            <div class="stats-box">
+              <div class="stats-label">Total de Ensaios</div>
+              <div class="stats-value">419</div>
             </div>
-            <div class="dashboard-card">
-              <div class="card-label">
-                <i class="fas fa-calendar-alt"></i> Data Conclusão
-              </div>
-              <div class="card-value">31/03/2025</div>
+            <div class="stats-box">
+              <div class="stats-label">Conformes</div>
+              <div class="stats-value">406</div>
             </div>
-            <div class="dashboard-card">
-              <div class="card-label">
-                <i class="fas fa-exclamation-circle"></i> NC Ativas
-              </div>
-              <div class="card-value" id="nc-ativas">5</div>
+            <div class="stats-box">
+              <div class="stats-label">Não Conformes</div>
+              <div class="stats-value">8</div>
             </div>
-          </div>
-          
-          <div class="section-container">
-            <h2 class="section-title">
-              <i class="fas fa-chart-line"></i> Estatísticas
-            </h2>
-            <p style="margin-bottom:1rem;">Exemplo de gráfico (Ensaios vs. Não Conformidades):</p>
-            <canvas id="statsChart" height="200"></canvas>
-          </div>
+            <div class="stats-box">
+              <div class="stats-label">Pendentes</div>
+              <div class="stats-value">5</div>
+            </div>
+          </section>
+
+          <!-- Gráfico -->
+          <section class="chart-container">
+            <h3 class="chart-title">Ensaios por Tipo</h3>
+            <canvas id="chartEnsaios" height="180"></canvas>
+          </section>
+
+          <!-- Equipa Responsável -->
+          <section class="team-section">
+            <h2 class="team-title"><i class="fas fa-users"></i> Equipa Responsável</h2>
+            <div class="team-list">
+              <div class="team-member">
+                <div class="member-photo">JA</div>
+                <div class="member-position">ELABORADO</div>
+                <div class="member-role">Qualidade</div>
+                <div class="member-name">José Antunes</div>
+                <div class="signature-seal">
+                  <i class="fas fa-shield-alt"></i> Verificado
+                </div>
+              </div>
+              <div class="team-member">
+                <div class="member-photo">MC</div>
+                <div class="member-position">VERIFICADO</div>
+                <div class="member-role">Diretor Técnico</div>
+                <div class="member-name">Mário Cristiano</div>
+              </div>
+              <div class="team-member">
+                <div class="member-photo">LS</div>
+                <div class="member-position">APROVADO</div>
+                <div class="member-role">Diretor de Obra</div>
+                <div class="member-name">Luis Salvado</div>
+              </div>
+            </div>
+          </section>
         </div>
 
         <!-- PDF Viewer -->
-        <div id="pdf-viewer" class="pdf-viewer">
-          <div style="background:#fafafa; padding:1rem; border-bottom:1px solid #ddd; display:flex; justify-content:space-between;">
+        <div class="pdf-viewer" id="pdf-viewer">
+          <div class="pdf-header">
+            <div class="pdf-title" id="pdf-title">Documento</div>
             <div>
-              <strong id="pdf-title">Documento</strong>
-            </div>
-            <div>
-              <button class="btn-nav" onclick="showToast('Download','success')">
+              <button class="btn-nav" onclick="showToast('Download iniciado','success')">
                 <i class="fas fa-download"></i> Download
               </button>
               <button class="btn-nav" onclick="closePdfViewer()">
@@ -528,109 +542,131 @@
               </button>
             </div>
           </div>
-          <div style="position:relative; height:80vh; background:#eaeaea; display:flex; justify-content:center; align-items:center; overflow:auto;">
-            <div id="pdf-loading" style="position:absolute; display:none; flex-direction:column; align-items:center;">
-              <div style="width:40px;height:40px;border:4px solid rgba(0,0,0,0.1);border-top:4px solid var(--color-primary);border-radius:50%; animation:spin 1s linear infinite;margin-bottom:0.5rem;"></div>
-              <p>Carregando PDF...</p>
+          <div class="pdf-body">
+            <div class="loading-indicator" id="pdf-loading">
+              <div class="spinner"></div>
+              <p>A carregar PDF...</p>
             </div>
             <canvas id="pdf-canvas"></canvas>
           </div>
-          <div style="background:#fafafa; padding:0.5rem 1rem; border-top:1px solid #ddd; display:flex; justify-content:space-between; align-items:center;">
+          <div class="pdf-controls">
             <div>
               <button class="btn-nav" id="prevPage"><i class="fas fa-chevron-left"></i></button>
-              <span style="margin:0 0.5rem;">Página <span id="page-num">0</span> / <span id="page-count">0</span></span>
+              <span style="margin:0 0.4rem;">
+                Página <span id="page-num">0</span> de <span id="page-count">0</span>
+              </span>
               <button class="btn-nav" id="nextPage"><i class="fas fa-chevron-right"></i></button>
             </div>
             <div>
               <button class="btn-nav" id="zoomOut"><i class="fas fa-search-minus"></i></button>
-              <span style="margin:0 0.5rem;" id="zoomVal">100%</span>
+              <span style="margin:0 0.4rem;" id="zoomVal">100%</span>
               <button class="btn-nav" id="zoomIn"><i class="fas fa-search-plus"></i></button>
             </div>
           </div>
         </div>
       </main>
     </div>
+
+    <footer style="background:#fff; padding:1rem; text-align:center;">
+      <p style="color:#666; font-size:0.9rem;">
+        &copy; 2025 ASCH INFRAESTRUCTURAS Y SERVICIOS S.A. - Todos os direitos reservados
+      </p>
+    </footer>
   </div>
 
   <script>
-    // PDF variables
-    let pdfDoc = null, pageNum=1, scale=1.2, zoomVal=100,
-        pageRendering=false, pageNumPending=null,
-        canvas=null, ctx=null;
-
-    // Splash Screen
-    function enterDossier() {
+    // SPLASH
+    function enterDossier(){
       const splash = document.getElementById('splash-screen');
       splash.classList.add('fade-out');
-      setTimeout(()=>{ splash.style.display='none'; }, 500);
-
+      setTimeout(()=>{ splash.style.display='none'; },500);
       const app = document.getElementById('app-container');
-      setTimeout(()=>{ app.classList.add('visible'); }, 500);
+      setTimeout(()=>{ app.classList.add('visible'); },500);
     }
 
-    // Sidebar toggle
-    function toggleSidebar() {
-      document.getElementById('sidebar').classList.toggle('active');
+    // BOTÃO TOPO
+    const btnTopo = document.getElementById('btn-topo');
+    window.onscroll = function(){
+      if(document.documentElement.scrollTop>200){
+        btnTopo.classList.add('show');
+      } else {
+        btnTopo.classList.remove('show');
+      }
+    };
+    function scrollToTop(){ window.scrollTo({top:0, behavior:'smooth'}); }
+
+    // TOAST
+    function showToast(msg, type='success'){
+      const container = document.getElementById('toast-container');
+      const toast = document.createElement('div');
+      toast.classList.add('toast');
+      if(type==='error') toast.style.background='#c0392b';
+      else if(type==='info') toast.style.background='#2980b9';
+
+      toast.textContent = msg;
+      container.appendChild(toast);
+      setTimeout(()=>{
+        toast.style.opacity='0';
+        setTimeout(()=>toast.remove(),300);
+      },3000);
     }
 
-    // Toggling categories
-    function toggleCategory(cat) {
-      cat.classList.toggle('active');
-    }
-    // Submenu
-    function toggleSubmenu(id) {
-      const el = document.getElementById(id);
-      if(!el)return;
-      el.style.display = (el.style.display==='none' || el.style.display==='')?'block':'none';
+    // HOME
+    function goHome(){
+      showDashboard();
     }
 
-    // Filter chapters
+    // FILTRAR CAPÍTULOS
     function filterChapters(){
-      const query = document.getElementById('chapter-search').value.toLowerCase();
-      const cats = document.querySelectorAll('.nav-category');
-      cats.forEach(cat=>{
+      const query = document.getElementById('chapterSearch').value.toLowerCase();
+      const categories = document.querySelectorAll('.nav-category');
+      categories.forEach(cat=>{
         let text = cat.innerText.toLowerCase();
-        cat.style.display = text.includes(query)? 'block':'none';
+        cat.style.display = text.includes(query) ? 'block' : 'none';
       });
     }
 
-    // Show dashboard
-    function showWelcome(){
+    // ABRIR/CLOSE SUBMENU
+    function toggleCategory(catEl){ catEl.classList.toggle('active'); }
+
+    // MOSTRAR “DASHBOARD”
+    function showDashboard(){
       document.getElementById('dashboard').style.display='block';
       document.getElementById('pdf-viewer').classList.remove('active');
-      document.getElementById('current-section').textContent = 'Dashboard';
+      document.getElementById('current-section').textContent='Dashboard';
     }
 
-    // Open PDF
-    function openPdf(path, title){
-      // Hide dashboard
+    // PDFJS
+    let pdfDoc=null, pageNum=1, scale=1.2, zoomVal=100, pageRendering=false, pageNumPending=null;
+    let canvas=null, ctx=null;
+
+    function openPdf(pdfPath, title){
+      // Switch para PDF viewer
       document.getElementById('dashboard').style.display='none';
-      // Show pdf viewer
       document.getElementById('pdf-viewer').classList.add('active');
-      document.getElementById('current-section').textContent = title;
-      document.getElementById('pdf-title').textContent = title;
+      document.getElementById('current-section').textContent=title;
+      document.getElementById('pdf-title').textContent=title;
 
-      // Reset PDF viewer
       pdfDoc=null; pageNum=1; scale=1.2; zoomVal=100;
-      document.getElementById('zoomVal').textContent = zoomVal+'%';
+      document.getElementById('zoomVal').textContent=zoomVal+'%';
 
-      canvas = document.getElementById('pdf-canvas');
-      ctx = canvas.getContext('2d');
+      canvas=document.getElementById('pdf-canvas');
+      ctx=canvas.getContext('2d');
 
-      loadPdf(path);
+      loadPdf(pdfPath);
     }
 
     function loadPdf(path){
-      const loadingEl = document.getElementById('pdf-loading');
+      const loadingEl=document.getElementById('pdf-loading');
       loadingEl.style.display='flex';
       pdfjsLib.getDocument(path).promise.then(pdfDoc_=>{
         pdfDoc=pdfDoc_;
-        document.getElementById('page-count').textContent = pdfDoc.numPages;
-        document.getElementById('page-num').textContent = pageNum;
+        document.getElementById('page-count').textContent=pdfDoc.numPages;
+        document.getElementById('page-num').textContent=pageNum;
         loadingEl.style.display='none';
         renderPage(pageNum);
       }).catch(err=>{
-        console.error("Erro loading PDF: ", err);
+        console.error("Erro ao carregar PDF:", err);
         showToast("Falha ao carregar PDF","error");
         loadingEl.style.display='none';
       });
@@ -639,10 +675,10 @@
     function renderPage(num){
       pageRendering=true;
       pdfDoc.getPage(num).then(page=>{
-        let viewport = page.getViewport({scale});
+        let viewport=page.getViewport({scale});
         canvas.height=viewport.height; canvas.width=viewport.width;
-        let renderCtx = { canvasContext: ctx, viewport };
-        let renderTask = page.render(renderCtx);
+        let renderCtx={ canvasContext:ctx, viewport };
+        let renderTask=page.render(renderCtx);
         renderTask.promise.then(()=>{
           pageRendering=false;
           if(pageNumPending!==null){
@@ -651,18 +687,16 @@
           }
         });
       });
-      document.getElementById('page-num').textContent = num;
-    }
-    function queueRenderPage(num){
-      if(pageRendering){
-        pageNumPending=num;
-      } else {
-        renderPage(num);
-      }
+      document.getElementById('page-num').textContent=num;
     }
 
-    // Page nav
-    document.addEventListener('DOMContentLoaded', ()=>{
+    function queueRenderPage(num){
+      if(pageRendering){ pageNumPending=num; }
+      else{ renderPage(num); }
+    }
+
+    // Buttons PDF
+    document.addEventListener('DOMContentLoaded',()=>{
       document.getElementById('prevPage').addEventListener('click',()=>{
         if(pageNum<=1)return;
         pageNum--;
@@ -675,77 +709,58 @@
       });
       document.getElementById('zoomIn').addEventListener('click',()=>{
         if(zoomVal>=200)return;
-        zoomVal+=10; scale+=(0.1);
-        document.getElementById('zoomVal').textContent=zoomVal+"%";
+        zoomVal+=10; scale+=0.1;
+        document.getElementById('zoomVal').textContent=zoomVal+'%';
         renderPage(pageNum);
       });
       document.getElementById('zoomOut').addEventListener('click',()=>{
         if(zoomVal<=50)return;
-        zoomVal-=10; scale-=(0.1);
-        document.getElementById('zoomVal').textContent=zoomVal+"%";
+        zoomVal-=10; scale-=0.1;
+        document.getElementById('zoomVal').textContent=zoomVal+'%';
         renderPage(pageNum);
       });
-      
-      // Iniciar Chart
-      initChart();
+      // Inicia chart
+      initChartEnsaios();
     });
 
-    // Fechar PDF viewer
     function closePdfViewer(){
       document.getElementById('pdf-viewer').classList.remove('active');
-      showWelcome();
+      showDashboard();
     }
 
-    // Toast
-    function showToast(msg, type='success'){
-      const container = document.getElementById('toast-container');
-      const toast = document.createElement('div');
-      toast.classList.add('toast');
-      if(type==='error'){ toast.style.background='#c0392b'; }
-      else if(type==='info'){ toast.style.background='#2980b9'; }
-
-      toast.textContent = msg;
-      container.appendChild(toast);
-      setTimeout(()=>{
-        toast.style.opacity='0';
-        setTimeout(()=>toast.remove(),300);
-      },3000);
-    }
-
-    // Iniciar Gráfico (Ensaios vs. NC)
-    function initChart(){
-      const ctxChart = document.getElementById('statsChart').getContext('2d');
+    // CHART EXEMPLO
+    function initChartEnsaios(){
+      const ctxChart=document.getElementById('chartEnsaios').getContext('2d');
       new Chart(ctxChart, {
         type:'bar',
         data:{
-          labels:['Jun','Jul','Ago','Set','Out','Nov','Dez','Jan','Fev','Mar'],
+          labels:['Betão','Densid','Solos','Argam','Placas','Agreg','Soldad','Dielét','Pressão','Linhas','Pintura'],
           datasets:[
             {
-              label:'Ensaios Realizados',
-              data:[20,25,30,40,50,65,70,75,80,85],
-              backgroundColor:'rgba(90,130,245,0.5)',
-              borderColor:'rgba(90,130,245,1)',
-              borderWidth:1
+              label:'Conformes',
+              data:[94,56,31,60,27,15,20,29,11,39,24],
+              backgroundColor:'rgba(40,167,69,0.6)'
             },
             {
-              label:'Não Conformidades',
-              data:[2,2,4,3,1,5,3,2,1,2],
-              backgroundColor:'rgba(255,90,95,0.5)',
-              borderColor:'rgba(255,90,95,1)',
-              borderWidth:1
+              label:'NC',
+              data:[1,2,0,2,1,0,1,0,0,1,0],
+              backgroundColor:'rgba(255,90,95,0.6)'
+            },
+            {
+              label:'Pend',
+              data:[0,0,1,0,0,0,1,1,1,0,1],
+              backgroundColor:'rgba(255,193,7,0.6)'
             }
           ]
         },
         options:{
           responsive:true,
-          scales:{
-            y:{ beginAtZero:true }
-          }
+          scales:{ y:{ beginAtZero:true } }
         }
       });
     }
   </script>
-
 </body>
 </html>
+
 
