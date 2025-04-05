@@ -2934,7 +2934,7 @@
   }
 
   const link = document.createElement('a');
-  link.href = `https://aschinfraestructuras.github.io/dossier-qualidade-400100/${pdfPath}`;
+  link.href = `${window.location.origin}/${pdfPath}`;
   link.download = pdfPath;
   document.body.appendChild(link);
   link.click();
@@ -2942,7 +2942,7 @@
 
   showToast('Download do documento iniciado.', 'success');
 }
-    
+
 </script>
 
 </body>
