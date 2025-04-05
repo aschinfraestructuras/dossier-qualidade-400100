@@ -1360,8 +1360,27 @@
       }
     }
   </style>
+  #splash-screen {
+    display: none !important;
+  }
+
+  #app-container {
+    display: block !important;
+    opacity: 1 !important;
+  }
+</style>
+
 </head>
 <body>
+  <!-- Conteúdo Principal da Aplicação -->
+<div id="app-container" style="display: none; opacity: 0;">
+  <div class="main-content">
+    <h2>Bem-vindo ao Dossier Final da Qualidade</h2>
+    <p>Aqui começa o conteúdo do teu dossier.</p>
+    <!-- Podes ir adicionando os capítulos, PDFs, etc. aqui -->
+  </div>
+</div>
+
   <!-- Splash Screen / Capa Inicial -->
   <div class="splash-screen" id="splash-screen">
     <div class="splash-content">
