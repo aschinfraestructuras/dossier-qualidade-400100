@@ -3523,11 +3523,11 @@ background: var(--primary);
       </li>
     </ul>
   </div>
-
-  <div class="back-to-home" onclick="document.getElementById('pdf-viewer').classList.contains('active') ? showWelcomeContent() : enterDossier()">
+  
+<div class="back-to-home" onclick="showWelcomeContent()" style="z-index: 1100; position: fixed;">
   <i class="fas fa-home"></i>
 </div>
-
+  
   <!-- JavaScript - Melhorado -->
   <script>
     // Variáveis para o visualizador de PDF
