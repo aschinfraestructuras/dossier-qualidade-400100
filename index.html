@@ -2743,12 +2743,6 @@ background: var(--primary);
                 <span class="doc-status">Aprovado</span>
                 <div class="chapter-description">Estudos e análises realizados nos materiais utilizados no projeto</div>
               </div>
-              <div class="nav-item" onclick="loadPdf('NC.pdf', '1.6 – Não Conformidades')">
-                <i class="fas fa-exclamation-triangle"></i>
-                <span>1.6 – Não Conformidades</span>
-                <span class="doc-status pending">Pendente</span>
-                <div class="chapter-description">Registo e tratamento das não conformidades identificadas</div>
-              </div>
             </div>
           </div>
 
@@ -3530,10 +3524,9 @@ background: var(--primary);
     </ul>
   </div>
 
-  <!-- Botão para voltar à página inicial - Melhorado -->
-  <div class="back-to-home" id="back-to-home" onclick="showWelcomeContent()">
-    <i class="fas fa-home"></i>
-  </div>
+  <div class="back-to-home" onclick="document.getElementById('pdf-viewer').classList.contains('active') ? showWelcomeContent() : enterDossier()">
+  <i class="fas fa-home"></i>
+</div>
 
   <!-- JavaScript - Melhorado -->
   <script>
