@@ -3720,35 +3720,7 @@ background: var(--primary);
       }
     }
 
-    // Função para mostrar o conteúdo de boas-vindas
-    function showWelcomeContent() {
-      document.getElementById('welcome-content').style.display = 'block';
-      document.getElementById('pdf-viewer').classList.remove('active');
-      document.getElementById('current-section').textContent = 'Visão Geral';
-      
-      // Esconder a barra lateral em dispositivos móveis
-      if (window.innerWidth < 768) {
-        document.getElementById('sidebar').classList.remove('active');
-      }
-    }
-
-    // Função para carregar um PDF - Corrigida para buscar na raiz
 function loadPdf(pdfPath, title) {
-  // Armazenar o caminho e título para uso posterior
-  currentPdfPath = pdfPath;
-  currentPdfTitle = title || 'Documento';
-  
-  // Mostrar o visualizador de PDF
-  document.getElementById('welcome-content').style.display = 'none';
-  document.getElementById('pdf-viewer').classList.add('active');
-  document.getElementById('pdf-title').textContent = title || 'Documento';
-  document.getElementById('current-section').textContent = title || 'Documento';
-  
-  // Esconder a barra lateral em dispositivos móveis
-  if (window.innerWidth < 768) {
-    document.getElementById('sidebar').classList.remove('active');
-  }
-  
   // Resetar estado
   if (pdfDoc) {
     pdfDoc = null;
@@ -3757,52 +3729,48 @@ function loadPdf(pdfPath, title) {
     zoomLevel = 100;
     document.getElementById('zoom-level').textContent = '100%';
   }
-  
-  // Mostrar indicador de carregamento
-  document.getElementById('pdf-loading').classList.remove('hidden');
-  
-  // Carregar o PDF diretamente da raiz (sem prefixo de pasta)
-  pdfjsLib.getDocument(pdfPath).promise
-    .then(function(pdfDoc_) {
-      // PDF carregado
-      pdfDoc = pdfDoc_;
-      
-      // Atualizar contagem de páginas
-      document.getElementById('page-count').textContent = pdfDoc.numPages;
-      document.getElementById('page-num').textContent = pageNum;
-      
-      // Esconder indicador de carregamento
-      document.getElementById('pdf-loading').classList.add('hidden');
-      
-      // Renderizar primeira página
-      renderPage(pageNum);
-      
-      // Atualizar metadados do documento
-      document.getElementById('pdf-meta-date').textContent = 'Data: 31/03/2025';
-      document.getElementById('pdf-meta-revision').textContent = 'Revisão: Rev.000';
-      
-      // Mostrar toast de documento carregado
-      showToast(`Documento "${title}" carregado com sucesso!`, 'success');
-    })
-    .catch(function(error) {
-      console.error('Erro ao carregar o PDF:', error);
-      document.getElementById('pdf-loading').classList.add('hidden');
-      
-      // Mostrar mensagem de erro
-      const errorDiv = document.createElement('div');
-      errorDiv.style.padding = '2rem';
-      errorDiv.style.textAlign = 'center';
-      errorDiv.style.color = '#dc3545';
-      errorDiv.innerHTML = '<i class="fas fa-exclamation-triangle" style="font-size: 2rem; margin-bottom: 1rem;"></i><p>Não foi possível carregar o documento PDF. Por favor, tente novamente mais tarde.</p>';
-      document.querySelector('.pdf-container').appendChild(errorDiv);
-      
-      // Atualizar elementos de navegação
-      document.getElementById('page-count').textContent = '0';
-      document.getElementById('page-num').textContent = '0';
-      
-      // Mostrar toast de erro
-      showToast('Erro ao carregar o documento. Tente novamente.', 'error');
+
+  currentPdfPath = pdfPath;
+  currentPdfTitle = title || 'Documento';
+
+  const loadingIndicator = document.getElementById('pdf-loading');
+  const canvas = document.getElementById('pdf-canvas');
+  const ctx = canvas.getContext('2d');
+  const pdfTitle = document.getElementById('pdf-title');
+
+  // Mostrar o indicador de carregamento
+  loadingIndicator.classList.remove('hidden');
+  pdfTitle.textContent = 'A carregar documento...';
+
+  pdfjsLib.getDocument(pdfPath).promise.then(pdf => {
+    pdfDoc = pdf;
+    pdf.getPage(1).then(page => {
+      const viewport = page.getViewport({ scale: 1.5 });
+      canvas.height = viewport.height;
+      canvas.width = viewport.width;
+
+      const renderContext = {
+        canvasContext: ctx,
+        viewport: viewport
+      };
+
+      page.render(renderContext).promise.then(() => {
+        loadingIndicator.classList.add('hidden');
+        pdfTitle.textContent = title;
+        document.getElementById('current-section').textContent = title;
+        document.getElementById('welcome-content').style.display = 'none';
+        document.getElementById('pdf-viewer').classList.add('active');
+
+        if (window.innerWidth < 768) {
+          document.getElementById('sidebar').classList.remove('active');
+        }
+      });
     });
+  }).catch(error => {
+    console.error('Erro ao carregar o PDF:', error);
+    loadingIndicator.classList.add('hidden');
+    pdfTitle.textContent = 'Erro ao carregar documento';
+  });
 }
 
     // Função para adicionar à lista de documentos visualizados recentemente
