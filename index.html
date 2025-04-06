@@ -3524,7 +3524,58 @@ background: var(--primary);
     </ul>
   </div>
   
-<div class="back-to-home" onclick="showWelcomeContent()" style="z-index: 1100; position: fixed;">
+  <style>
+  /* Melhorias no botão para garantir que apareça em todas as visualizações */
+  .back-to-home {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background-color: var(--primary);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    z-index: 2000; /* Valor muito alto para garantir que fique acima de tudo */
+    transition: all 0.3s ease;
+  }
+  
+  .back-to-home:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+  }
+  
+  .back-to-home i {
+    font-size: 1.5rem;
+  }
+</style>
+
+<!-- Botão para voltar à página inicial - versão melhorada -->
+<script>
+  // Adicionar função específica para o botão
+  function handleHomeButton() {
+    // Se estiver na visualização de PDF, volta para o conteúdo principal
+    if (document.getElementById('pdf-viewer').style.display === 'block' || 
+        document.getElementById('pdf-viewer').classList.contains('active')) {
+      showWelcomeContent();
+    } 
+    // Se estiver na splash screen, entra no dossier
+    else if (document.getElementById('splash-screen').style.display !== 'none') {
+      enterDossier();
+    }
+    // Se já estiver no conteúdo principal, não faz nada ou pode rolar para o topo
+    else {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }
+</script>
+
+<div class="back-to-home" onclick="handleHomeButton()">
   <i class="fas fa-home"></i>
 </div>
   
