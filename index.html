@@ -1131,16 +1131,30 @@ background: var(--primary);
     }
 
     /* ===== Gráficos - Melhorados ===== */
-    .progress-chart-container, .chart-container {
-      background-color: var(--white);
-      border-radius: var(--border-radius);
-      padding: 1rem;
-      box-shadow: var(--card-shadow);
-      transition: var(--transition);
-      margin-top: 2rem;
-      border: 1px solid rgba(0,0,0,0.03);
-    }
+   .progress-chart-container, .chart-container {
+  background-color: var(--white);
+  border-radius: var(--border-radius);
+  padding: 1rem;
+  box-shadow: var(--card-shadow);
+  transition: var(--transition);
+  margin-top: 2rem;
+  margin-bottom: 7rem; /* Aumentada de 2rem para 7rem */
+  border: 1px solid rgba(0,0,0,0.03);
+  position: relative;
+  z-index: 1;
+  clear: both;
+}
+    /* Ajuste para evitar sobreposição de gráficos */
+.test-table-container {
+  margin-top: 8rem;
+  position: relative;
+  z-index: 2;
+  clear: both;
+}
 
+#nonconformities-chart {
+  margin-bottom: 5rem !important;
+}
     .progress-chart-container:hover, .chart-container:hover {
       box-shadow: var(--card-shadow-hover);
       transform: translateY(-3px);
