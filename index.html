@@ -2608,6 +2608,48 @@ background: var(--primary);
       transition: width 1s ease;
     }
   </style>
+  
+  <style>
+  /* Estilo para a referência do cliente */
+  .client-reference {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-left: auto;
+    margin-right: 1.5rem;
+    font-size: 0.9rem;
+  }
+  
+  .client-logo {
+    height: 30px;
+    max-width: 100px;
+  }
+  
+  /* Ajuste da barra de navegação */
+  .navbar-brand {
+    margin-right: 0;
+  }
+  
+  .navbar-tools {
+    margin-left: 0;
+  }
+  
+  @media (max-width: 992px) {
+    .client-reference span {
+      display: none;
+    }
+    
+    .client-logo {
+      height: 24px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .client-reference {
+      display: none;
+    }
+  }
+</style>
 </head>
 <body>
   <!-- Splash Screen / Capa Inicial - Melhorada -->
@@ -2639,6 +2681,12 @@ background: var(--primary);
         <img src="assets/images/logoasch.png" alt="Logo ASCH" class="brand-logo">
         <div class="navbar-title">Dossier da Qualidade</div>
       </div>
+      <!-- Adição do logótipo e referência da Repsol -->
+<div class="client-reference">
+  <span>Cliente:</span>
+  <img src="assets/images/logorepsol.jpg" alt="Logo Repsol" class="client-logo">
+  <span>Repsol Polímeros S.A.</span>
+</div>
       <div class="navbar-tools">
         <form class="search-form" onsubmit="return performSearch()">
           <i class="fas fa-search search-icon"></i>
