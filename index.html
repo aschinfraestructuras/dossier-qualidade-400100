@@ -3807,6 +3807,7 @@ function loadPdf(pdfPath, title) {
       
       // Mostrar toast de documento carregado
       showToast(`Documento "${title}" carregado com sucesso!`, 'success');
+      document.getElementById('back-to-home').classList.add('visible');
     })
     .catch(function(error) {
       console.error('Erro ao carregar o PDF:', error);
