@@ -3290,30 +3290,82 @@ background: var(--primary);
             </div>
           </div>
 
-          <!-- Validação e Autenticidade - Melhoradas -->
-          <div class="section-container">
-            <h2 class="section-title"><i class="fas fa-certificate"></i> Validação e Autenticidade</h2>
-            <div class="digital-signature">
-              <div class="signature-info">
-                <p>Este dossier digital de qualidade está certificado pela ASCH INFRAESTRUCTURAS Y SERVICIOS S.A. e tem validade legal.</p>
-                <p>Código de Verificação: <strong>ASCH-QD-4001008-2025-V1</strong></p>
-                <p>Documento assinado digitalmente em: <span id="signature-date">31/03/2025</span></p>
-              </div>
-              <div class="signature-block">
-                <img src="assets/images/signature.png" alt="Assinatura Digital" class="signature-image">
-                <div class="signature-details">
-                  <p class="signature-name">Luis Salvado</p>
-                  <p class="signature-role">Director de Obra</p>
-                  <p class="signature-company">ASCH INFRAESTRUCTURAS Y SERVICIOS S.A.</p>
-                </div>
-                <div class="signature-seal">
-                  <i class="fas fa-shield-alt"></i>
-                  <span>Documento verificado e certificado</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+     <!-- Validação Consolidada – Versão final, com 4 blocos + Assinatura -->
+<section id="validacao-final" class="p-6 bg-white rounded shadow mt-6">
+  <h2 class="text-2xl font-bold mb-6">📋 Validação e Autenticidade</h2>
+
+  <!-- Cards de validação dos capítulos principais -->
+  <div class="dashboard-cards">
+    <!-- Capítulo 1 -->
+    <div class="dashboard-card">
+      <div class="card-label"><i class="fas fa-tasks"></i> Sistema de Gestão da Qualidade</div>
+      <div class="card-value" style="color: #28a745">
+        <i class="fas fa-check-circle"></i> Validado
+      </div>
+      <div style="margin-top: 0.5rem; font-size: 0.85rem;">
+        <div>Aprovado por: Luis Salvado</div>
+        <div>Data: 15/03/2025</div>
+      </div>
+    </div>
+
+    <!-- Capítulo 2 -->
+    <div class="dashboard-card">
+      <div class="card-label"><i class="fas fa-hard-hat"></i> Execução do Projeto</div>
+      <div class="card-value" style="color: #ffc107">
+        <i class="fas fa-exclamation-circle"></i> Pendente
+      </div>
+      <div style="margin-top: 0.5rem; font-size: 0.85rem;">
+        <div>Verificado por: Mário Cristiano</div>
+        <div>Data: 22/03/2025</div>
+      </div>
+    </div>
+
+    <!-- Capítulo 3 -->
+    <div class="dashboard-card">
+      <div class="card-label"><i class="fas fa-drafting-compass"></i> Documentos de Engenharia</div>
+      <div class="card-value" style="color: #28a745">
+        <i class="fas fa-check-circle"></i> Validado
+      </div>
+      <div style="margin-top: 0.5rem; font-size: 0.85rem;">
+        <div>Aprovado por: Luis Salvado</div>
+        <div>Data: 20/03/2025</div>
+      </div>
+    </div>
+
+    <!-- Capítulo 4 -->
+    <div class="dashboard-card">
+      <div class="card-label"><i class="fas fa-archive"></i> Documentação Adicional</div>
+      <div class="card-value" style="color: #28a745">
+        <i class="fas fa-check-circle"></i> Validado
+      </div>
+      <div style="margin-top: 0.5rem; font-size: 0.85rem;">
+        <div>Aprovado por: Luis Salvado</div>
+        <div>Data: 25/03/2025</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Assinatura e Verificação Final -->
+  <div class="mt-8 border rounded bg-gray-50 p-4">
+    <p class="text-sm text-gray-700">
+      Este dossier digital de qualidade está certificado pela ASCH INFRAESTRUCTURAS Y SERVICIOS S.A. e tem validade legal.
+    </p>
+    <p class="mt-2 text-sm">
+      Código de Verificação: <strong>ASCH-QD-4001008-2025–V1</strong>
+    </p>
+    <p class="text-sm">Documento assinado digitalmente em: <strong>31/03/2025</strong></p>
+
+    <div class="mt-4 text-center">
+      <img src="assets/assinatura.png" alt="Assinatura Luís Salvado" class="mx-auto h-20">
+      <p class="mt-2 font-semibold">Luís Salvado</p>
+      <p class="text-sm">Director de Obra</p>
+      <p class="text-sm text-gray-500">ASCH INFRAESTRUCTURAS Y SERVICIOS S.A.</p>
+      <a href="#" class="btn btn-primary mt-2">
+        <i class="fas fa-shield-check"></i> Documento verificado e certificado
+      </a>
+    </div>
+  </div>
+</section>
 
         <!-- Visualizador de PDF - Melhorado -->
         <div class="pdf-viewer" id="pdf-viewer">
