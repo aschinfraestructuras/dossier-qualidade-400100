@@ -2693,6 +2693,169 @@ background: var(--primary);
     }
   }
 </style>
+  
+  <style>
+  /* Estilos para o Certificado Final */
+  .certificate-container {
+    background-color: #fff;
+    border: 1px solid var(--gray-light);
+    border-radius: var(--border-radius);
+    padding: 3rem 2rem;
+    margin-bottom: 3rem;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .certificate-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 8px;
+    background: linear-gradient(to right, var(--primary), var(--primary-light));
+  }
+  
+  .certificate-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 2px solid var(--gray-light);
+  }
+  
+  .certificate-logo {
+    height: 50px;
+  }
+  
+  .certificate-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--primary);
+    text-align: center;
+  }
+  
+  .certificate-content {
+    margin-bottom: 2.5rem;
+    line-height: 1.8;
+  }
+  
+  .certificate-intro {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .certificate-project-details {
+    background-color: var(--section-bg);
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+  
+  .certificate-project-details h3 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--primary);
+    margin-bottom: 1rem;
+  }
+  
+  .certificate-statement, .certificate-validation {
+    margin-bottom: 1.5rem;
+  }
+  
+  .certificate-signatures {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 3rem;
+  }
+  
+  .certificate-signature {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 200px;
+  }
+  
+  .signature-image {
+    max-height: 60px;
+    margin-bottom: 0.5rem;
+  }
+  
+  .signature-line {
+    width: 100%;
+    height: 1px;
+    background-color: var(--gray);
+    margin-bottom: 0.5rem;
+  }
+  
+  .signature-name {
+    font-weight: 600;
+  }
+  
+  .signature-role {
+    font-size: 0.8rem;
+    color: var(--gray);
+  }
+  
+  .certificate-seal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .seal-image {
+    font-size: 3rem;
+    color: var(--primary);
+    opacity: 0.7;
+    margin-bottom: 0.5rem;
+  }
+  
+  .seal-text {
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+  
+  .seal-date {
+    font-size: 0.8rem;
+    color: var(--gray);
+  }
+  
+  .certificate-footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--gray-light);
+  }
+  
+  .verification-title {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+  
+  .verification-code, .verification-hash {
+    font-family: monospace;
+    font-size: 0.8rem;
+    color: var(--gray);
+  }
+  
+  @media (max-width: 768px) {
+    .certificate-header,
+    .certificate-signatures {
+      flex-direction: column;
+      gap: 1.5rem;
+      align-items: center;
+    }
+    
+    .certificate-footer {
+      flex-direction: column;
+    }
+  }
+</style>
 </head>
 <body>
   <!-- Splash Screen / Capa Inicial - Melhorada -->
@@ -3367,7 +3530,67 @@ background: var(--primary);
               </button>
             </div>
           </div>
-
+          
+            <!-- Certificação Final de Obra -->
+<div class="section-container certificate-container">
+  <div class="certificate-header">
+    <img src="assets/images/logoasch.png" alt="Logo ASCH" class="certificate-logo">
+    <h2 class="certificate-title">Declaração de Conclusão de Obra</h2>
+    <img src="assets/images/repsol-logo.png" alt="Logo Repsol" class="certificate-logo">
+  </div>
+  
+  <div class="certificate-content">
+    <p class="certificate-intro">
+      A <strong>ASCH INFRAESTRUCTURAS Y SERVICIOS S.A.</strong>, na qualidade de empreiteiro responsável, 
+      declara que a obra:
+    </p>
+    
+    <div class="certificate-project-details">
+      <h3>"Proyecto Alba – Nuevas Plantas de Poliolefinas, Plataformas Logísticas y Offsites"</h3>
+      <p>Número de Referência: <strong>4001008</strong></p>
+      <p>Cliente: <strong>Repsol Polímeros S.A.</strong></p>
+    </div>
+    
+    <p class="certificate-statement">
+      Foi concluída em <strong>31 de março de 2025</strong>, cumprindo todos os requisitos 
+      contratuais, normativos e legais aplicáveis, sendo entregue em conformidade com as 
+      especificações técnicas acordadas.
+    </p>
+    
+    <p class="certificate-validation">
+      Este documento faz parte integrante do Dossier Final da Qualidade, onde constam 
+      todos os registos que atestam a conformidade da execução.
+    </p>
+    
+    <div class="certificate-signatures">
+      <div class="certificate-signature">
+        <img src="assets/images/signature.png" alt="Assinatura Director de Obra" class="signature-image">
+        <div class="signature-line"></div>
+        <div class="signature-name">Luis Salvado</div>
+        <div class="signature-role">Director de Obra</div>
+      </div>
+      
+      <div class="certificate-seal">
+        <div class="seal-image">
+          <i class="fas fa-certificate"></i>
+        </div>
+        <div class="seal-text">Certificado Digital</div>
+        <div class="seal-date">31/03/2025</div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="certificate-footer">
+    <div class="certificate-qr">
+      <img src="assets/images/verification-qr.png" alt="QR Code de Verificação" width="100">
+    </div>
+    <div class="certificate-verification">
+      <div class="verification-title">Verificação de Autenticidade</div>
+      <div class="verification-code">ASCH-QD-4001008-2025-V1</div>
+      <div class="verification-hash">SHA256:4c21b9e8a1fe06c9a03235438a48db8c346a8c69b6b90e17c1543544647c0429</div>
+    </div>
+  </div>
+</div>
           <!-- Validação e Autenticidade - Melhoradas -->
           <div class="section-container">
             <h2 class="section-title"><i class="fas fa-certificate"></i> Validação e Autenticidade</h2>
