@@ -2858,6 +2858,99 @@ background: var(--primary);
 </style>
 </head>
 <body>
+  <!-- Proteção de Acesso -->
+<div id="access-gate" class="access-gate-overlay">
+  <div class="access-gate-modal">
+    <h2>Dossier de Qualidade</h2>
+    <p>Este conteúdo é exclusivo para utilizadores autorizados.</p>
+    <input type="password" id="access-code" placeholder="Código de Acesso" />
+    <button onclick="validateAccess()">Entrar</button>
+    <div id="access-error" class="access-error">Código incorreto.</div>
+  </div>
+</div>
+
+<script>
+  const correctCode = "4001008";
+
+  function validateAccess() {
+    const input = document.getElementById("access-code").value;
+    const error = document.getElementById("access-error");
+    if (input === correctCode) {
+      document.getElementById("access-gate").style.display = "none";
+      document.body.style.overflow = "auto";
+    } else {
+      error.style.display = "block";
+    }
+  }
+
+  window.onload = () => {
+    document.body.style.overflow = "hidden";
+  };
+</script>
+
+<style>
+  .access-gate-overlay {
+    position: fixed;
+    z-index: 99999;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .access-gate-modal {
+    text-align: center;
+    padding: 3rem;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    background: #fff;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  .access-gate-modal h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--primary);
+  }
+
+  .access-gate-modal input {
+    padding: 0.5rem 1rem;
+    width: 100%;
+    max-width: 300px;
+    margin-top: 1rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+  }
+
+  .access-gate-modal button {
+    margin-top: 1.2rem;
+    padding: 0.6rem 1.5rem;
+    font-size: 1rem;
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+
+  .access-gate-modal button:hover {
+    background: var(--primary-light);
+  }
+
+  .access-error {
+    display: none;
+    margin-top: 1rem;
+    color: red;
+    font-size: 0.9rem;
+  }
+</style>
+
   <!-- Splash Screen / Capa Inicial - Melhorada -->
   <div class="splash-screen" id="splash-screen">
     <div class="splash-content">
