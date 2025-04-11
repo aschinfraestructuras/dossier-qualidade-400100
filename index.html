@@ -2861,7 +2861,7 @@ background: var(--primary);
   <!-- Proteção de Acesso -->
 <div id="access-gate" class="access-gate-overlay">
   <div class="access-gate-modal">
-    <h2>Dossier de Qualidade</h2>
+    <h2> de Qualidade</h2>
     <p>Este conteúdo é exclusivo para utilizadores autorizados.</p>
     <input type="password" id="access-code" placeholder="Código de Acesso" />
     <button onclick="validateAccess()">Entrar</button>
@@ -2955,10 +2955,10 @@ background: var(--primary);
   <div class="splash-screen" id="splash-screen">
     <div class="splash-content">
       <img src="assets/images/logoasch.png" alt="Logo ASCH" class="splash-logo">
-      <h1 class="splash-title">Dossier Final da Qualidade</h1>
+      <h1 class="splash-title"> Final da Qualidade</h1>
       <p class="splash-subtitle">Projeto Alba – Nuevas Plantas de Poliolefinas, Plataformas Logísticas y Offsites</p>
-      <button class="btn btn-primary btn-lg" onclick="enterDossier()">
-        <i class="fas fa-book-open"></i> Entrar no Dossier
+      <button class="btn btn-primary btn-lg" onclick="enter()">
+        <i class="fas fa-book-open"></i> Entrar no 
       </button>
       <div id="splash-date" style="color: white; margin-top: 2rem; font-size: 0.9rem;">Última atualização: 31 de março de 2025</div>
     </div>
@@ -2978,7 +2978,7 @@ background: var(--primary);
       </button>
       <div class="navbar-brand">
         <img src="assets/images/logoasch.png" alt="Logo ASCH" class="brand-logo">
-        <div class="navbar-title">Dossier da Qualidade</div>
+        <div class="navbar-title"> da Qualidade</div>
       </div>
       <!-- Adição do logótipo e referência da Repsol -->
 <div class="client-reference">
@@ -2989,7 +2989,7 @@ background: var(--primary);
       <div class="navbar-tools">
         <form class="search-form" onsubmit="return performSearch()">
           <i class="fas fa-search search-icon"></i>
-          <input type="text" class="search-input" placeholder="Pesquisar no dossier..." id="global-search">
+          <input type="text" class="search-input" placeholder="Pesquisar no ..." id="global-search">
         </form>
         <button class="btn-control" id="btn-feedback" onclick="showFeedbackForm()">
           <i class="fas fa-comment-alt"></i> Feedback
@@ -4376,7 +4376,7 @@ function downloadDocument(pdfPath, suggestedName) {
     // Função para baixar o dossier completo
 function downloadFullDossier() {
   const downloadLink = document.createElement('a');
-  downloadLink.href = 'dossier_final.pdf';
+  downloadLink.href = 'Indice-DF.pdf';
   downloadLink.download = 'Indice-DF.pdf';
   document.body.appendChild(downloadLink);
   downloadLink.click();
